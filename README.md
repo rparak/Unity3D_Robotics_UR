@@ -32,6 +32,10 @@ Visual Studio: https://visualstudio.microsoft.com/downloads/
 [ Scene of the Application    ] /Scenes/
 ```
 
+<p align="center">
+<img src="https://github.com/rparak/Unity3D_Robotics_UR/blob/main/images/ur_h.PNG" width="800" height="500">
+</p>
+
 ## Digital-Twin Application:
 
 ## Result:

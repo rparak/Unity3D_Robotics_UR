@@ -43,11 +43,11 @@ Visual Studio: https://visualstudio.microsoft.com/downloads/
 ## Digital-Twin Application:
 
 <p align="center">
-<img src="https://github.com/rparak/Unity3D_Robotics_UR/blob/main/images/ur_dt_1.PNG" width="800" height="500">
-<img src="https://github.com/rparak/Unity3D_Robotics_UR/blob/main/images/ur_dt_2.PNG" width="800" height="500">
-<img src="https://github.com/rparak/Unity3D_Robotics_UR/blob/main/images/ur_dt_3.PNG" width="800" height="500">
-<img src="https://github.com/rparak/Unity3D_Robotics_UR/blob/main/images/ur_dt_4.PNG" width="800" height="500">
-<img src="https://github.com/rparak/Unity3D_Robotics_UR/blob/main/images/ur_rh_1.PNG" width="800" height="500">
+<img src="https://github.com/rparak/Unity3D_Robotics_UR/blob/main/images/ur_dt_1.png" width="800" height="500">
+<img src="https://github.com/rparak/Unity3D_Robotics_UR/blob/main/images/ur_dt_2.png" width="800" height="500">
+<img src="https://github.com/rparak/Unity3D_Robotics_UR/blob/main/images/ur_dt_3.png" width="800" height="500">
+<img src="https://github.com/rparak/Unity3D_Robotics_UR/blob/main/images/ur_dt_4.png" width="800" height="500">
+<img src="https://github.com/rparak/Unity3D_Robotics_UR/blob/main/images/ur_rh_1.png" width="800" height="500">
 </p>
 
 ## Result:

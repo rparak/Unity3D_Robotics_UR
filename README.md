@@ -20,6 +20,10 @@ Visual Studio: https://visualstudio.microsoft.com/downloads/
 
 ## Project Description:
 
+<p align="center">
+<img src="https://github.com/rparak/Unity3D_Robotics_UR/blob/main/images/ur_1.PNG" width="800" height="500">
+</p>
+
 ## Project Hierarchy:
 
 **Repositary [/Unity3D_Robotics_UR/Universal_Robots_UR3/Universal_Robots_Unity_App/Assets/]:**

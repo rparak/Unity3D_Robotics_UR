@@ -20,6 +20,16 @@ Visual Studio: https://visualstudio.microsoft.com/downloads/
 
 ## Project Description:
 
+The project is focused on a simple demonstration of client / server communication via TCP / IP, which is implemented to the Unity3D. The project demonstrates the digital twin of the UR3 robot with some additional functions. The application uses performance optimization using multi-threaded programming.
+
+This solution can be used to control a real robot or to simulate it (using VMware <-> UR Polyscope in Windows), E and CB series.
+
+A simple example of an application in C#:
+
+[UR Robot - Data Processing](https://github.com/rparak/UR_Robot_data_processing/edit/main/README.md)
+
+The project was realized at Institute of Automation and Computer Science, Brno University of Technology, Faculty of Mechanical Engineering (NETME Centre - Cybernetics and Robotics Division).
+
 <p align="center">
 <img src="https://github.com/rparak/Unity3D_Robotics_UR/blob/main/images/ur_1.PNG" width="800" height="500">
 </p>

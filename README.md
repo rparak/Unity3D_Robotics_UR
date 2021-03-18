@@ -26,7 +26,7 @@ This solution can be used to control a real robot or to simulate it (using VMwar
 
 A simple example of a data processing application:
 
-[UR Robot - Data Processing](https://github.com/rparak/UR_Robot_data_processing/edit/main/README.md)
+[UR Robot - Data Processing](https://github.com/rparak/UR_Robot_data_processing/)
 
 Main functions of the UR3 Digital-Twin model:
 - Camera Control

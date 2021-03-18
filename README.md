@@ -24,7 +24,7 @@ The project is focused on a simple demonstration of client / server communicatio
 
 This solution can be used to control a real robot or to simulate it (using VMware <-> UR Polyscope in Windows), E and CB series. The Unity3D Digital-Twin application was tested on a UR3 robot, on real hardware and on simulation. The results of this example will be published on youtube.
 
-A simple example of an application in C#:
+A simple example of a data processing application:
 
 [UR Robot - Data Processing](https://github.com/rparak/UR_Robot_data_processing/edit/main/README.md)
 

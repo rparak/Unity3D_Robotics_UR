@@ -20,7 +20,7 @@ Visual Studio: https://visualstudio.microsoft.com/downloads/
 
 ## Project Description:
 
-The project is focused on a simple demonstration of client / server communication via TCP / IP, which is implemented in Unity3D. The project demonstrates the digital-twin of the UR3 robot with some additional functions. The application uses performance optimization using multi-threaded programming.
+The project is focused on a simple demonstration of client / server communication via TCP / IP, which is implemented in Unity3D. The project demonstrates the Digital-Twin of the UR3 robot with some additional functions. The application uses performance optimization using multi-threaded programming.
 
 This solution can be used to control a real robot or to simulate it (using VMware <-> UR Polyscope in Windows), E and CB series. The Unity3D Digital-Twin application was tested on a UR3 robot, on real hardware and on simulation. The results of this example will be published on youtube.
 

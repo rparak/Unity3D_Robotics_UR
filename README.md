@@ -4,7 +4,7 @@
 
 **Software:**
 ```bash
-Universal Robots Polyscope, Unity3D 2019 and later, Visual Studio 2017/2019
+Universal Robots Polyscope, Unity3D 2020 and later, Visual Studio 2017/2019
 ```
 
 **Supported on the following operating systems:**

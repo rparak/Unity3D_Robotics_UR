@@ -14,6 +14,8 @@ Universal Windows Platform, Android
 
 Unity3D: https://unity3d.com/get-unity/download/archive
 
+Unity HDRI Pack: https://assetstore.unity.com/packages/2d/textures-materials/sky/unity-hdri-pack-72511
+
 Universal Robots: https://www.universal-robots.com/download/
 
 Visual Studio: https://visualstudio.microsoft.com/downloads/

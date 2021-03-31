@@ -46,7 +46,7 @@ The project was realized at Institute of Automation and Computer Science, Brno U
 
 ## Project Hierarchy:
 
-**Repositary [/Unity3D_Robotics_UR/Universal_Robots_UR3/Universal_Robots_Unity_App/Assets/]:**
+**Repositary [/Unity3D_Robotics_UR/Universal_Robots_Unity_App/Assets/]:**
 ```bash
 [ UI + Main Control           ] /Script/UI/
 [ Data Processing             ] /Script/UR3/

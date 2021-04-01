@@ -52,7 +52,6 @@ The project was realized at Institute of Automation and Computer Science, Brno U
 [ Data Processing             ] /Script/UR3/
 [ Individual objects (.blend) ] /Object/Blender/
 [ Images (UI)                 ] /Image/
-[ Animation of the objects    ] /Animation/
 [ Scene of the Application    ] /Scenes/
 ```
 

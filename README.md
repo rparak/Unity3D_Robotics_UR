@@ -26,10 +26,6 @@ The project is focused on a simple demonstration of client / server communicatio
 
 This solution can be used to control a real robot or to simulate it (using VMware <-> UR Polyscope in Windows), E and CB series. The Unity3D Digital-Twin application was tested on the UR3 robot, both on real hardware and on simulation.
 
-Example of a simple data processing application:
-
-[UR Robot - Data Processing](https://github.com/rparak/UR_Robot_data_processing/)
-
 Main functions of the UR3 Digital-Twin model:
 - Camera Control
 - Connect/Disconnect -> Real HW or Simulation
@@ -39,6 +35,12 @@ Main functions of the UR3 Digital-Twin model:
 The application can be installed on a mobile phone, tablet or computer, but for communication with the robot it is necessary to be in the same network
 
 The project was realized at Institute of Automation and Computer Science, Brno University of Technology, Faculty of Mechanical Engineering (NETME Centre - Cybernetics and Robotics Division).
+
+**Appendix:**
+
+Example of a simple data processing application:
+
+[UR Robot - Data Processing](https://github.com/rparak/UR_Robot_data_processing/)
 
 <p align="center">
 <img src="https://github.com/rparak/Unity3D_Robotics_UR/blob/main/images/ur_1.PNG" width="800" height="500">

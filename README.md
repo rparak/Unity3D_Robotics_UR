@@ -4,7 +4,7 @@
 
 **Software:**
 ```bash
-Universal Robots Polyscope, Unity3D 2020.1.8f1, Visual Studio 2017/2019
+Universal Robots Polyscope, Blender, Unity3D 2020.1.8f1, Visual Studio 2017/2019
 ```
 
 **Supported on the following operating systems:**
@@ -12,13 +12,13 @@ Universal Robots Polyscope, Unity3D 2020.1.8f1, Visual Studio 2017/2019
 Universal Windows Platform, Android
 ```
 
-Unity3D: https://unity3d.com/get-unity/download/archive
-
-Unity HDRI Pack: https://assetstore.unity.com/packages/2d/textures-materials/sky/unity-hdri-pack-72511
-
-Universal Robots: https://www.universal-robots.com/download/
-
-Visual Studio: https://visualstudio.microsoft.com/downloads/
+| Software/Package           | Link                                                                                  |
+| -------------------------- | ------------------------------------------------------------------------------------- |
+| Blender                    | https://www.blender.org/download/                                                     |
+| Unity3D                    | https://unity3d.com/get-unity/download/archive                                        |
+| Unity HDRI Pack            | https://assetstore.unity.com/packages/2d/textures-materials/sky/unity-hdri-pack-72511 |
+| Universal Robots Polyscope | https://www.universal-robots.com/download/                                            |
+| Visual Studio              | https://visualstudio.microsoft.com/downloads/                                         |
 
 ## Project Description:
 

@@ -1,4 +1,4 @@
-# Universal Robots UR3 - Unity3D Robotics
+# Unity3D Industrial Robotics: Universal Robots UR3
 
 ## Requirements:
 

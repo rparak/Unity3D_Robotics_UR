@@ -83,7 +83,7 @@ Roman.Parak@outlook.com
 ```bash
 @misc{RomanParak_Unity3D,
   author = {Roman Parak},
-  title = {Unity3d industrial robotics: Digital-twin},
+  title = {A digital-twins in the field of industrial robotics integrated into the unity3d development platform},
   year = {2020-2021},
   publisher = {GitHub},
   journal = {GitHub repository},

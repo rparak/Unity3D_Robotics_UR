@@ -46,50 +46,5 @@ Example of a simple data processing application:
 <img src="https://github.com/rparak/Unity3D_Robotics_UR/blob/main/images/ur_1.PNG" width="800" height="500">
 </p>
 
-## Project Hierarchy:
-
-**Repositary [/Unity3D_Robotics_UR/Universal_Robots_Unity_App/Assets/]:**
-```bash
-[ UI + Main Control           ] /Script/UI/
-[ Data Processing             ] /Script/UR3/
-[ Individual objects (.blend) ] /Object/Blender/
-[ Images (UI)                 ] /Image/
-[ Scene of the Application    ] /Scenes/
-```
-
-<p align="center">
-<img src="https://github.com/rparak/Unity3D_Robotics_UR/blob/main/images/ur_h.PNG" width="800" height="500">
-</p>
-
-## Digital-Twin Application:
-
-<p align="center">
-<img src="https://github.com/rparak/Unity3D_Robotics_UR/blob/main/images/ur_dt_1.png" width="800" height="500">
-<img src="https://github.com/rparak/Unity3D_Robotics_UR/blob/main/images/ur_dt_2.png" width="800" height="500">
-<img src="https://github.com/rparak/Unity3D_Robotics_UR/blob/main/images/ur_dt_3.png" width="800" height="500">
-<img src="https://github.com/rparak/Unity3D_Robotics_UR/blob/main/images/ur_dt_4.png" width="800" height="500">
-<img src="https://github.com/rparak/Unity3D_Robotics_UR/blob/main/images/ur_rh_1.png" width="800" height="500">
-</p>
-
-## Result:
-
-Youtube: https://www.youtube.com/watch?v=kReuJdESdz0&t=182s
-
-## Contact Info:
-Roman.Parak@outlook.com
-
-## Citation (BibTex)
-
-```bash
-@misc{RomanParak_Unity3D,
-  author = {Roman Parak},
-  title = {A digital-twins in the field of industrial robotics integrated into the unity3d development platform},
-  year = {2020-2021},
-  publisher = {GitHub},
-  journal = {GitHub repository},
-  howpublished = {\url{https://github.com/rparak/Unity3D_Robotics_Overview}}
-}
-```
-
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

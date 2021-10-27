@@ -1,50 +1,70 @@
-# Unity3D Industrial Robotics: Universal Robots UR3
+# Universal Robots Unity3D App
+Control the [Universal Robots](https://www.universal-robots.com/) with Unity3D by using TCP/IP.
 
-## Requirements:
+## Requirements
 
-**Software:**
-```bash
-Universal Robots Polyscope, Blender, Unity3D 2020.1.8f1, Visual Studio 2017/2019
-```
-
-**Supported on the following operating systems:**
-```bash
-Universal Windows Platform, Android
-```
-
-| Software/Package           | Link                                                                                  |
+| Software / Package           | Description / Link                                                                                  |
 | -------------------------- | ------------------------------------------------------------------------------------- |
-| Blender                    | https://www.blender.org/download/                                                     |
-| Unity3D                    | https://unity3d.com/get-unity/download/archive                                        |
+| OS                         | *Linux* or *Windows*
+| Blender 2.9.xx             | https://www.blender.org/download/                                                     |
+| Unity3D 2020.3.xx          | https://unity3d.com/get-unity/download/archive                                        |
 | Unity HDRI Pack            | https://assetstore.unity.com/packages/2d/textures-materials/sky/unity-hdri-pack-72511 |
-| Universal Robots Polyscope | https://www.universal-robots.com/download/                                            |
-| Visual Studio              | https://visualstudio.microsoft.com/downloads/                                         |
+| Docker                     | https://docs.docker.com/get-docker/
+| UR Simulator               | https://github.com/vushu/DockURSim                                            |
 
-## Project Description:
+## Quick Start
 
-The project is focused on a simple demonstration of client-server communication via TCP / IP, which is implemented in Unity3D. The project demonstrates the Digital-Twin of the UR3 robot with some additional functions. The application uses performance optimization using multi-threaded programming.
+### I) UR Simulator
+1. **Docker:** Install and run [Docker Engine](https://docs.docker.com/get-docker/)
+2. **URSim**
+    ```
+   # Create volume
+   docker volume create dockursim
+   
+   # Run container
+    docker run -d \
+    --name="dockursim" \
+    -e ROBOT_MODEL=UR3 \
+    -p 8080:8080 \
+    -p 29999:29999 \
+    -p 30001-30004:30001-30004 \
+    -v /path/to/your/local/ursim/programs:/ursim/programs \
+    -v dockursim:/ursim \
+    --privileged \
+    --cpus=1 \
+    arranhs/dockursim:latest
+    ```
+3. Open http://localhost:8080
 
-This solution can be used to control a real robot or to simulate it (using VMware <-> UR Polyscope in Windows), E and CB series. The Unity3D Digital-Twin application was tested on the UR3 robot, both on real hardware and on simulation.
 
-Main functions of the UR3 Digital-Twin model:
-- Camera Control
-- Connect/Disconnect -> Real HW or Simulation
-- Read Data (Cartesian / Joint Position diagnostics)
-- Write Data (Speed control of the robot (X,Y,Z and EA{RX, RY, RZ}) using the joystick)
+### II) Unity3D
 
-The application can be installed on a mobile phone, tablet or computer, but for communication with the robot it is necessary to be in the same network
+#### Connect to UR Sim
+1. Make sure [URSim](https://github.com/vushu/DockURSim) is running
+2. Connect in Unity to *127.0.0.1*
 
-The project was realized at Institute of Automation and Computer Science, Brno University of Technology, Faculty of Mechanical Engineering (NETME Centre - Cybernetics and Robotics Division).
+#### Connect to real robot
+1. Connect you PC by the ethernet with your robot
+2. Configurate your network:
+    ```
+    # Polyscope
+      IP: 192.168.0.102
+      Subnet: 255.255.255.0
+      Gateway: 192.168.0.1
+   
+    # PC
+      IP: 192.168.0.101
+      Subnet: 255.255.255.0
+      Gateway: 192.168.0.1
+   
+   # Unity
+      IP: 192.168.0.102
+       ```
 
-**Appendix:**
-
-Example of a simple data processing application:
-
-[UR Robot - Data Processing](https://github.com/rparak/UR_Robot_data_processing/)
-
-<p align="center">
-<img src="https://github.com/rparak/Unity3D_Robotics_UR/blob/main/images/ur_1.PNG" width="800" height="500">
-</p>
+## Coming soon
+* Game Controller support
+* Web browser integration
+* ....
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

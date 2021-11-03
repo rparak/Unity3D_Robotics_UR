@@ -20,7 +20,7 @@ SOFTWARE.
 Author   : Roman Parak
 Email    : Roman.Parak @outlook.com
 Github   : https://github.com/rparak
-File Name: ur3_link1.cs
+File Name: ur_data_processing.cs
 ****************************************************************************/
 
 // System
@@ -251,7 +251,6 @@ public class ur_data_processing : MonoBehaviour
                             UR_Stream_Data.J_Orientation[4] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (36 * offset));
                             UR_Stream_Data.J_Orientation[5] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (37 * offset));
                             // Read Cartesian (Positon) Values in metres
-                            Console.WriteLine(UR_Stream_Data.J_Orientation[0]);
                             UR_Stream_Data.C_Position[0] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (56 * offset));
                             UR_Stream_Data.C_Position[1] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (57 * offset));
                             UR_Stream_Data.C_Position[2] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (58 * offset));
@@ -333,12 +332,19 @@ public class ur_data_processing : MonoBehaviour
                     // Connect to controller -> if the controller is disconnected
                     tcp_client.Connect(UR_Control_Data.ip_address, UR_Control_Data.port_number);
 
-                    // Initialization TCP/IP Communication (Stream)
-                    network_stream = tcp_client.GetStream();
                 }
+
+                // Initialization TCP/IP Communication (Stream)
+                network_stream = tcp_client.GetStream();
+
+                // Initialization timer
+                var t = new Stopwatch();
 
                 while (exit_thread == false)
                 {
+                    // t_{0}: Timer start.
+                    t.Start();
+
                     // Note:
                     //  For more information about commands, see the URScript Programming Language document 
 
@@ -348,8 +354,17 @@ public class ur_data_processing : MonoBehaviour
                         network_stream.Write(UR_Control_Data.command, 0, UR_Control_Data.command.Length);
                     }
 
-                    // Wait Time
-                    Thread.Sleep(UR_Control_Data.time_step);
+                    // t_{1}: Timer stop.
+                    t.Stop();
+
+                    // Recalculate the time: t = t_{1} - t_{0} -> Elapsed Time in milliseconds
+                    if (t.ElapsedMilliseconds < UR_Stream_Data.time_step)
+                    {
+                        Thread.Sleep(UR_Stream_Data.time_step - (int)t.ElapsedMilliseconds);
+                    }
+
+                    // Reset (Restart) timer.
+                    t.Restart();
                 }
             }
             catch (SocketException e)

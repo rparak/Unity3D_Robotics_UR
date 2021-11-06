@@ -34,7 +34,7 @@ Main functions of the UR3 Digital-Twin model:
 
 The application can be installed on a mobile phone, tablet or computer, but for communication with the robot it is necessary to be in the same network
 
-The project was realized at Institute of Automation and Computer Science, Brno University of Technology, Faculty of Mechanical Engineering (NETME Centre - Cybernetics and Robotics Division).
+The project was realized at the Institute of Automation and Computer Science, Brno University of Technology, Faculty of Mechanical Engineering (NETME Centre - Cybernetics and Robotics Division).
 
 **Appendix:**
 

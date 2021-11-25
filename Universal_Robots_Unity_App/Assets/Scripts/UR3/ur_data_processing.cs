@@ -46,7 +46,7 @@ public class ur_data_processing : MonoBehaviour
         public static string ip_address;
         //  Real-time (Read Only)
         public const ushort port_number = 30013;
-        // Comunication Speed (ms)
+        // Communication Speed (ms)
         public static int time_step;
         // Joint Space:
         //  Orientation {J1 .. J6} (rad)
@@ -59,13 +59,14 @@ public class ur_data_processing : MonoBehaviour
         // Class thread information (is alive or not)
         public static bool is_alive = false;
     }
+    
     public static class UR_Control_Data
     {
         // IP Port Number and IP Address
         public static string ip_address;
         //  Real-time (Read/Write)
         public const ushort port_number = 30003;
-        // Comunication Speed (ms)
+        // Communication Speed (ms)
         public static int time_step;
         // Control Parameters UR3/UR3e:
         public static string aux_command_str;

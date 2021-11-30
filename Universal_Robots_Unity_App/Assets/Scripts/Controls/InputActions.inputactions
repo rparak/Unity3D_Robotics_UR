@@ -1,0 +1,140 @@
+{
+    "name": "InputActions",
+    "maps": [
+        {
+            "name": "RobotControls",
+            "id": "38201deb-617e-482d-8f68-eeb8a82c4414",
+            "actions": [
+                {
+                    "name": "TcpPositionMovement",
+                    "type": "Value",
+                    "id": "e9c4b8b2-8a62-42cb-80d7-b2a6beddab7d",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TcpOrientationMovement",
+                    "type": "Value",
+                    "id": "6dda5376-3cf3-4c98-b66d-59b738961cc3",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TcpZPositionUp",
+                    "type": "Button",
+                    "id": "48951f4e-1d34-436a-83ed-1c636e19be8f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TcpZPositionDown",
+                    "type": "Button",
+                    "id": "1a433ef3-1bef-412a-9fe5-01372c7f1e5d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TcpZRotationLeft",
+                    "type": "Button",
+                    "id": "1368e269-648d-4f79-a81b-631fbadd3f90",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TcpZRotationRight",
+                    "type": "Button",
+                    "id": "0bb0017b-1151-432d-b324-7849269ff57a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5c56b3d2-d287-4227-960d-e7585aa0b5d5",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ps4",
+                    "action": "TcpPositionMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f4c97d46-2774-4f81-b99c-af91ec6646a7",
+                    "path": "<DualShockGamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ps4",
+                    "action": "TcpOrientationMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ee9dde46-fdfa-4f2f-93d9-279bb8308be8",
+                    "path": "<DualShockGamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ps4",
+                    "action": "TcpZPositionUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "93ebe3e8-c3b4-4054-9af8-b589a440fecb",
+                    "path": "<DualShockGamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ps4",
+                    "action": "TcpZPositionDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ce5d8e18-d8a1-4995-88ea-f134bc59f339",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ps4",
+                    "action": "TcpZRotationLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a157f2c0-8356-44f7-ad11-22fa3fd30924",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ps4",
+                    "action": "TcpZRotationRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "ps4",
+            "bindingGroup": "ps4",
+            "devices": [
+                {
+                    "devicePath": "<DualShockGamepad>",
+                    "isOptional": true,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

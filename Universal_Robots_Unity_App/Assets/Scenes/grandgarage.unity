@@ -4260,7 +4260,7 @@ MonoBehaviour:
   - 0.0
   - 0.0
   - 0.0
-  - -0.1
+  - -0.05
   - 0.0
   - 0.0
   speed_param_null:
@@ -4270,7 +4270,7 @@ MonoBehaviour:
   - 0.0
   - 0.0
   - 0.0
-  index: 0
+  index: 7
 --- !u!1 &540395461
 GameObject:
   m_ObjectHideFlags: 0
@@ -9524,16 +9524,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 1352515741}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_PointAction: {fileID: 1054132383583890850, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_MoveAction: {fileID: 3710738434707379630, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_SubmitAction: {fileID: 2064916234097673511, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_CancelAction: {fileID: -1967631576421560919, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_LeftClickAction: {fileID: 8056856818456041789, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_MiddleClickAction: {fileID: 3279352641294131588, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_RightClickAction: {fileID: 3837173908680883260, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_ScrollWheelAction: {fileID: 4502412055082496612, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_TrackedDevicePositionAction: {fileID: 4754684134866288074, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 1025543830046995696, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
 --- !u!114 &1352515743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16085,6 +16104,8 @@ GameObject:
   - component: {fileID: 1853598072788548398}
   - component: {fileID: 5264702706348899864}
   - component: {fileID: 4507567113153825174}
+  - component: {fileID: 4507567113153825176}
+  - component: {fileID: 4507567113153825175}
   m_Layer: 0
   m_Name: UR3
   m_TagString: Untagged
@@ -16104,6 +16125,167 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6d9d68bfd12c045b7f8d97a359662d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4507567113153825175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4507567113153825173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237ac12b66674779a5e23aee25f0d19f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceleration: 1.0
+  time: 0.05
+  speed_param:
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  speed_param_null:
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  rightShoulderButtonHeld: 0
+  leftShoulderButtonHeld: 0
+  index: 0
+  gamepadCheck: {fileID: 0}
+  playerInput: {fileID: 4507567113153825176}
+  movementSmoothingSpeed: 1
+--- !u!114 &4507567113153825176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4507567113153825173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 25b14d8357c30bd49829302e965be895,
+    type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4507567113153825175}
+        m_TargetAssemblyTypeName: Controls.InputController, Assembly-CSharp
+        m_MethodName: OnTcpPositionMovement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e9c4b8b2-8a62-42cb-80d7-b2a6beddab7d
+    m_ActionName: RobotControls/Movement[/DualShock4GamepadHID/leftStick/up,/DualShock4GamepadHID/leftStick/down,/DualShock4GamepadHID/leftStick/left,/DualShock4GamepadHID/leftStick/right]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4507567113153825175}
+        m_TargetAssemblyTypeName: Controls.InputController, Assembly-CSharp
+        m_MethodName: OnTcpOrientationMovement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6dda5376-3cf3-4c98-b66d-59b738961cc3
+    m_ActionName: RobotControls/TcpOrientationMovement
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4507567113153825175}
+        m_TargetAssemblyTypeName: Controls.InputController, Assembly-CSharp
+        m_MethodName: OnTcpZPositionUp
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 48951f4e-1d34-436a-83ed-1c636e19be8f
+    m_ActionName: RobotControls/TcpZPositionMovement
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4507567113153825175}
+        m_TargetAssemblyTypeName: Controls.InputController, Assembly-CSharp
+        m_MethodName: OnTcpZPositionDown
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1a433ef3-1bef-412a-9fe5-01372c7f1e5d
+    m_ActionName: RobotControls/TcpZPositionDown[/DualShock4GamepadHID/rightShoulder]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4507567113153825175}
+        m_TargetAssemblyTypeName: Controls.InputController, Assembly-CSharp
+        m_MethodName: OnTcpZRotationLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1368e269-648d-4f79-a81b-631fbadd3f90
+    m_ActionName: RobotControls/TcpZRotationLeft[/DualShock4GamepadHID/leftShoulder]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4507567113153825175}
+        m_TargetAssemblyTypeName: Controls.InputController, Assembly-CSharp
+        m_MethodName: OnTcpZRotationRight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0bb0017b-1151-432d-b324-7849269ff57a
+    m_ActionName: RobotControls/TcpZRotationRight[/DualShock4GamepadHID/rightShoulder]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: ps4
+  m_DefaultActionMap: RobotControls
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 282840813}
 --- !u!23 &4526772130248211016
 MeshRenderer:
   m_ObjectHideFlags: 0

@@ -75,7 +75,7 @@ namespace UR3
             public static string aux_command_str;
             public static byte[] command;
             public static bool[] button_pressed = new bool[12];
-            public static bool gamepadButtonPressed;
+            public static bool shouldMove;
             public static bool joystick_button_pressed;
             // Class thread information (is alive or not)
             public static bool is_alive = false;
@@ -352,7 +352,7 @@ namespace UR3
                         // Note:
                         //  For more information about commands, see the URScript Programming Language document 
 
-                        if (UR_Control_Data.joystick_button_pressed == true || UR_Control_Data.gamepadButtonPressed)
+                        if (UR_Control_Data.joystick_button_pressed == true || UR_Control_Data.shouldMove)
                         {
                             // Send command (byte) -> speed control of the robot (X,Y,Z and EA{RX, RY, RZ})
                             network_stream.Write(UR_Control_Data.command, 0, UR_Control_Data.command.Length);

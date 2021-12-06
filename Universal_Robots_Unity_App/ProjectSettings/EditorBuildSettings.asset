@@ -4,7 +4,12 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/grandgarage.unity
+    guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: f4e35b1cbf6f55a40b2f7fb963d7f476,
+      type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: d53cff5071f989e49859ada11d6b64de,
       type: 2}

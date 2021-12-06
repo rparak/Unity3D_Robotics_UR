@@ -1,7 +1,7 @@
 # Universal Robots Unity3D App
 Control the [Universal Robots](https://www.universal-robots.com/) with Unity3D by using TCP/IP.
 
-![screenshot](images/screenshot1.png)
+![screenshot](images/screenshot1.jpg)
 
 ## Requirements
 
@@ -70,7 +70,7 @@ Control the [Universal Robots](https://www.universal-robots.com/) with Unity3D b
 * ....
 
 
-  ![screenshot](images/screenshot2.png)
+  ![screenshot](images/screenshot2.jpg)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

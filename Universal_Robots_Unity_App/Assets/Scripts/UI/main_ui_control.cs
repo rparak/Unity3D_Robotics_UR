@@ -23,17 +23,15 @@ Github   : https://github.com/rparak
 File Name: main_ui_control.cs
 ****************************************************************************/
 
-// ------------------------------------------------------------------------------------------------------------------------ //
-// ----------------------------------------------------- LIBRARIES -------------------------------------------------------- //
-// ------------------------------------------------------------------------------------------------------------------------ //
-
-// -------------------- System -------------------- //
+// System 
+using System;
 using System.Text;
-// -------------------- Unity -------------------- //
+// Unity
 using UnityEngine;
 using UnityEngine.UI;
-// --------------------- TM ---------------------- //
+// TM 
 using TMPro;
+using UR3;
 
 public class main_ui_control : MonoBehaviour
 {
@@ -91,30 +89,30 @@ public class main_ui_control : MonoBehaviour
 
         // Auxiliary first command -> Write initialization position/rotation with acceleration/time to the robot controller
         // command (string value)
-        GlobalVariables_TCP_IP_client.aux_command_str = "speedl([0.0,0.0,0.0,0.0,0.0,0.0], a = 0.15, t = 0.03)" + "\n";
+        ur_data_processing.UR_Control_Data.aux_command_str = "speedl([0.0,0.0,0.0,0.0,0.0,0.0], a = 0.15, t = 0.03)" + "\n";
         // get bytes from string command
-        GlobalVariables_TCP_IP_client.command = utf8.GetBytes(GlobalVariables_TCP_IP_client.aux_command_str);
+        ur_data_processing.UR_Control_Data.command = utf8.GetBytes(ur_data_processing.UR_Control_Data.aux_command_str);
     }
 
     // ------------------------------------------------------------------------------------------------------------------------ //
     // ------------------------------------------------ MAIN FUNCTION {Cyclic} ------------------------------------------------ //
     // ------------------------------------------------------------------------------------------------------------------------ //
-    void Update()
+    void FixedUpdate()
     {
         // Robot IP Address (Read) -> TCP/IP 
-        GlobalVariables_Main_Control.ur3_tcpip_read_config_str = ip_address_txt.text;
+        ur_data_processing.UR_Stream_Data.ip_address = ip_address_txt.text;
         // Robot IP Address (Write) -> TCP/IP 
-        GlobalVariables_Main_Control.ur3_tcpip_write_config_str = ip_address_txt.text;
+        ur_data_processing.UR_Control_Data.ip_address = ip_address_txt.text;
 
         // ------------------------ Connection Information ------------------------//
         // If the button (connect/disconnect) is pressed, change the color and text
-        if (GlobalVariables_Main_Control.connect == true)
+        if (ur_data_processing.GlobalVariables_Main_Control.connect == true)
         {
             // green color
             connection_info_img.GetComponent<Image>().color = new Color32(135, 255, 0, 50);
             connectionInfo_txt.text = "Connect";
         }
-        else if(GlobalVariables_Main_Control.disconnect == true)
+        else if(ur_data_processing.GlobalVariables_Main_Control.disconnect == true)
         {
             // red color
             connection_info_img.GetComponent<Image>().color = new Color32(255, 0, 48, 50);
@@ -123,20 +121,20 @@ public class main_ui_control : MonoBehaviour
 
         // ------------------------ Cyclic read parameters {diagnostic panel} ------------------------ //
         // Position {Cartesian} -> X..Z
-        position_x_txt.text = GlobalVariables_TCP_IP_client.robotBaseRotLink_UR3_c[0].ToString();
-        position_y_txt.text = GlobalVariables_TCP_IP_client.robotBaseRotLink_UR3_c[1].ToString();
-        position_z_txt.text = GlobalVariables_TCP_IP_client.robotBaseRotLink_UR3_c[2].ToString();
+        position_x_txt.text = ((float)Math.Round(ur_data_processing.UR_Stream_Data.C_Position[0] * (1000f), 2)).ToString();
+        position_y_txt.text = ((float)Math.Round(ur_data_processing.UR_Stream_Data.C_Position[1] * (1000f), 2)).ToString();
+        position_z_txt.text = ((float)Math.Round(ur_data_processing.UR_Stream_Data.C_Position[2] * (1000f), 2)).ToString();
         // Position {Rotation} -> EulerAngles(RX..RZ)
-        position_rx_txt.text = GlobalVariables_TCP_IP_client.robotBaseRotLink_UR3_c[3].ToString();
-        position_ry_txt.text = GlobalVariables_TCP_IP_client.robotBaseRotLink_UR3_c[4].ToString();
-        position_rz_txt.text = GlobalVariables_TCP_IP_client.robotBaseRotLink_UR3_c[5].ToString();
+        position_rx_txt.text = ((float)Math.Round(ur_data_processing.UR_Stream_Data.C_Orientation[0] * (180 / Math.PI), 2)).ToString();
+        position_ry_txt.text = ((float)Math.Round(ur_data_processing.UR_Stream_Data.C_Orientation[1] * (180 / Math.PI), 2)).ToString();
+        position_rz_txt.text = ((float)Math.Round(ur_data_processing.UR_Stream_Data.C_Orientation[2] * (180 / Math.PI), 2)).ToString();
         // Position Joint -> 1 - 6
-        position_j1_txt.text = GlobalVariables_TCP_IP_client.robotBaseRotLink_UR3_j[0].ToString();
-        position_j2_txt.text = GlobalVariables_TCP_IP_client.robotBaseRotLink_UR3_j[1].ToString();
-        position_j3_txt.text = GlobalVariables_TCP_IP_client.robotBaseRotLink_UR3_j[2].ToString();
-        position_j4_txt.text = GlobalVariables_TCP_IP_client.robotBaseRotLink_UR3_j[3].ToString();
-        position_j5_txt.text = GlobalVariables_TCP_IP_client.robotBaseRotLink_UR3_j[4].ToString();
-        position_j6_txt.text = GlobalVariables_TCP_IP_client.robotBaseRotLink_UR3_j[5].ToString();
+        position_j1_txt.text = ((float)Math.Round(ur_data_processing.UR_Stream_Data.J_Orientation[0] * (180 / Math.PI), 2)).ToString();
+        position_j2_txt.text = ((float)Math.Round(ur_data_processing.UR_Stream_Data.J_Orientation[1] * (180 / Math.PI), 2)).ToString();
+        position_j3_txt.text = ((float)Math.Round(ur_data_processing.UR_Stream_Data.J_Orientation[2] * (180 / Math.PI), 2)).ToString();
+        position_j4_txt.text = ((float)Math.Round(ur_data_processing.UR_Stream_Data.J_Orientation[3] * (180 / Math.PI), 2)).ToString();
+        position_j5_txt.text = ((float)Math.Round(ur_data_processing.UR_Stream_Data.J_Orientation[4] * (180 / Math.PI), 2)).ToString();
+        position_j6_txt.text = ((float)Math.Round(ur_data_processing.UR_Stream_Data.J_Orientation[5] * (180 / Math.PI), 2)).ToString();
     }
 
     // ------------------------------------------------------------------------------------------------------------------------//
@@ -229,15 +227,15 @@ public class main_ui_control : MonoBehaviour
     // -------------------- Connect Button -> is pressed -------------------- //
     public void TaskOnClick_ConnectBTN()
     {
-        GlobalVariables_Main_Control.connect    = true;
-        GlobalVariables_Main_Control.disconnect = false;
+        ur_data_processing.GlobalVariables_Main_Control.connect    = true;
+        ur_data_processing.GlobalVariables_Main_Control.disconnect = false;
     }
 
     // -------------------- Disconnect Button -> is pressed -------------------- //
     public void TaskOnClick_DisconnectBTN()
     {
-        GlobalVariables_Main_Control.connect    = false;
-        GlobalVariables_Main_Control.disconnect = true;
+        ur_data_processing.GlobalVariables_Main_Control.connect    = false;
+        ur_data_processing.GlobalVariables_Main_Control.disconnect = true;
     }
 
 }

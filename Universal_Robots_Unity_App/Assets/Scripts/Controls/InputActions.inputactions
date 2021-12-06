@@ -52,6 +52,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "GripperClose",
+                    "type": "Button",
+                    "id": "edf2c05e-ccc5-4d33-b1ac-c0a330b25e4c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "GripperOpen",
+                    "type": "Button",
+                    "id": "ce683cad-b62a-4da5-9df0-b23226ea5f33",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -118,6 +134,28 @@
                     "processors": "",
                     "groups": "ps4",
                     "action": "TcpOrientationRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd695bd7-045f-409c-986b-857be0593ec1",
+                    "path": "<DualShockGamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ps4",
+                    "action": "GripperClose",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "badd41d8-937e-41b9-941d-d74474fb2cfc",
+                    "path": "<DualShockGamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ps4",
+                    "action": "GripperOpen",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

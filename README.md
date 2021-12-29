@@ -14,6 +14,24 @@ Control the [Universal Robots](https://www.universal-robots.com/) with Unity3D b
 | Docker                     | https://docs.docker.com/get-docker/
 | UR Simulator               | https://github.com/vushu/DockURSim                                            |
 
+
+<br><br>
+
+## Coming soon
+### VR Support
+Enter the playground in Virtual Reality. <br>
+Support for Oculus Headset will follow soon.
+
+### Playground
+A more detailed world with interactable objects will be added
+
+### Improved user interface
+Better Design for the UI
+
+### And more will follow
+
+<br><br>
+
 ## Quick Start
 
 ### I) UR Simulator
@@ -38,6 +56,7 @@ Control the [Universal Robots](https://www.universal-robots.com/) with Unity3D b
     ```
 3. Open http://localhost:8080
 
+<br>
 
 ### II) Unity3D
 
@@ -62,12 +81,6 @@ Control the [Universal Robots](https://www.universal-robots.com/) with Unity3D b
    # Unity
       IP: 192.168.0.102
        ```
-
-## Coming soon
-* Game Controller support
-* Web browser integration
-* Improve user interface and more functions
-* ....
 
 
   ![screenshot](images/screenshot2.jpg)

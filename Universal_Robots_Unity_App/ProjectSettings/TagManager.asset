@@ -7,6 +7,9 @@ TagManager:
   - MainLight
   - InputController
   - Robot
+  - Gripper
+  - LeftGripper
+  - RightGripper
   layers:
   - Default
   - TransparentFX

@@ -22,14 +22,14 @@ namespace UR3.Gripper
         void OnCollisionEnter(Collision collision)
         {
             Debug.Log("COLLISION ENTER");
-            Robot.GetComponent<InputController>().collitionDetected(true);
+            Robot.GetComponent<InputController>().SetCollisionDetected(true);
             ur_data_processing.UR_Control_Data.shouldMove = false;
         }
         
         void OnCollisionExit(Collision collision)
         {
             Debug.Log("COLLISION LEAVE");
-            Robot.GetComponent<InputController>().collitionDetected(false);
+            Robot.GetComponent<InputController>().SetCollisionDetected(false);
         }
     }
 }

@@ -10,6 +10,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UR3;
+using UR3.Gripper;
 
 namespace Controls
 {
@@ -19,24 +20,37 @@ namespace Controls
         public string time = "0.05";
         public string speed = "0.05";
 
-        public GameObject leftGripper;
-        public GameObject rightGripper;
+        [SerializeField] private GameObject _robot;
+        [SerializeField] private GameObject _gripper;
+        private GameObject _leftGripper;
+        private GameObject _rightGripper;
 
         public bool collisionDetected;
 
-        private bool gripperClosing = false;
-        private bool gripperOpening = false;
+        public bool GripperClosing { get; set; }
+        public bool GripperOpening { get; set; }
 
         // -------------------- UTF8Encoding -------------------- //
         private UTF8Encoding utf8 = new UTF8Encoding();
 
-        [Header("Input Settings")] 
-        public PlayerInput playerInput;
-        public float movementSmoothingSpeed = 1f;
+        [Header("Input Settings")] public PlayerInput playerInput;
         private Vector3 rawInputMovement;
-        private Vector3 smoothInputMovement;
-        
-        //Update Loop - Used for calculating frame-based data
+
+        void Start()
+        {
+            // Assign necessary gameObjects in scene
+            if (!_robot)
+            {
+                _robot = GameObject.FindGameObjectWithTag("Robot");
+                if (!_gripper)
+                {
+                    _gripper = FindChildWithTag(_robot, "Gripper");
+                    _leftGripper = FindChildWithTag(_gripper, "LeftGripper");
+                    _rightGripper = FindChildWithTag(_gripper, "RightGripper");
+                }
+            }
+        }
+
         void Update()
         {
             if (collisionDetected)
@@ -44,23 +58,23 @@ namespace Controls
                 //TODO stop all movement
                 //ur_data_processing.UR_Control_Data.shouldMove = false;
             }
-            if (gripperClosing && !collisionDetected)
+
+            if (GripperClosing && !collisionDetected)
             {
-                closeGripper();
+                CloseGripper();
             }
 
-            if (gripperOpening)
+            if (GripperOpening)
             {
-                openGripper();
+                OpenGripper();
             }
         }
 
-        public void collitionDetected(bool value)
+        public void SetCollisionDetected(bool value)
         {
             Debug.Log("##### COLLISION #####   " + value);
             collisionDetected = value;
         }
-
 
 
         //INPUT SYSTEM ACTION METHODS --------------
@@ -78,7 +92,7 @@ namespace Controls
 
             if (rawInputMovement.x != 0 || rawInputMovement.z != 0)
             {
-                horizontalPosition(rawInputMovement.x, rawInputMovement.z);
+                HorizontalPosition(rawInputMovement.x, rawInputMovement.z);
             }
         }
 
@@ -94,7 +108,7 @@ namespace Controls
 
             if (rawInputMovement.x != 0 || rawInputMovement.z != 0)
             {
-                verticalPosition(rawInputMovement.x, rawInputMovement.z);
+                VerticalPosition(rawInputMovement.x, rawInputMovement.z);
             }
         }
 
@@ -102,7 +116,7 @@ namespace Controls
         {
             if (value.performed)
             {
-                forwardOrientation();
+                ForwardOrientation();
             }
 
             if (value.canceled)
@@ -115,7 +129,7 @@ namespace Controls
         {
             if (value.performed)
             {
-                backwardOrientation();
+                BackwardOrientation();
             }
 
             if (value.canceled)
@@ -123,16 +137,16 @@ namespace Controls
                 ur_data_processing.UR_Control_Data.shouldMove = false;
             }
         }
-        
+
         public void OnOrientationLeft(InputAction.CallbackContext value)
         {
             if (value.performed)
             {
-                leftOrientation();
+                LeftOrientation();
             }
 
             if (value.canceled)
-            { 
+            {
                 ur_data_processing.UR_Control_Data.shouldMove = false;
             }
         }
@@ -141,7 +155,7 @@ namespace Controls
         {
             if (value.performed)
             {
-                rightOrientation();
+                RightOrientation();
             }
 
             if (value.canceled)
@@ -154,109 +168,119 @@ namespace Controls
         {
             if (value.performed)
             {
-                gripperClosing = true;
+                GripperClosing = true;
             }
+
             if (value.canceled)
             {
-                gripperClosing = false;
+                GripperClosing = false;
             }
-            
         }
-        
+
         public void OnGripperOpen(InputAction.CallbackContext value)
         {
             if (value.performed)
             {
-                gripperOpening = true;
+                GripperOpening = true;
             }
+
             if (value.canceled)
             {
-                gripperOpening = false;
+                GripperOpening = false;
             }
-            
         }
-        
-        
-        
-        //MOVEMENT METHODS --------------
-        //Does moving the robot
 
-        public void openGripper()
+        private bool _leftGripperReachedOpenPosition()
         {
-            if (leftGripper.transform.localPosition.y >= 0)
+            return !(_leftGripper.transform.localPosition.y >= 0);
+        }
+
+        private bool _rightGripperReachedOpenPosition()
+        {
+            return !(_rightGripper.transform.localPosition.y <= 0);
+        }
+
+        private bool _leftGripperReachedClosePosition()
+        {
+            return !(_leftGripper.transform.localPosition.y <= 22);
+        }
+
+        private bool _rightGripperReachedClosePosition()
+        {
+            return !(_rightGripper.transform.localPosition.y >= -22);
+        }
+
+        // MOVEMENT METHODS --------------
+        // Moves the robot
+        public void OpenGripper()
+        {
+            if (!_leftGripperReachedOpenPosition())
             {
-                leftGripper.transform.Translate(Vector3.down * Time.deltaTime);
+                _leftGripper.transform.Translate(Vector3.down * Time.deltaTime);
+                _gripper.GetComponent<GripperHandler>().IsClosed = false;
             }
 
-            if (rightGripper.transform.localPosition.y <= 0)
+            if (!_rightGripperReachedOpenPosition())
             {
-                rightGripper.transform.Translate(Vector3.up * Time.deltaTime);
+                _rightGripper.transform.Translate(Vector3.up * Time.deltaTime);
+                _gripper.GetComponent<GripperHandler>().IsClosed = false;
             }
 
             collisionDetected = false;
         }
-        
-        public void closeGripper()
+
+        public void CloseGripper()
         {
-            if (leftGripper.transform.localPosition.y <= 22 && rightGripper.transform.localPosition.y >= -22)
+            if (!_leftGripperReachedClosePosition() && !_rightGripperReachedClosePosition())
             {
-                leftGripper.transform.Translate(Vector3.up * Time.deltaTime);
-                rightGripper.transform.Translate(Vector3.down * Time.deltaTime);
+                _leftGripper.transform.Translate(Vector3.up * Time.deltaTime);
+                _rightGripper.transform.Translate(Vector3.down * Time.deltaTime);
+                _gripper.GetComponent<GripperHandler>().IsClosed = true;
             }
         }
 
-        private bool validLeftGripperRage()
-        {
-            return leftGripper.transform.localPosition.y >= 0 && leftGripper.transform.localPosition.y < 22;
-        }
-        
-        private bool validRightGripperRage()
-        {
-            return rightGripper.transform.localPosition.y <= 0 && rightGripper.transform.localPosition.y > -22;
-        }
-        
-        public void forwardOrientation()
+        public void ForwardOrientation()
         {
             ur_data_processing.UR_Control_Data.shouldMove = true;
-            ur_data_processing.UR_Control_Data.aux_command_str = "speedl([0.0,0.0,0.0,"+speed+",0.0,0.0], a =" +
+            ur_data_processing.UR_Control_Data.aux_command_str = "speedl([0.0,0.0,0.0," + speed + ",0.0,0.0], a =" +
                                                                  acceleration + ", t =" + time + ")" + "\n";
             ur_data_processing.UR_Control_Data.command =
                 utf8.GetBytes(ur_data_processing.UR_Control_Data.aux_command_str);
         }
 
-        public void backwardOrientation()
+        public void BackwardOrientation()
         {
             ur_data_processing.UR_Control_Data.shouldMove = true;
-            ur_data_processing.UR_Control_Data.aux_command_str = "speedl([0.0,0.0,0.0,-"+speed+",0.0,0.0], a =" +
-                                                                 acceleration + ", t =" + time + ")" + "\n";
-            ur_data_processing.UR_Control_Data.command =
-                utf8.GetBytes(ur_data_processing.UR_Control_Data.aux_command_str);
-        }
-        
-        public void leftOrientation()
-        {
-            ur_data_processing.UR_Control_Data.shouldMove = true;
-            ur_data_processing.UR_Control_Data.aux_command_str = "speedl([0.0,0.0,0.0,0.0,"+speed+",0.0], a =" +
+            ur_data_processing.UR_Control_Data.aux_command_str = "speedl([0.0,0.0,0.0,-" + speed + ",0.0,0.0], a =" +
                                                                  acceleration + ", t =" + time + ")" + "\n";
             ur_data_processing.UR_Control_Data.command =
                 utf8.GetBytes(ur_data_processing.UR_Control_Data.aux_command_str);
         }
 
-        public void rightOrientation()
+        public void LeftOrientation()
         {
             ur_data_processing.UR_Control_Data.shouldMove = true;
-            ur_data_processing.UR_Control_Data.aux_command_str = "speedl([0.0,0.0,0.0,0.0,-"+speed+",0.0], a =" +
+            ur_data_processing.UR_Control_Data.aux_command_str = "speedl([0.0,0.0,0.0,0.0," + speed + ",0.0], a =" +
                                                                  acceleration + ", t =" + time + ")" + "\n";
             ur_data_processing.UR_Control_Data.command =
                 utf8.GetBytes(ur_data_processing.UR_Control_Data.aux_command_str);
         }
-        
-        public void horizontalPosition(double x, double y)
+
+        public void RightOrientation()
+        {
+            ur_data_processing.UR_Control_Data.shouldMove = true;
+            ur_data_processing.UR_Control_Data.aux_command_str = "speedl([0.0,0.0,0.0,0.0,-" + speed + ",0.0], a =" +
+                                                                 acceleration + ", t =" + time + ")" + "\n";
+            ur_data_processing.UR_Control_Data.command =
+                utf8.GetBytes(ur_data_processing.UR_Control_Data.aux_command_str);
+        }
+
+        public void HorizontalPosition(double x, double y)
         {
             // Add speed factor and convert into string
-            var xFormatted =  (x * Convert.ToDouble(speed)).ToString("0.00").Replace(",", ".");
+            var xFormatted = (x * Convert.ToDouble(speed)).ToString("0.00").Replace(",", ".");
             var zFormatted = (y * Convert.ToDouble(speed)).ToString("0.00").Replace(",", ".");
-            
+
             // Prepare for UR api and send
             ur_data_processing.UR_Control_Data.shouldMove = true;
             ur_data_processing.UR_Control_Data.aux_command_str = "speedl([" + xFormatted + "," + zFormatted +
@@ -265,21 +289,42 @@ namespace Controls
             ur_data_processing.UR_Control_Data.command =
                 utf8.GetBytes(ur_data_processing.UR_Control_Data.aux_command_str);
         }
-        
-        public void verticalPosition(double rz, double z)
+
+        public void VerticalPosition(double rz, double z)
         {
             // Add speed factor and convert into string
             var rzFormatted = (rz * Convert.ToDouble(speed)).ToString("0.00").Replace(",", ".");
             var zFormatted = (z * Convert.ToDouble(speed)).ToString("0.00").Replace(",", ".");
-            
+
             // Prepare for UR api and send
             ur_data_processing.UR_Control_Data.shouldMove = true;
-            ur_data_processing.UR_Control_Data.aux_command_str =  "speedl([0.0,0.0," + zFormatted + ", 0.0,0.0, " +
-                                                                  rzFormatted + "], a =" + acceleration +
-                                                                  ", t =" +
-                                                                  time + ")" + "\n";
+            ur_data_processing.UR_Control_Data.aux_command_str = "speedl([0.0,0.0," + zFormatted + ", 0.0,0.0, " +
+                                                                 rzFormatted + "], a =" + acceleration +
+                                                                 ", t =" +
+                                                                 time + ")" + "\n";
             ur_data_processing.UR_Control_Data.command =
                 utf8.GetBytes(ur_data_processing.UR_Control_Data.aux_command_str);
+        }
+
+        private static GameObject FindChildWithTag(GameObject parent, string tag)
+        {
+            GameObject child = null;
+
+            foreach (Transform transform in parent.transform)
+            {
+                if (transform.gameObject.CompareTag(tag))
+                {
+                    Debug.Log(tag + " found");
+                    return transform.gameObject;
+                }
+                else
+                {
+                    // search recursively
+                    child = FindChildWithTag(transform.gameObject, tag);
+                }
+            }
+
+            return child;
         }
 
         public InputActionAsset GetActionAsset()

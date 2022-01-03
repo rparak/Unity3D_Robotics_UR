@@ -25,6 +25,9 @@ namespace Controls
         private GameObject _leftGripper;
         private GameObject _rightGripper;
 
+        private int[] _cameraPositions { get; set; } = new int[] {0, 1, 2, 3, 4};
+        private int _currentCameraPosition = 0;
+
         public bool collisionDetected;
 
         public bool GripperClosing { get; set; }
@@ -77,8 +80,9 @@ namespace Controls
         }
 
 
-        //INPUT SYSTEM ACTION METHODS --------------
-        //This is called from PlayerInput; when a joystick or arrow keys has been pushed.
+        //----------- INPUT SYSTEM ACTION METHODS --------------
+        //------- This is called from PlayerInput --------------
+        //-- when a joystick or arrow keys has been pushed. ----
 
         public void OnTcpHorizontalMovement(InputAction.CallbackContext value)
         {
@@ -190,6 +194,61 @@ namespace Controls
             }
         }
 
+        // -------------------- Camera Position -------------------- //
+        public void OnSwitchCamera(InputAction.CallbackContext value)
+        {
+            GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+            GameObject firstPersonCamera = GameObject.FindGameObjectWithTag("FirstPersonCamera");
+            int count = _cameraPositions.Length;
+            //Debug.Log("Positions: " + count + "; current: " + _currentCameraPosition);
+
+            if (value.canceled)
+            {
+                if (_currentCameraPosition == _cameraPositions.Length - 1)
+                {
+                    // Reset
+                    _currentCameraPosition = 0;
+                    firstPersonCamera.GetComponent<Camera>().enabled = false;
+                    mainCamera.GetComponent<Camera>().enabled = true;
+                }
+                else
+                {
+                    _currentCameraPosition++;
+                }
+
+                switch (_currentCameraPosition)
+                {
+                    case 0:
+                        // Right
+                        mainCamera.transform.localPosition = new Vector3(0.114f, 2.64f, -2.564f);
+                        mainCamera.transform.localEulerAngles = new Vector3(10f, -30f, 0f);
+                        break;
+                    case 1:
+                        // Left
+                        mainCamera.transform.localPosition = new Vector3(-3.114f, 2.64f, -2.564f);
+                        mainCamera.transform.localEulerAngles = new Vector3(10f, 30f, 0f);
+                        break;
+                    case 2:
+                        // Front
+                        mainCamera.transform.localPosition = new Vector3(-1.5f, 2.2f, -3.5f);
+                        mainCamera.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+                        break;
+                    case 3:
+                        // Top 
+                        mainCamera.transform.localPosition = new Vector3(-1.2f, 4f, 0f);
+                        mainCamera.transform.localEulerAngles = new Vector3(90f, 0f, 0f);
+                        break;
+                    case 4:
+                        // FirstPerson 
+                        mainCamera.transform.localPosition = new Vector3(-1.2f, 4f, 0f);
+                        mainCamera.transform.localEulerAngles = new Vector3(90f, 0f, 0f);
+                        firstPersonCamera.GetComponent<Camera>().enabled = true;
+                        mainCamera.GetComponent<Camera>().enabled = false;
+                        break;
+                }
+            }
+        }
+
         private bool _leftGripperReachedOpenPosition()
         {
             return !(_leftGripper.transform.localPosition.y >= 0);
@@ -210,8 +269,9 @@ namespace Controls
             return !(_rightGripper.transform.localPosition.y >= -22);
         }
 
-        // MOVEMENT METHODS --------------
-        // Moves the robot
+
+        // ------------ MOVEMENT METHODS --------------
+        // ------------ Moves the robot  --------------
         public void OpenGripper()
         {
             if (!_leftGripperReachedOpenPosition())

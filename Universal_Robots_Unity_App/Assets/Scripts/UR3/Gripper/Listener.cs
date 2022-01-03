@@ -14,11 +14,6 @@ namespace UR3.Gripper
             Robot = GameObject.FindGameObjectWithTag("Robot");
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-        }
-    
         void OnCollisionEnter(Collision collision)
         {
             Debug.Log("COLLISION ENTER");

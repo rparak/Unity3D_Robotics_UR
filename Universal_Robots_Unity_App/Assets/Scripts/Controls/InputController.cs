@@ -33,7 +33,6 @@ namespace Controls
         public bool GripperClosing { get; set; }
         public bool GripperOpening { get; set; }
 
-        // -------------------- UTF8Encoding -------------------- //
         private UTF8Encoding utf8 = new UTF8Encoding();
 
         [Header("Input Settings")] public PlayerInput playerInput;

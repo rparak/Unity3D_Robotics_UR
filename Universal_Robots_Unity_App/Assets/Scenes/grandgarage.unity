@@ -570,13 +570,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 48943411}
-  m_LocalRotation: {x: 0.6889837, y: 0.6889837, z: -0.15906441, w: -0.15906441}
-  m_LocalPosition: {x: 45.5, y: 0.4, z: -86.9}
+  m_LocalRotation: {x: 0.6842737, y: 0.6842737, z: -0.17823994, w: -0.17823994}
+  m_LocalPosition: {x: 45, y: 0, z: -86}
   m_LocalScale: {x: 542.7067, y: 542.73987, z: 542.70764}
   m_Children: []
   m_Father: {fileID: 71591486861708062}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 180, y: 26, z: -90}
+  m_LocalEulerAnglesHint: {x: 180, y: 29.2, z: -90}
 --- !u!20 &48943413
 Camera:
   m_ObjectHideFlags: 0
@@ -9165,7 +9165,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -8.6}
-  m_SizeDelta: {x: 50, y: 30}
+  m_SizeDelta: {x: 65, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1176407167
 MonoBehaviour:
@@ -9211,9 +9211,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1629772384}
-        m_TargetAssemblyTypeName: main_ui_control, Assembly-CSharp
-        m_MethodName: TaskOnClick_CamViewTBTN
+      - m_Target: {fileID: 1352515745}
+        m_TargetAssemblyTypeName: DefaultNamespace.GameController, Assembly-CSharp
+        m_MethodName: FollowWaypoints
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9405,7 +9405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1235162107}
   m_Layer: 0
-  m_Name: point_3
+  m_Name: point3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10254,6 +10254,7 @@ GameObject:
   - component: {fileID: 1352515744}
   - component: {fileID: 1352515743}
   - component: {fileID: 1352515742}
+  - component: {fileID: 1352515745}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -10328,6 +10329,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1352515745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352515741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1ffb80c8d0e4ebf953d992ba18756e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceleration: 0.1
+  time: 0.05
+  speed: 0.05
+  Waypoints:
+  - {fileID: 1889998233}
+  - {fileID: 1403689788}
+  - {fileID: 1235162107}
+  _robot: {fileID: 0}
+  _gripper: {fileID: 0}
+  DemoStatusText: {fileID: 1612150523}
+  position_x_txt: 
+  position_y_txt: 
+  position_z_txt: 
+  position_rx_txt: 
+  position_ry_txt: 
+  position_rz_txt: 
+  position_j1_txt: 
+  position_j2_txt: 
+  position_j3_txt: 
+  position_j4_txt: 
+  position_j5_txt: 
+  position_j6_txt: 
 --- !u!1 &1356650039
 GameObject:
   m_ObjectHideFlags: 0
@@ -10885,7 +10920,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1403689788}
   m_Layer: 0
-  m_Name: point_2
+  m_Name: point2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12755,8 +12790,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -14863,7 +14898,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1889998233}
   m_Layer: 0
-  m_Name: point_1
+  m_Name: point1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

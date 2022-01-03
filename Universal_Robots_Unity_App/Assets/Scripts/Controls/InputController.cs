@@ -194,6 +194,11 @@ namespace Controls
             }
         }
 
+        public void OnAddWaypoint(InputAction.CallbackContext value)
+        {
+            Debug.Log("In waypoint function");
+        }
+
         // -------------------- Camera Position -------------------- //
         public void OnSwitchCamera(InputAction.CallbackContext value)
         {

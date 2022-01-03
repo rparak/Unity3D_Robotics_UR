@@ -76,6 +76,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "AddWaypoint",
+                    "type": "Button",
+                    "id": "bc9f1587-973a-4f9a-b590-2f4a0e9bc266",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -148,7 +156,7 @@
                 {
                     "name": "",
                     "id": "dd695bd7-045f-409c-986b-857be0593ec1",
-                    "path": "<DualShockGamepad>/buttonSouth",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "ps4",
@@ -159,7 +167,7 @@
                 {
                     "name": "",
                     "id": "badd41d8-937e-41b9-941d-d74474fb2cfc",
-                    "path": "<DualShockGamepad>/buttonEast",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "ps4",
@@ -170,11 +178,22 @@
                 {
                     "name": "",
                     "id": "86882d6c-2783-4078-8c19-2633fd5e3abf",
-                    "path": "<DualShockGamepad>/buttonNorth",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "ps4",
                     "action": "SwitchCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f6bd924d-e91f-440e-8e65-0ac4b25e359a",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AddWaypoint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -47,14 +47,26 @@ public class GameController : MonoBehaviour
     {
         // ------------------------ Get live coordinates from robot ------------------------ //
         // Position {Cartesian} -> X..Z
+        Debug.Log(" Position {Cartesian} (x,y,z): (" + ur_data_processing.UR_Stream_Data.C_Position[0].ToString() + ", " +
+                  ur_data_processing.UR_Stream_Data.C_Position[1].ToString() + ", " + 
+                  ur_data_processing.UR_Stream_Data.C_Position[2].ToString() + ")");
         position_x = ((float)Math.Round(ur_data_processing.UR_Stream_Data.C_Position[0] * (1000f), 2)).ToString();
         position_y = ((float)Math.Round(ur_data_processing.UR_Stream_Data.C_Position[1] * (1000f), 2)).ToString();
         position_z = ((float)Math.Round(ur_data_processing.UR_Stream_Data.C_Position[2] * (1000f), 2)).ToString();
         // Position {Rotation} -> EulerAngles(RX..RZ)
+        Debug.Log("Position {Rotation} (rx,ry,rz): (" + ur_data_processing.UR_Stream_Data.C_Orientation[0].ToString() + ", " +
+                  ur_data_processing.UR_Stream_Data.C_Orientation[1].ToString() + ", " + 
+                  ur_data_processing.UR_Stream_Data.C_Orientation[2].ToString() + ")");
         position_rx = ((float)Math.Round(ur_data_processing.UR_Stream_Data.C_Orientation[0] * (180 / Math.PI), 2)).ToString();
         position_ry = ((float)Math.Round(ur_data_processing.UR_Stream_Data.C_Orientation[1] * (180 / Math.PI), 2)).ToString();
         position_rz = ((float)Math.Round(ur_data_processing.UR_Stream_Data.C_Orientation[2] * (180 / Math.PI), 2)).ToString();
         // Position Joint -> 1 - 6
+        Debug.Log("Position {Joint} (1-6): (" + ur_data_processing.UR_Stream_Data.J_Orientation[0].ToString() + ", " +
+                  ur_data_processing.UR_Stream_Data.J_Orientation[1].ToString() + ", " + 
+                  ur_data_processing.UR_Stream_Data.J_Orientation[2].ToString() + ", " + 
+                  ur_data_processing.UR_Stream_Data.J_Orientation[3].ToString() + ", " + 
+                  ur_data_processing.UR_Stream_Data.J_Orientation[4].ToString() + ", " + 
+                  ur_data_processing.UR_Stream_Data.J_Orientation[5].ToString() + ")");
         position_j1 = ((float)Math.Round(ur_data_processing.UR_Stream_Data.J_Orientation[0] * (180 / Math.PI), 2)).ToString();
         position_j2 = ((float)Math.Round(ur_data_processing.UR_Stream_Data.J_Orientation[1] * (180 / Math.PI), 2)).ToString();
         position_j3 = ((float)Math.Round(ur_data_processing.UR_Stream_Data.J_Orientation[2] * (180 / Math.PI), 2)).ToString();
@@ -73,9 +85,8 @@ public class GameController : MonoBehaviour
         //Print the time of when the function is first called.
         Debug.Log("Started Coroutine at timestamp : " + Time.time);
         DemoStatusText.text = "Moving...";
-        DemoStatusText.color = new Color(34, 139, 204, 255);
-        ur_data_processing.UR_Control_Data.shouldMove = true;
-        
+        DemoStatusText.color = new Color32(34, 139, 204, 255);
+
         // TODO: Move until robo Coordiantes are equal with waypoints
         for (int i = 0; i < Waypoints.Length-1; i++)
         {
@@ -85,11 +96,25 @@ public class GameController : MonoBehaviour
             //                                                          "a =" + acceleration + ", t =" + time + ")" + "\n";
             //     ur_data_processing.UR_Control_Data.command =
             //         utf8.GetBytes(ur_data_processing.UR_Control_Data.aux_command_str);
+            // ur_data_processing.UR_Control_Data.shouldMove = true;
             // }
         }
+        // ur_data_processing.UR_Control_Data.aux_command_str = "movel([-0.25,-0.38,0.19,0.0,3.11,0.03], a=" + acceleration 
+        //     +", v=1.05,t="+time+", r=0)" + "\n";
+        // //var x = "speedl([0.0,0.0,0.0,0.0,0.0,0.0], a =" + acceleration + ", t =" + time + ")" + "\n";
+        // ur_data_processing.UR_Control_Data.command =
+        //     utf8.GetBytes(ur_data_processing.UR_Control_Data.aux_command_str);
+        //
+        // ur_data_processing.UR_Control_Data.aux_command_str = "movel([-0.25,-0.38,0.19,0.0,3.11,0.03], a=" + acceleration 
+        //     +", v=1.05,t="+time+", r=0)" + "\n";
+        // //var x = "speedl([0.0,0.0,0.0,0.0,0.0,0.0], a =" + acceleration + ", t =" + time + ")" + "\n";
+        // ur_data_processing.UR_Control_Data.command =
+        //     utf8.GetBytes(ur_data_processing.UR_Control_Data.aux_command_str);
         
-        yield return new WaitForSeconds(5);
-        ur_data_processing.UR_Control_Data.shouldMove = false;
+        //ur_data_processing.UR_Control_Data.shouldMove = true;
+        yield return new WaitForSeconds(3);
+        //ur_data_processing.UR_Control_Data.shouldMove = false;
+        
         DemoStatusText.text = "Start";
         DemoStatusText.color = Color.white;
         //After we have waited 5 seconds print the time again.

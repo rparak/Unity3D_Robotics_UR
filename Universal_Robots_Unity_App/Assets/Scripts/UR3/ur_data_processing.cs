@@ -354,7 +354,7 @@ namespace UR3
                         // For more URScript commands @see https://www.universal-robots.com/download/manuals-e-series/script/script-manual-e-series-sw-511/  
                         if (UR_Control_Data.joystick_button_pressed == true || UR_Control_Data.shouldMove)
                         {
-                            Debug.Log("Send command: " + Encoding.UTF8.GetString(UR_Control_Data.command));
+                            //Debug.Log("Send command: " + Encoding.UTF8.GetString(UR_Control_Data.command));
                             // Send command (byte) -> speed control of the robot (X,Y,Z and EA{RX, RY, RZ})
                             network_stream.Write(UR_Control_Data.command, 0, UR_Control_Data.command.Length);
                         }

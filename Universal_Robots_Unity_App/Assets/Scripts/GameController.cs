@@ -47,26 +47,26 @@ public class GameController : MonoBehaviour
     {
         // ------------------------ Get live coordinates from robot ------------------------ //
         // Position {Cartesian} -> X..Z
-        Debug.Log(" Position {Cartesian} (x,y,z): (" + ur_data_processing.UR_Stream_Data.C_Position[0].ToString() + ", " +
-                  ur_data_processing.UR_Stream_Data.C_Position[1].ToString() + ", " + 
-                  ur_data_processing.UR_Stream_Data.C_Position[2].ToString() + ")");
+        // Debug.Log(" Position {Cartesian} (x,y,z): (" + ur_data_processing.UR_Stream_Data.C_Position[0].ToString() + ", " +
+        //           ur_data_processing.UR_Stream_Data.C_Position[1].ToString() + ", " + 
+        //           ur_data_processing.UR_Stream_Data.C_Position[2].ToString() + ")");
         position_x = ((float)Math.Round(ur_data_processing.UR_Stream_Data.C_Position[0] * (1000f), 2)).ToString();
         position_y = ((float)Math.Round(ur_data_processing.UR_Stream_Data.C_Position[1] * (1000f), 2)).ToString();
         position_z = ((float)Math.Round(ur_data_processing.UR_Stream_Data.C_Position[2] * (1000f), 2)).ToString();
         // Position {Rotation} -> EulerAngles(RX..RZ)
-        Debug.Log("Position {Rotation} (rx,ry,rz): (" + ur_data_processing.UR_Stream_Data.C_Orientation[0].ToString() + ", " +
-                  ur_data_processing.UR_Stream_Data.C_Orientation[1].ToString() + ", " + 
-                  ur_data_processing.UR_Stream_Data.C_Orientation[2].ToString() + ")");
+        // Debug.Log("Position {Rotation} (rx,ry,rz): (" + ur_data_processing.UR_Stream_Data.C_Orientation[0].ToString() + ", " +
+        //           ur_data_processing.UR_Stream_Data.C_Orientation[1].ToString() + ", " + 
+        //           ur_data_processing.UR_Stream_Data.C_Orientation[2].ToString() + ")");
         position_rx = ((float)Math.Round(ur_data_processing.UR_Stream_Data.C_Orientation[0] * (180 / Math.PI), 2)).ToString();
         position_ry = ((float)Math.Round(ur_data_processing.UR_Stream_Data.C_Orientation[1] * (180 / Math.PI), 2)).ToString();
         position_rz = ((float)Math.Round(ur_data_processing.UR_Stream_Data.C_Orientation[2] * (180 / Math.PI), 2)).ToString();
         // Position Joint -> 1 - 6
-        Debug.Log("Position {Joint} (1-6): (" + ur_data_processing.UR_Stream_Data.J_Orientation[0].ToString() + ", " +
-                  ur_data_processing.UR_Stream_Data.J_Orientation[1].ToString() + ", " + 
-                  ur_data_processing.UR_Stream_Data.J_Orientation[2].ToString() + ", " + 
-                  ur_data_processing.UR_Stream_Data.J_Orientation[3].ToString() + ", " + 
-                  ur_data_processing.UR_Stream_Data.J_Orientation[4].ToString() + ", " + 
-                  ur_data_processing.UR_Stream_Data.J_Orientation[5].ToString() + ")");
+        // Debug.Log("Position {Joint} (1-6): (" + ur_data_processing.UR_Stream_Data.J_Orientation[0].ToString() + ", " +
+        //           ur_data_processing.UR_Stream_Data.J_Orientation[1].ToString() + ", " + 
+        //           ur_data_processing.UR_Stream_Data.J_Orientation[2].ToString() + ", " + 
+        //           ur_data_processing.UR_Stream_Data.J_Orientation[3].ToString() + ", " + 
+        //           ur_data_processing.UR_Stream_Data.J_Orientation[4].ToString() + ", " + 
+        //           ur_data_processing.UR_Stream_Data.J_Orientation[5].ToString() + ")");
         position_j1 = ((float)Math.Round(ur_data_processing.UR_Stream_Data.J_Orientation[0] * (180 / Math.PI), 2)).ToString();
         position_j2 = ((float)Math.Round(ur_data_processing.UR_Stream_Data.J_Orientation[1] * (180 / Math.PI), 2)).ToString();
         position_j3 = ((float)Math.Round(ur_data_processing.UR_Stream_Data.J_Orientation[2] * (180 / Math.PI), 2)).ToString();

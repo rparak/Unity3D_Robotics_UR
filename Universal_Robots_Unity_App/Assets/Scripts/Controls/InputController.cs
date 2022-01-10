@@ -195,7 +195,7 @@ namespace Controls
 
         public void OnAddWaypoint(InputAction.CallbackContext value)
         {
-            Debug.Log("In waypoint function");
+            Debug.Log("Sorry, waypoints are not implemented yet");
         }
 
         // -------------------- Camera Position -------------------- //
@@ -203,8 +203,6 @@ namespace Controls
         {
             GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             GameObject firstPersonCamera = GameObject.FindGameObjectWithTag("FirstPersonCamera");
-            int count = _cameraPositions.Length;
-            //Debug.Log("Positions: " + count + "; current: " + _currentCameraPosition);
 
             if (value.canceled)
             {
@@ -276,31 +274,21 @@ namespace Controls
 
         // ------------ MOVEMENT METHODS --------------
         // ------------ Moves the robot  --------------
+        
         public void OpenGripper()
         {
-            if (!_leftGripperReachedOpenPosition())
-            {
-                _leftGripper.transform.Translate(Vector3.down * Time.deltaTime);
-                _gripper.GetComponent<GripperHandler>().IsClosed = false;
-            }
-
-            if (!_rightGripperReachedOpenPosition())
-            {
-                _rightGripper.transform.Translate(Vector3.up * Time.deltaTime);
-                _gripper.GetComponent<GripperHandler>().IsClosed = false;
-            }
-
+            _leftGripper.transform.LeanMoveLocalY(22, 0.5f);
+            _rightGripper.transform.LeanMoveLocalY(-22, 0.5f);
+            _gripper.GetComponent<GripperHandler>().IsClosed = false;
             collisionDetected = false;
         }
 
         public void CloseGripper()
         {
-            if (!_leftGripperReachedClosePosition() && !_rightGripperReachedClosePosition())
-            {
-                _leftGripper.transform.Translate(Vector3.up * Time.deltaTime);
-                _rightGripper.transform.Translate(Vector3.down * Time.deltaTime);
-                _gripper.GetComponent<GripperHandler>().IsClosed = true;
-            }
+            _leftGripper.transform.LeanMoveLocalY(0,0.5f);
+            _rightGripper.transform.LeanMoveLocalY(0, 0.5f);
+            _gripper.GetComponent<GripperHandler>().IsClosed = true;
+
         }
 
         public void ForwardOrientation()

@@ -6634,7 +6634,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5035518492179035819}
-  - {fileID: 1793993327}
   m_Father: {fileID: 1272373180}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7808,7 +7807,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &987400101
 Transform:
   m_ObjectHideFlags: 0
@@ -10246,7 +10245,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1352515741}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1ffb80c8d0e4ebf953d992ba18756e9, type: 3}
   m_Name: 
@@ -14498,36 +14497,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1769336992}
   m_CullTransparentMesh: 0
---- !u!1 &1793993326
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1793993327}
-  m_Layer: 0
-  m_Name: Waypoints
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1793993327
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1793993326}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 785145957}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1807653720
 GameObject:
   m_ObjectHideFlags: 0
@@ -16940,8 +16909,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7413c594b250f24598ac032ec834546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gripper: {fileID: 7321006530591464679}
-  playground: {fileID: 1499760017}
+  _gripper: {fileID: 7321006530591464679}
+  _playground: {fileID: 1499760017}
 --- !u!54 &924638848333154989
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18451,8 +18420,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7413c594b250f24598ac032ec834546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gripper: {fileID: 7321006530591464679}
-  playground: {fileID: 1499760017}
+  _gripper: {fileID: 7321006530591464679}
+  _playground: {fileID: 1499760017}
 --- !u!54 &7413003151994643444
 Rigidbody:
   m_ObjectHideFlags: 0

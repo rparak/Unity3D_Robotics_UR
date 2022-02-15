@@ -7,8 +7,8 @@ namespace UR3.Gripper
     public class Listener : MonoBehaviour
     {
         private GameObject Robot;
-        [SerializeField] private GameObject _gripper;
-        [SerializeField] private Transform _playground;
+        [SerializeField] private GameObject gripper;
+        [SerializeField] private Transform playground;
 
         // Start is called before the first frame update
         void Start()
@@ -18,26 +18,20 @@ namespace UR3.Gripper
 
         void OnTriggerEnter(Collider collider)
         {
-            Debug.Log("COLLISION ENTER " + _gripper.GetComponent<GripperHandler>().IsClosed);
+            Debug.Log("COLLISION ENTER");
             Robot.GetComponent<InputController>().SetCollisionDetected(true);
-
-            if (_gripper.GetComponent<GripperHandler>().IsClosed)
-            {
-                collider.attachedRigidbody.isKinematic = true;
-                collider.transform.parent = _gripper.transform;
-            }
-
+            ur_data_processing.UR_Control_Data.shouldMove = false;
+            collider.attachedRigidbody.isKinematic = true;
+            collider.transform.parent = gripper.transform;
+            
         }
         
         void OnTriggerExit(Collider collider)
         {
-            Debug.Log("COLLISION EXIT " + _gripper.GetComponent<GripperHandler>().IsClosed);
+            Debug.Log("COLLISION LEAVE");
             Robot.GetComponent<InputController>().SetCollisionDetected(false);
-            if (!_gripper.GetComponent<GripperHandler>().IsClosed)
-            {
-                collider.attachedRigidbody.isKinematic = false;
-                collider.transform.parent = _playground;
-            }
+            collider.attachedRigidbody.isKinematic = false;
+            collider.transform.parent = playground;
         }
     }
 }

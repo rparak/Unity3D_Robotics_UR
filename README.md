@@ -1,7 +1,17 @@
 # Universal Robots Unity3D App
-Control the [Universal Robots](https://www.universal-robots.com/) with Unity3D by using TCP/IP.
+Control the [Universal Robots](https://www.universal-robots.com/) with Unity3D by using **URScript** and a **TCP/IP** communication.
 
 ![screenshot](images/screenshot1.jpg)
+
+You can find a documentation of more commands URScript commands in the official [Manual](https://www.universal-robots.com/download/manuals-e-series/script/script-manual-e-series-sw-511/).
+
+## Features
+### Virtual UR Twin
+Use the game engine Unity3D to directly move a UR robot.
+
+### Game Controller Support
+Move the robot with a PS4 game controller
+
 
 ## Requirements
 
@@ -18,15 +28,18 @@ Control the [Universal Robots](https://www.universal-robots.com/) with Unity3D b
 <br><br>
 
 ## Coming soon
+### Cross Platform support
+Support for more game controllers on different OS.
+
+### Waypoints
+Create a virtual path which will be followed by the robot.
+
 ### VR Support
 Enter the playground in Virtual Reality. <br>
 Support for Oculus Headset will follow soon.
 
 ### Playground
 A more detailed world with interactable objects will be added
-
-### Improved user interface
-Better Design for the UI
 
 ### And more will follow
 

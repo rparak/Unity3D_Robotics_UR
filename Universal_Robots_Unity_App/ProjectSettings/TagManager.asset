@@ -10,6 +10,8 @@ TagManager:
   - Gripper
   - LeftGripper
   - RightGripper
+  - waypoints
+  - FirstPersonCamera
   layers:
   - Default
   - TransparentFX

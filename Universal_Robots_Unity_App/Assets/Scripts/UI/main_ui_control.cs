@@ -64,9 +64,9 @@ public class main_ui_control : MonoBehaviour
         connectionInfo_txt.text = "Disconnect";
 
         // Panel Initialization -> Connection/Diagnostic/Joystick Panel
-        connection_panel_img.transform.localPosition = new Vector3(1215f + (ex_param), 0f, 0f);
-        diagnostic_panel_img.transform.localPosition = new Vector3(780f + (ex_param), 0f, 0f);
-        joystick_panel_img.transform.localPosition = new Vector3(1550f + (ex_param), 0f, 0f);
+        //connection_panel_img.transform.localPosition = new Vector3(1215f + (ex_param), 0f, 0f);
+        //diagnostic_panel_img.transform.localPosition = new Vector3(780f + (ex_param), 0f, 0f);
+        //joystick_panel_img.transform.localPosition = new Vector3(1550f + (ex_param), 0f, 0f);
 
         // Position {Cartesian} -> X..Z
         position_x_txt.text = "0.00";

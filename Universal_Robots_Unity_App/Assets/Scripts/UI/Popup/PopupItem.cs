@@ -8,6 +8,8 @@ namespace Treeka
     {
         public static event Action OnPopupChange;
 
+        public bool escapable;
+
         protected Transform oldParent;
 
 
@@ -20,16 +22,25 @@ namespace Treeka
             AnimationIN();
         }
 
-        public virtual void EscapePressed() {}
+        public virtual void EscapePressed() 
+        {
+            if (escapable) Disable();
+        }
 
         public virtual void Disable()
         {
             transform.SetParent(oldParent);
+            oldParent = null;
 
             OnPopupChange?.Invoke();
             AnimationOUT();
         }
 
+        public void Toggle()
+        {
+            if (oldParent == null) Enable();
+            else Disable();
+        }
 
         // /////////////////////
 

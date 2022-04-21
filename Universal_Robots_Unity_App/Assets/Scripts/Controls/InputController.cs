@@ -22,11 +22,17 @@ namespace Controls
 
         [SerializeField] private GameObject _robot;
         [SerializeField] private GameObject _gripper;
-        private GameObject _leftGripper;
-        private GameObject _rightGripper;
+        [SerializeField] private GameObject _leftGripper;
+        [SerializeField] private GameObject _rightGripper;
 
-        private int[] _cameraPositions { get; set; } = new int[] {0, 1, 2, 3, 4};
-        private int _currentCameraPosition = 0;
+        public InputActionReference tcphorizontal;
+        public InputActionReference tcpvertical;
+        public InputActionReference orientationForward;
+        public InputActionReference orientationback;
+        public InputActionReference orientationLeft;
+        public InputActionReference orientationRight;
+        public InputActionReference gripperClose;
+        public InputActionReference gripperOpen;
 
         public bool collisionDetected;
 
@@ -38,23 +44,16 @@ namespace Controls
         [Header("Input Settings")] public PlayerInput playerInput;
         private Vector3 rawInputMovement;
 
-        void Start()
-        {
-            // Assign necessary gameObjects in scene
-            if (!_robot)
-            {
-                _robot = GameObject.FindGameObjectWithTag("Robot");
-                if (!_gripper)
-                {
-                    _gripper = FindChildWithTag(_robot, "Gripper");
-                    _leftGripper = FindChildWithTag(_gripper, "LeftGripper");
-                    _rightGripper = FindChildWithTag(_gripper, "RightGripper");
-                }
-            }
-        }
 
         void Update()
         {
+            OnTcpHorizontalMovement();
+            OnTcpVerticalMovement();
+            OnOrientationForward();
+            OnOrientationBackward();
+            OnOrientationLeft();
+            OnOrientationRight();
+
             if (collisionDetected)
             {
                 //TODO stop all movement
@@ -83,9 +82,12 @@ namespace Controls
         //------- This is called from PlayerInput --------------
         //-- when a joystick or arrow keys has been pushed. ----
 
-        public void OnTcpHorizontalMovement(InputAction.CallbackContext value)
+        
+        public void OnTcpHorizontalMovement()
         {
-            Vector2 inputMovement = value.ReadValue<Vector2>();
+            Vector2 inputMovement = tcphorizontal.action.ReadValue<Vector2>();
+            if (inputMovement == Vector2.zero) return;
+
             rawInputMovement = new Vector3(inputMovement.x, 0, inputMovement.y);
 
             if (rawInputMovement == Vector3.zero)
@@ -99,9 +101,11 @@ namespace Controls
             }
         }
 
-        public void OnTcpVerticalMovement(InputAction.CallbackContext value)
+        public void OnTcpVerticalMovement()
         {
-            Vector2 inputMovement = value.ReadValue<Vector2>();
+            Vector2 inputMovement = tcpvertical.action.ReadValue<Vector2>();
+            if (inputMovement == Vector2.zero) return;
+
             rawInputMovement = new Vector3(inputMovement.x, 0, inputMovement.y);
 
             if (rawInputMovement == Vector3.zero)
@@ -115,53 +119,53 @@ namespace Controls
             }
         }
 
-        public void OnOrientationForward(InputAction.CallbackContext value)
+        public void OnOrientationForward()
         {
-            if (value.performed)
+            if (orientationForward.action.phase == InputActionPhase.Performed)
             {
                 ForwardOrientation();
             }
 
-            if (value.canceled)
+            if (orientationForward.action.phase == InputActionPhase.Canceled)
             {
                 ur_data_processing.UR_Control_Data.shouldMove = false;
             }
         }
 
-        public void OnOrientationBackward(InputAction.CallbackContext value)
+        public void OnOrientationBackward()
         {
-            if (value.performed)
+            if (orientationback.action.phase == InputActionPhase.Performed)
             {
                 BackwardOrientation();
             }
 
-            if (value.canceled)
+            if (orientationback.action.phase == InputActionPhase.Canceled)
             {
                 ur_data_processing.UR_Control_Data.shouldMove = false;
             }
         }
 
-        public void OnOrientationLeft(InputAction.CallbackContext value)
+        public void OnOrientationLeft()
         {
-            if (value.performed)
+            if (orientationLeft.action.phase == InputActionPhase.Performed)
             {
                 LeftOrientation();
             }
 
-            if (value.canceled)
+            if (orientationLeft.action.phase == InputActionPhase.Canceled)
             {
                 ur_data_processing.UR_Control_Data.shouldMove = false;
             }
         }
 
-        public void OnOrientationRight(InputAction.CallbackContext value)
+        public void OnOrientationRight()
         {
-            if (value.performed)
+            if (orientationRight.action.phase == InputActionPhase.Performed)
             {
                 RightOrientation();
             }
 
-            if (value.canceled)
+            if (orientationRight.action.phase == InputActionPhase.Canceled)
             {
                 ur_data_processing.UR_Control_Data.shouldMove = false;
             }
@@ -201,6 +205,8 @@ namespace Controls
         // -------------------- Camera Position -------------------- //
         public void OnSwitchCamera(InputAction.CallbackContext value)
         {
+            CamControl.Instance.NextCam();
+            /* OLD CODE
             GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             GameObject firstPersonCamera = GameObject.FindGameObjectWithTag("FirstPersonCamera");
 
@@ -248,7 +254,7 @@ namespace Controls
                         mainCamera.GetComponent<Camera>().enabled = false;
                         break;
                 }
-            }
+            }*/
         }
 
         private bool _leftGripperReachedOpenPosition()
@@ -293,38 +299,26 @@ namespace Controls
 
         public void ForwardOrientation()
         {
-            ur_data_processing.UR_Control_Data.shouldMove = true;
-            ur_data_processing.UR_Control_Data.aux_command_str = "speedl([0.0,0.0,0.0," + speed + ",0.0,0.0], a =" +
-                                                                 acceleration + ", t =" + time + ")" + "\n";
-            ur_data_processing.UR_Control_Data.command =
-                utf8.GetBytes(ur_data_processing.UR_Control_Data.aux_command_str);
+            Robot.Connection.Send("speedl([0.0,0.0,0.0," + speed + ",0.0,0.0], a =" +
+                                                                 acceleration + ", t =" + time + ")" + "\n");
         }
 
         public void BackwardOrientation()
         {
-            ur_data_processing.UR_Control_Data.shouldMove = true;
-            ur_data_processing.UR_Control_Data.aux_command_str = "speedl([0.0,0.0,0.0,-" + speed + ",0.0,0.0], a =" +
-                                                                 acceleration + ", t =" + time + ")" + "\n";
-            ur_data_processing.UR_Control_Data.command =
-                utf8.GetBytes(ur_data_processing.UR_Control_Data.aux_command_str);
+            Robot.Connection.Send("speedl([0.0,0.0,0.0,-" + speed + ",0.0,0.0], a =" +
+                                                                 acceleration + ", t =" + time + ")" + "\n");
         }
 
         public void LeftOrientation()
         {
-            ur_data_processing.UR_Control_Data.shouldMove = true;
-            ur_data_processing.UR_Control_Data.aux_command_str = "speedl([0.0,0.0,0.0,0.0," + speed + ",0.0], a =" +
-                                                                 acceleration + ", t =" + time + ")" + "\n";
-            ur_data_processing.UR_Control_Data.command =
-                utf8.GetBytes(ur_data_processing.UR_Control_Data.aux_command_str);
+            Robot.Connection.Send("speedl([0.0,0.0,0.0,0.0," + speed + ",0.0], a =" +
+                                                                 acceleration + ", t =" + time + ")" + "\n");
         }
 
         public void RightOrientation()
         {
-            ur_data_processing.UR_Control_Data.shouldMove = true;
-            ur_data_processing.UR_Control_Data.aux_command_str = "speedl([0.0,0.0,0.0,0.0,-" + speed + ",0.0], a =" +
-                                                                 acceleration + ", t =" + time + ")" + "\n";
-            ur_data_processing.UR_Control_Data.command =
-                utf8.GetBytes(ur_data_processing.UR_Control_Data.aux_command_str);
+            Robot.Connection.Send("speedl([0.0,0.0,0.0,0.0,-" + speed + ",0.0], a =" +
+                                                                 acceleration + ", t =" + time + ")" + "\n");
         }
 
         public void HorizontalPosition(double x, double y)
@@ -334,12 +328,9 @@ namespace Controls
             var zFormatted = (y * Convert.ToDouble(speed)).ToString("0.00").Replace(",", ".");
 
             // Prepare for UR api and send
-            ur_data_processing.UR_Control_Data.shouldMove = true;
-            ur_data_processing.UR_Control_Data.aux_command_str = "speedl([" + xFormatted + "," + zFormatted +
+            Robot.Connection.Send("speedl([" + xFormatted + "," + zFormatted +
                                                                  ",0.0,0.0,0.0,0.0], a =" + acceleration + ", t =" +
-                                                                 time + ")" + "\n";
-            ur_data_processing.UR_Control_Data.command =
-                utf8.GetBytes(ur_data_processing.UR_Control_Data.aux_command_str);
+                                                                 time + ")" + "\n");
         }
 
         public void VerticalPosition(double rz, double z)
@@ -349,13 +340,10 @@ namespace Controls
             var zFormatted = (z * Convert.ToDouble(speed)).ToString("0.00").Replace(",", ".");
 
             // Prepare for UR api and send
-            ur_data_processing.UR_Control_Data.shouldMove = true;
-            ur_data_processing.UR_Control_Data.aux_command_str = "speedl([0.0,0.0," + zFormatted + ", 0.0,0.0, " +
+            Robot.Connection.Send("speedl([0.0,0.0," + zFormatted + ", 0.0,0.0, " +
                                                                  rzFormatted + "], a =" + acceleration +
                                                                  ", t =" +
-                                                                 time + ")" + "\n";
-            ur_data_processing.UR_Control_Data.command =
-                utf8.GetBytes(ur_data_processing.UR_Control_Data.aux_command_str);
+                                                                 time + ")" + "\n");
         }
 
         private static GameObject FindChildWithTag(GameObject parent, string tag)

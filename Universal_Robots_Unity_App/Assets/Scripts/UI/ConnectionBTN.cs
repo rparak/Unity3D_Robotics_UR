@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Treeka;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +6,7 @@ public class ConnectionBTN : MonoBehaviour
 {
 
     public Image buttonImage;
-    public GameObject connectionPanel;
+    public PopupItem connectionPanel;
     public TMPro.TMP_InputField input;
 
     [Space]
@@ -17,12 +16,12 @@ public class ConnectionBTN : MonoBehaviour
 
     public void StartButton()
     {
-        if (Robot.Connection.IsActive)
+        if (Robot.Connection.unityState != Robot.Connection.UnityState.offline)
         {
             Robot.Connection.Disconnect();
             SetActiveConnectionPanel(false);
         }
-        else SetActiveConnectionPanel(connectionPanel.transform.localScale.y != 1); //Toggle ConnectionPanel
+        else connectionPanel.Toggle();
     }
 
     public void ConnectButton()
@@ -34,8 +33,9 @@ public class ConnectionBTN : MonoBehaviour
 
     private void SetActiveConnectionPanel(bool state)
     {
-        if (state) connectionPanel.transform.LeanScaleY(1, .1f);
-        else connectionPanel.transform.LeanScaleY(0, .1f);
+        Debug.Log(state);
+        if (state) connectionPanel.Enable();
+        else connectionPanel.Disable();
     }
 
     private void Start()

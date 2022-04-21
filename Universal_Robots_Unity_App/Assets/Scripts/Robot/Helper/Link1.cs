@@ -8,7 +8,7 @@ namespace Robot
 
         private void FixedUpdate()
         {
-            if (!Connection.IsActive) return;
+            if (Connection.unityState == Connection.UnityState.offline) return;
             transform.localEulerAngles = new Vector3(0, (-1.0f) * (float)(Data.Current.jointRot[0] * (180.0 / Math.PI)), 0);
         }
 

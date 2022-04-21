@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WaypointMenu : MonoBehaviour
@@ -14,13 +12,26 @@ public class WaypointMenu : MonoBehaviour
 
     public void AddWaypoint()
     {
-        Waypoints wp = Instantiate(waypointAsset, content).GetComponent<Waypoints>();
+        Waypoint wp = Instantiate(waypointAsset, content).GetComponent<Waypoint>();
         wp.transform.SetAsFirstSibling();
-
+        
         wp.Setup(Instantiate(Data.Current));
     }
 
 
+    public async void MoveToAll()
+    {
+        foreach(Transform child in content)
+        {
+            //Incase there is an error we will won't move to the next one
+            if(child.TryGetComponent(out Waypoint waypoint))
+            {
+                Debug.Log("Executing " + waypoint.name);
+                if (await child.GetComponent<Waypoint>().GotoAsync() == false) return;
+            }
+        }
+
+    }
 
     private void OnEnable() => Instance = this;
 }

@@ -23,7 +23,7 @@ public class Controller : MonoBehaviour
 
     private void Update()
     {
-        if (!Robot.Connection.IsActive) return;
+        if (Robot.Connection.unityState == Robot.Connection.UnityState.offline) return;
 
         Movement();
         Altidute();

@@ -1,6 +1,7 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
-public class Waypoints : MonoBehaviour
+public class Waypoint : MonoBehaviour
 {
     public static int maxId;
     public Data waypoint;
@@ -18,6 +19,11 @@ public class Waypoints : MonoBehaviour
     public void Goto()
     {
         Robot.CMD.MoveJ(waypoint.ToPose());
+    }
+
+    public async Task<bool> GotoAsync()
+    {
+        return await Robot.CMD.MoveJAsync(waypoint.ToPose());
     }
 
     public void Delete()

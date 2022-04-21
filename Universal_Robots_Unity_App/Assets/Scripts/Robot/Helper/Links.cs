@@ -9,7 +9,7 @@ public class Links : MonoBehaviour, ICamRaycastHit
     public static Links selected;
 
     public LinkIndikator visualIndikator;
-    public Outline outline;
+    public MonoBehaviour outline;
 
 
     /// //////////////////////////////////// Selection Stuff

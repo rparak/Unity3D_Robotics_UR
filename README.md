@@ -1,19 +1,13 @@
 # Universal Robots Unity3D App
 Control the [Universal Robots](https://www.universal-robots.com/) with Unity3D by using **URScript** and a **TCP/IP** communication.
 
-![screenshot](images/screenshot1.jpg)
+[<img src="images/screenshot3.jpg" width="60%">](https://www.youtube.com/watch?v=KktBg-8ngDA&ab_channel=GRANDGARAGE "UR Digital Twin showcase")
 
 You can find a documentation of more commands URScript commands in the official [Manual](https://www.universal-robots.com/download/manuals-e-series/script/script-manual-e-series-sw-511/).
 
-## Features
-### Virtual UR Twin
-Use the game engine Unity3D to directly move a UR robot.
+<br><br>
 
-### Game Controller Support
-Move the robot with a PS4 game controller
-
-
-## Requirements
+# Requirements
 
 | Software / Package           | Description / Link                                                                                  |
 | -------------------------- | ------------------------------------------------------------------------------------- |
@@ -24,30 +18,25 @@ Move the robot with a PS4 game controller
 | Docker                     | https://docs.docker.com/get-docker/
 | UR Simulator               | https://github.com/vushu/DockURSim                                            |
 
+<br><br>
+
+# Features
+## Virtual UR Twin
+Use the game engine Unity3D to directly move your UR robot.
+
+## Game Controller Support
+Move the robot with a PS4 game controller
+
+## Waypoints
+Create a simple movement set in an intuitive virtual environment without needing any skills in robotic. 
+
+<img src="images/screenshot1.jpg" width="500"/>
 
 <br><br>
 
-## Coming soon
-### Cross Platform support
-Support for more game controllers on different OS.
+# Quick Start
 
-### Waypoints
-Create a virtual path which will be followed by the robot.
-
-### VR Support
-Enter the playground in Virtual Reality. <br>
-Support for Oculus Headset will follow soon.
-
-### Playground
-A more detailed world with interactable objects will be added
-
-### And more will follow
-
-<br><br>
-
-## Quick Start
-
-### I) UR Simulator
+## I) UR Simulator
 1. **Docker:** Install and run [Docker Engine](https://docs.docker.com/get-docker/)
 2. **URSim**
     ```
@@ -71,15 +60,15 @@ A more detailed world with interactable objects will be added
 
 <br>
 
-### II) Unity3D
+## II) Unity3D
 
-#### Connect to UR Sim
+### Connect to UR Sim
 1. Make sure [URSim](https://github.com/vushu/DockURSim) is running
 2. Connect in Unity to *127.0.0.1*
 
-#### Connect to real robot
+### Connect to real robot
 1. Connect you PC by the ethernet with your robot
-2. Configurate your network:
+2. Configurate your network, e.g.:
     ```
     # Polyscope
       IP: 192.168.0.102
@@ -95,8 +84,12 @@ A more detailed world with interactable objects will be added
       IP: 192.168.0.102
        ```
 
+<img src="images/screenshot2.jpg" width="500"/>
 
-  ![screenshot](images/screenshot2.jpg)
+# Sources
+* [Realtime Interface documentation (deprecated)](https://s3-eu-west-1.amazonaws.com/ur-support-site/16496/ClientInterfaces_Realtime.pdf)
+* [RTDE documentation](https://s3-eu-west-1.amazonaws.com/ur-support-site/22229/Real_Time_Data_Exchange_(RTDE)_Guide.pdf)
+* [UR Script documentation](https://s3-eu-west-1.amazonaws.com/ur-support-site/115824/scriptManual_SW5.11.pdf)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

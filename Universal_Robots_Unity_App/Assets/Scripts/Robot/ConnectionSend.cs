@@ -51,8 +51,7 @@ namespace Robot
 
         private static int NewTask() => ++task;
 
-
-        public static async Task Start() => await tcpWrite.ConnectAsync(Connection.Host, Connection.Port);
+        public static async Task Start() => await tcpWrite.ConnectAsync(Connection.Host, Connection.PortWrite);
 
         public static void Stop() => tcpWrite.Close();
 

@@ -12,7 +12,10 @@ namespace Robot
         public static event Action OnIdle;
 
         public static string Host { get; private set; }
-        public static int Port { get; private set; }
+        
+        public static int PortRead { get; private set; }
+
+        public static int PortWrite { get; private set; }
 
 
         public static UnityState unityState { get; internal set; }
@@ -23,10 +26,11 @@ namespace Robot
 
         
 
-        public static async Task Connect(string host = "127.0.0.1", int port = 30003)
+        public static async Task Connect(string host = "127.0.0.1", int portRead = 30013, int portWrite = 30003)
         {
             Host = host;
-            Port = port;
+            PortRead = portRead;
+            PortWrite = portWrite;
 
             await ConnectionSend.Start();
             await ConnectionRecieve.Start();

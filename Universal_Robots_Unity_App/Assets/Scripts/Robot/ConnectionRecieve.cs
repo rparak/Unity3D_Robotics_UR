@@ -25,10 +25,11 @@ namespace Robot
 
         public static async Task Start()
         {
-            await tcpRead.ConnectAsync(Connection.Host, Connection.Port);
+            await tcpRead.ConnectAsync(Connection.Host, Connection.PortRead);
 
             thread = new Thread(new ThreadStart(FetchValues));
             thread.Start();  
+            Debug.Log("READ: Connected to " + Connection.Host + ":" + Connection.PortRead);
         }
 
         public static void Stop()

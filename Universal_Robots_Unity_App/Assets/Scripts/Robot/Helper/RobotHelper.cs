@@ -16,15 +16,6 @@ public class RobotHelper : ScriptableObject
 
     public void MoveZero() => Robot.CMD.MoveJ(Data.Zero.ToPose());
 
-    public void SetAllAnalogActive()
-    {
-        for (int i = 0; i < 9; i++)
-        {
-            Robot.CMD.SetAnalogOutput(i, 1f);
-        }
-        
-    }
-
     public void Test()
     {
         //Robot.CMD.Popup("Hi", "This should be closed");

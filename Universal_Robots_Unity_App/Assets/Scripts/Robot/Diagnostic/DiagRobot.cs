@@ -10,6 +10,9 @@ namespace Robot
     {
         public TMP_Text unityState, roboModes, roboSafety;
         public Image unityStateImage, roboModeImage, roboSafetyImage;
+
+        public Button control;
+        public TMP_Text controlText;
         [Space]
         public Color good, ok, bad;
 
@@ -46,6 +49,55 @@ namespace Robot
                 case Connection.RoboSafety.normal: roboSafetyImage.color = good; break;
                 case Connection.RoboSafety.reduced: roboSafetyImage.color = ok; break;
                 default: roboSafetyImage.color = bad; break;
+            }
+
+            if(Connection.unityState == Connection.UnityState.offline)
+            {
+                control.interactable = false;
+                controlText.text = "";
+            }
+            else switch (Connection.roboModes)
+            {
+                case Connection.RoboModes.powerOff:
+                    control.interactable = true;
+                    controlText.text = "Power ON";
+                    break;
+
+                case Connection.RoboModes.idle:
+                    control.interactable = true;
+                    controlText.text = "Release Brakes";
+                    break;
+
+                case Connection.RoboModes.running:
+                    control.interactable = true;
+                    controlText.text = "Power OFF";
+                    break;
+
+                default:
+                    control.interactable = false;
+                    controlText.text = "";
+                    break;
+            }
+        }
+
+        public void OnControlBTNPress()
+        {
+            switch (Connection.roboModes)
+            {
+                case Connection.RoboModes.powerOff:
+                    Robot.CMD.Control.PowerOn();
+                    break;
+
+                case Connection.RoboModes.idle:
+                    Robot.CMD.Control.ReleaseBrake();
+                    break;
+
+                case Connection.RoboModes.running:
+                    Robot.CMD.Control.PowerOff();
+                    break;
+
+                default:
+                    break;
             }
         }
     }

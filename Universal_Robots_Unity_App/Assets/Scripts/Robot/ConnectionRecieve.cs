@@ -44,16 +44,12 @@ namespace Robot
             NetworkStream stream = tcpRead.GetStream();
             var t = new Stopwatch();
 
-            Debug.Log("Start");
             try
             {
                 while (Connection.unityState != Connection.UnityState.offline)
                 {
-                    Debug.Log("Reading");
-
                     if (stream.Read(packet, 0, packet.Length) != 0)
                     {
-                        Debug.Log(BitConverter.ToUInt32(packet, firstPacketSize - 4));
                         if (BitConverter.ToUInt32(packet, firstPacketSize - 4) == totalMsgLenght ||
                            BitConverter.ToUInt32(packet, firstPacketSize - 4) == 1543766016)
                         {
@@ -76,8 +72,6 @@ namespace Robot
                 Connection.Disconnect();
                 Debug.Log("Socket Exception:" + e);
             }
-
-            Debug.Log("End");
         }
 
         private static void ReadRobotInfo()
@@ -125,8 +119,8 @@ namespace Robot
             //Saftey mode 102
             Connection.roboSafety = (Connection.RoboSafety)BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (102 * offset));
 
-            //Digital Outputs 121
-            Connection.digitalOutput = BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (131 * offset));
+            //Digital Outputs 121 Not used on our Robot
+            //Connection.digitalOutput = BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (131 * offset));
 
 
 

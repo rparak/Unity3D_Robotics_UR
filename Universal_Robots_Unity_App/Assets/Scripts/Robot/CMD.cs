@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -13,6 +14,7 @@ namespace Robot
     public static class CMD
     {
         private static UTF8Encoding utf8 = new UTF8Encoding();
+        public static event Action<string> OnSend;
 
 
         public static void Stop() => ConnectionSend.Send("stopl(20)\n");
@@ -104,6 +106,7 @@ namespace Robot
             public async static void ClosePopup()
             {
                 string info = await ConnectionDashboard.Send("close popup\n");
+                OnSend?.Invoke(info);
                 Debug.Log(info);
             }
 
@@ -123,18 +126,21 @@ namespace Robot
             public async static void PowerOn()
             {
                 string info = await ConnectionDashboard.Send("power on\n");
+                OnSend?.Invoke(info);
                 Debug.Log(info);
             }
 
             public async static void PowerOff()
             {
                 string info = await ConnectionDashboard.Send("power off\n");
+                OnSend?.Invoke(info);
                 Debug.Log(info);
             }
 
             public async static void ReleaseBrake()
             {
                 string info = await ConnectionDashboard.Send("brake release\n");
+                OnSend?.Invoke(info);
                 Debug.Log(info);
             }
         }

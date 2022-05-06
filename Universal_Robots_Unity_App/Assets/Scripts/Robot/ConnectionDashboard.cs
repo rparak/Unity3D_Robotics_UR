@@ -9,7 +9,7 @@ namespace Robot
     /// <summary>
     /// Here are the docs to this one https://s3-eu-west-1.amazonaws.com/ur-support-site/42728/DashboardServer_e-Series.pdf
     /// </summary>
-    public static class ConnectionDashboard
+    internal static class ConnectionDashboard
     {
         public static TcpClient tcpClient = new TcpClient();
 
@@ -42,7 +42,6 @@ namespace Robot
             var bytesAvailable = ns.EndRead(result);
 
             returnMessage = Encoding.ASCII.GetString(buffer, 0, bytesAvailable);
-            //Debug.Log($"Read: { returnMessage }");
             BeginRead();
         }
         public static void BeginSend(string cmd)

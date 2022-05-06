@@ -19,6 +19,8 @@ public class Controller : MonoBehaviour
     public InputActionReference movementAction;
     public InputActionReference altiduteAction;
     public InputActionReference rotationAction;
+    [Space]
+    public InputActionReference waypointAction;
 
 
     private void Update()
@@ -58,5 +60,23 @@ public class Controller : MonoBehaviour
 
         rotation.x += inputV.x * speed;
         rotation.y += inputV.y * speed;
+    }
+
+    private void AddWaypoint(CallbackContext ctx)
+    {
+        WaypointMenu.Instance.AddWaypoint();
+    }
+
+
+    // ///////////////////////////////////////////////// 
+
+    private void OnEnable()
+    {
+        waypointAction.action.performed += AddWaypoint;
+    }
+
+    private void OnDisable()
+    {
+        waypointAction.action.performed -= AddWaypoint;
     }
 }

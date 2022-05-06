@@ -11,7 +11,10 @@ namespace Robot
 
         public static event Action OnIdle;
 
-        public static string Host { get; private set; }
+        public static string host = "127.0.0.1";
+        public static int sendPort = 30003;
+        public static int recievePort = 30013;
+        public static int dashbordPort = 29999;
 
 
         public static UnityState unityState { get; internal set; }
@@ -21,24 +24,33 @@ namespace Robot
         public static double digitalOutput { get; internal set; }
 
         
-        /// <summary>
-        /// Starts all the other Connections
-        /// </summary>
-        /// <param name="readPort30013">While using 30013 is better. Some systems don't have this option</param>
+        /// <summary>Starts all the other Connections</summary>
         /// <returns>Only returns if it was successful.</returns>
-        public static async Task Connect(string host = "127.0.0.1", bool readPort30013 = true)
+        public static async Task<bool> Connect()
         {
-            Host = host;
-
-            ConnectionRecieve.Port = readPort30013 ? 30013 : 30003;
-
             unityState = UnityState.online;
 
-            await ConnectionSend.Start();
-            await ConnectionRecieve.Start();
-            await ConnectionDashboard.Start();
+            _ = ConnectionSend.Start(host, sendPort);
+            _ = ConnectionRecieve.Start(host, recievePort);
+            _ = ConnectionDashboard.Start(host, dashbordPort);
+
+
+            //Check if all of them connect otherwise timeout.
+            for (int i = 0; i < 20; i++)
+            {
+                if(ConnectionSend.tcpWrite.Connected &&
+                    ConnectionRecieve.tcpRead.Connected &&
+                    ConnectionDashboard.tcpClient.Connected)
+                {
+                    OnConnected?.Invoke();
+                    return true;
+                }
+                await Task.Delay(20);
+            }
             
-            OnConnected?.Invoke();
+
+            unityState = UnityState.offline;
+            return false;
         }
 
         public static void Disconnect()

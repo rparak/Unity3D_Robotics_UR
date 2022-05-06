@@ -11,12 +11,10 @@ namespace Robot
     /// </summary>
     internal static class ConnectionDashboard
     {
-        public static TcpClient tcpClient = new TcpClient();
+        public static TcpClient tcpClient;
 
         private static UTF8Encoding utf8 = new UTF8Encoding();
         private static string returnMessage;
-
-        private const int Port = 29999;
 
         public async static Task<string> Send(string command)
         {
@@ -61,13 +59,18 @@ namespace Robot
 
         /// Inits
 
-        public static async Task Start()
+        public static async Task Start(string host, int port)
         {
-            await tcpClient.ConnectAsync(Connection.Host, Port);
+            tcpClient = new TcpClient();
+            await tcpClient.ConnectAsync(host, port);
             BeginRead();
         }
 
-        public static void Stop() => tcpClient.Close();
+        public static void Stop()
+        {
+            tcpClient.Close();
+            tcpClient.Dispose();
+        }
     }
 }
 

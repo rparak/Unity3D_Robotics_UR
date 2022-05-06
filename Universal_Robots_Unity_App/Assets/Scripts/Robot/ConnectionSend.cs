@@ -11,10 +11,8 @@ namespace Robot
     /// </summary>
     internal static class ConnectionSend
     {
-        public static TcpClient tcpWrite = new TcpClient();
+        public static TcpClient tcpWrite;
         private static UTF8Encoding utf8 = new UTF8Encoding();
-
-        private const int Port = 30003;
 
         private static int task;
 
@@ -54,10 +52,17 @@ namespace Robot
         private static int NewTask() => ++task;
 
 
-        public static async Task Start() => await tcpWrite.ConnectAsync(Connection.Host, Port);
+        public static async Task Start(string host, int port)
+        {
+            tcpWrite = new TcpClient();
+            await tcpWrite.ConnectAsync(host, port);
+        }
 
-        public static void Stop() => tcpWrite.Close();
-
+        public static void Stop()
+        {
+            tcpWrite.Close();
+            tcpWrite.Dispose();
+        }
     }
 }
 

@@ -13,10 +13,8 @@ namespace Robot
     /// </summary>
     internal static class ConnectionRecieve
     {
-        public static TcpClient tcpRead = new TcpClient();
+        public static TcpClient tcpRead;
         private static Thread thread;
-
-        internal static int Port = 30013;
 
         private static readonly byte[] packet = new byte[1116];//1116
         private static readonly byte firstPacketSize = 4;
@@ -25,10 +23,10 @@ namespace Robot
         private static readonly int timeStep = 2;   //  Communication speed: CB-Series 125 Hz (8 ms), E-Series 500 Hz (2 ms)
 
 
-        public static async Task Start()
+        public static async Task Start(string host, int port)
         {
-            Debug.Log($"Connecting to {Connection.Host}:{Port}");
-            await tcpRead.ConnectAsync(Connection.Host, Port);
+            tcpRead = new TcpClient();
+            await tcpRead.ConnectAsync(host, port);
 
             thread = new Thread(new ThreadStart(FetchValues));
             thread.Start();  
@@ -37,6 +35,7 @@ namespace Robot
         public static void Stop()
         {
             tcpRead.Close();
+            tcpRead.Dispose();
         }
 
         private static void FetchValues()

@@ -3,8 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using static UnityEngine.InputSystem.InputAction;
 
-namespace Treeka
-{
+
     public class Popup : MonoBehaviour
     {
         public static Popup Instance;
@@ -48,6 +47,6 @@ namespace Treeka
         }
 
     }
-}
+
 
 

@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine.InputSystem;
 using System.Collections;
 
-public class ChatBox : Treeka.PopupItem
+public class ChatBox : PopupItem
 {
     [SerializeField] InputActionReference tabAction;
 

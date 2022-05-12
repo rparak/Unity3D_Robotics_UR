@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
@@ -10,7 +7,7 @@ public class Controller : MonoBehaviour
     
     public float speed = 0.05f;
     public float time = 0.05f;
-    public float acceleration = 0.1f;
+    public float acceleration = 1;
 
     private Vector3 movement;
     private Vector3 rotation;
@@ -20,18 +17,24 @@ public class Controller : MonoBehaviour
     public InputActionReference altiduteAction;
     public InputActionReference rotationAction;
     [Space]
+    public InputActionReference gripperAction;
     public InputActionReference waypointAction;
+    public InputActionReference playWaypointsAction;
 
 
     private void Update()
     {
         if (Robot.Connection.unityState == Robot.Connection.UnityState.offline) return;
-
+        
         Movement();
         Altidute();
         Rotation();
 
         if (movement == Vector3.zero && rotation == Vector3.zero) return;
+
+        movement =  Camera.main.transform.forward * movement.y + //Forward
+                    Camera.main.transform.up * movement.x + //Right
+                    Vector3.forward * movement.z;   //UP
 
         Robot.CMD.SpeedL(movement, rotation, acceleration, time);
         movement = rotation = Vector3.zero;
@@ -43,15 +46,17 @@ public class Controller : MonoBehaviour
         Vector2 inputV = movementAction.action.ReadValue<Vector2>();
 
         movement.x += inputV.x * speed;
-        movement.z += inputV.y * speed;
+        movement.y += inputV.y * speed;
     }
 
     private void Altidute()
     {
-        Vector2 inputV = altiduteAction.action.ReadValue<Vector2>();
+        //Vector2 inputV = altiduteAction.action.ReadValue<Vector2>();
+        float input = altiduteAction.action.ReadValue<float>();
 
-        movement.y += inputV.x * speed;
-        rotation.z += inputV.y * speed;
+        //movement.y += inputV.x * speed;
+        //rotation.z += inputV.y * speed;
+        movement.z += input * speed;
     }
 
     private void Rotation()
@@ -67,16 +72,30 @@ public class Controller : MonoBehaviour
         WaypointMenu.Instance.AddWaypoint();
     }
 
+    private void PlayAllWaypoints(CallbackContext ctx)
+    {
+        WaypointMenu.Instance.PlayAllWaypoints();
+    }
+
+    private void Gripper(CallbackContext ctx)
+    {
+        if (Robot.Gripper.Position < 10) Robot.CMD.Gripper.Close();
+        else Robot.CMD.Gripper.Open();
+    }
 
     // ///////////////////////////////////////////////// 
 
     private void OnEnable()
     {
         waypointAction.action.performed += AddWaypoint;
+        playWaypointsAction.action.performed += PlayAllWaypoints;
+        gripperAction.action.performed += Gripper;
     }
 
     private void OnDisable()
     {
         waypointAction.action.performed -= AddWaypoint;
+        playWaypointsAction.action.performed -= PlayAllWaypoints;
+        gripperAction.action.performed -= Gripper;
     }
 }

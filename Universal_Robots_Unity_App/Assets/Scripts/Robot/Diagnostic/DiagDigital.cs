@@ -12,7 +12,7 @@ namespace Robot
 
         private void Update()
         {
-            outputRaw.text = Robot.Connection.digitalOutput.ToString();
+            //outputRaw.text = Robot.Connection.digitalOutput.ToString();
         }
     }
 }

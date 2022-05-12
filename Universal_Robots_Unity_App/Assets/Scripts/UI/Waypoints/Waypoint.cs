@@ -1,33 +1,60 @@
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
-using UnityEngine;
 
-public class Waypoint : MonoBehaviour
+
+[System.Serializable]
+public class Waypoint
 {
-    public static int maxId;
-    public Data waypoint;
+    [JsonIgnore] public static int maxId;
 
-    public new TMPro.TMP_Text name;
+    public string name;
+    public string guid;
+    public List<double> jointRot;
+    [DefaultValue(false)] public bool gripperOpen;
 
-
-
-    public void Setup(Data waypoint)
+    public Waypoint(double[] jointRot, bool gripperClosed = true)
     {
-        this.waypoint = waypoint;
-        name.text = $"WP {++maxId}";
+        name = $"Waypoint + {++maxId}";
+        guid = Guid.NewGuid().ToString();
+
+        this.jointRot = jointRot.ToList();
+        this.gripperOpen = gripperClosed;
     }
+
+    public Waypoint(string name, string guid, double[] jointRot, bool gripperOpen = true)
+    {
+        this.name = name;
+        this.guid = guid;
+        this.jointRot = jointRot.ToList();
+        this.gripperOpen = gripperOpen;
+    }
+
+    [JsonConstructor]
+    public Waypoint() { }
+
 
     public void Goto()
     {
-        Robot.CMD.MoveJ(waypoint.ToPose());
+        Pose pose = new Pose(jointRot);
+        Robot.CMD.MoveJ(pose);
+        if (gripperOpen) Robot.CMD.Gripper.Open();
+        else Robot.CMD.Gripper.Close();
     }
 
     public async Task<bool> GotoAsync()
     {
-        return await Robot.CMD.MoveJAsync(waypoint.ToPose());
+        Pose pose = new Pose(jointRot);
+        return await Robot.CMD.MoveJAsync(pose);
     }
 
-    public void Delete()
+
+    public enum Type
     {
-        Destroy(gameObject);
+        position,
+        gripper
     }
 }

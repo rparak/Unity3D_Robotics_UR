@@ -43,7 +43,7 @@ namespace Robot
         /// <summary>
         /// Moves to a Specific Point. Uses inverse Kinematic
         /// </summary>
-        public static void MoveJ(Pose pos, float acceleration = 1.4f, float speed = 1.05f, float time = 0, float radius = 0)
+        public static void MoveJ(Pose pos, float acceleration = 1f, float speed = .2f, float time = 0, float radius = 0)
         {
             ConnectionSend.Send($"movej({pos.poseString}, a={acceleration},v={speed},t={time},r={radius})\n");
         }
@@ -142,6 +142,42 @@ namespace Robot
                 string info = await ConnectionDashboard.Send("brake release\n");
                 OnSend?.Invoke(info);
                 Debug.Log(info);
+            }
+        }
+
+        public static class Gripper
+        {
+            public async static void Activate()
+            {
+                string state = await ConnectionGripper.Send("GET STA\n");
+                if (state == "STA 3") return;
+                _ = ConnectionGripper.Send("SET ACT 1\n");
+            }
+            
+            public static void Open(int speed = 100, int force = 100)
+            {
+                _ = ConnectionGripper.Send(
+                    $"SET SPE {speed}\n" +
+                    $"SET FOR {force}\n" +
+                    $"SET POS 0" +
+                    $"SET GTO 1\n"
+                    );
+            }
+            public static void Close(int speed = 100, int force = 100)
+            {
+                _ = ConnectionGripper.Send(
+                    $"SET SPE {speed}\n" +
+                    $"SET FOR {force}\n" +
+                    $"SET POS 255" +
+                    $"SET GTO 1\n"
+                    );
+            }
+
+            public async static Task<int> GetPosition()
+            {
+                string cb = await ConnectionGripper.Send("GET POS\n");
+                int pos = int.Parse(cb.Substring(4));
+                return pos;
             }
         }
 

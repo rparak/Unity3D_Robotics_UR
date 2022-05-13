@@ -13,9 +13,9 @@ public class WaypointMenu : MonoBehaviour
     public List<Waypoint> waypoints;
 
 
-    public async void AddWaypoint()
+    public void AddWaypoint()
     {
-        bool gripperState = await Robot.CMD.Gripper.GetPosition() < 10;
+        bool gripperState = Robot.Gripper.Position < 10;
         AddWaypoint(new Waypoint(Data.Current.jointRot, gripperState));
     }
 

@@ -35,9 +35,9 @@ namespace Robot
             //Check if all of them connect otherwise timeout.
             for (int i = 0; i < 20; i++)
             {
-                if(ConnectionSend.tcpClient.Connected &&
-                    ConnectionRecieve.tcpRead.Connected &&
-                    ConnectionDashboard.tcpClient.Connected)
+                //if(ConnectionSend.tcpClient.Connected &&
+                //    ConnectionRecieve.tcpRead.Connected &&
+                //    ConnectionDashboard.tcpClient.Connected)
                     //We could also add Gripper but is it requiered?
                 {
                     OnConnected?.Invoke();

@@ -64,13 +64,14 @@ namespace Robot
             tcpClient = new TcpClient();
             await tcpClient.ConnectAsync(host, port);
             CMD.Gripper.Activate();
-
+            Gripper.isRunning = true;
             thread = new Thread(new ThreadStart(FetchValues));
             thread.Start();
         }
 
         public static void Stop()
         {
+            Gripper.isRunning = false;
             if (tcpClient == null) return;
             tcpClient.Close();
             tcpClient.Dispose();
@@ -95,7 +96,8 @@ namespace Robot
 
     public static class Gripper
     {
-        public static int Position;
+        public static bool isRunning = false;
+        public static int Position = 0;
         //public static int Force;
         //public static int Speed;
         //public static int Fault;

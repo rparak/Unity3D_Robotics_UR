@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using GripperData = Robot.Gripper;
 
 namespace Robot
 {
@@ -156,28 +157,29 @@ namespace Robot
             
             public static void Open(int speed = 100, int force = 100)
             {
-                _ = ConnectionGripper.Send(
+                if (GripperData.isRunning)
+                {
+                    _ = ConnectionGripper.Send(
                     $"SET SPE {speed}\n" +
                     $"SET FOR {force}\n" +
                     $"SET POS 0" +
                     $"SET GTO 1\n"
                     );
+                }
+                else GripperData.Position = 0;
             }
             public static void Close(int speed = 100, int force = 100)
             {
-                _ = ConnectionGripper.Send(
+                if (GripperData.isRunning)
+                {
+                    _ = ConnectionGripper.Send(
                     $"SET SPE {speed}\n" +
                     $"SET FOR {force}\n" +
                     $"SET POS 255" +
                     $"SET GTO 1\n"
                     );
-            }
-
-            public async static Task<int> GetPosition()
-            {
-                string cb = await ConnectionGripper.Send("GET POS\n");
-                int pos = int.Parse(cb.Substring(4));
-                return pos;
+                }
+                else GripperData.Position = 255;
             }
         }
 

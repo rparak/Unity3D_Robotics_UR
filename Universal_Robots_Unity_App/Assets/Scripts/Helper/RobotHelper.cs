@@ -7,8 +7,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Robot/ButtonScripts")]
 public class RobotHelper : ScriptableObject
 {
-    public Data savedPos;
-
     public void MoveHome()
     {
         Robot.CMD.MoveJ(Data.Home.ToPose());
@@ -16,34 +14,26 @@ public class RobotHelper : ScriptableObject
 
     public void MoveZero() => Robot.CMD.MoveJ(Data.Zero.ToPose());
 
+    public void EmergencyStop() => Robot.CMD.Stop();
+
     public void Test()
     {
         Pose pose = new Pose(0.5f, 0.1f, 0.0f, 2.221f, 2.221f, 0);
         Robot.CMD.MoveJ(pose);
+        Chat.SendLocalResponse("Test", "MoveJ has been send");
     }
 
     public void Test2()
     {
-        Pose pose = new Pose(0.7f, 0.1f, .5f, 2.221f, 2.221f, 0);
-        Robot.CMD.MoveJ(pose);
-
+        //Pose pose = new Pose(0.7f, 0.1f, .5f, 2.221f, 2.221f, 0);
+        //Robot.CMD.MoveJ(pose);
+        MoveHome();
+        Chat.SendLocalResponse("Test", "Home has been send");
     }
 
     public void Test3()
     {
         Pose pose = new Pose(-0.7f, 0.1f, 0.5f, 2.221f, 2.221f, 0);
         Robot.CMD.MoveJ(pose);
-    }
-
-    public void SavePosition()
-    {
-        savedPos.position = Data.Current.position;
-        savedPos.rotation = Data.Current.rotation;
-        savedPos.jointRot = Data.Current.jointRot;
-    }
-
-    public void MoveSavedPosition()
-    {
-        Robot.CMD.MoveJ(savedPos.ToPose());
     }
 }

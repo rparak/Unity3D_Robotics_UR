@@ -34,7 +34,6 @@ public class ConnectionBTN : MonoBehaviour
             if(grandOverrideKey.action.ReadValue<float>() > .3f || memberOnlyUse)
             {
                 Robot.Connection.host = "192.168.0.102";
-                Robot.Connection.recievePort = 30013;
 
                 if (await Robot.Connection.Connect()) Chat.SendLocalResponse("Connection", "Connected to Grand Garage Robot");
                 else Chat.SendLocalResponse("Connection", "Failed to connect to Grand Garage Robot");
@@ -43,7 +42,6 @@ public class ConnectionBTN : MonoBehaviour
             if(localOverrideKey.action.ReadValue<float>() > .3f)
             {
                 Robot.Connection.host = "127.0.0.1";
-                Robot.Connection.recievePort = 30013;
 
                 if (await Robot.Connection.Connect()) Chat.SendLocalResponse("Connection", "Connected to Local Robot");
                 else Chat.SendLocalResponse("Connection", "Failed to connect to Local Robot");
@@ -61,8 +59,6 @@ public class ConnectionBTN : MonoBehaviour
         //Set Host
         if (string.IsNullOrWhiteSpace(input.text)) Robot.Connection.host = "127.0.0.1";
         else Robot.Connection.host = input.text;
-
-        Robot.Connection.recievePort = 30013;
 
         //Connect
         if (await Robot.Connection.Connect()) Chat.SendLocalResponse("Connection", $"Connected to {Robot.Connection.host}.");

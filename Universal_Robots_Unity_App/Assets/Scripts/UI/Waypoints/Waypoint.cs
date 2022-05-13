@@ -18,7 +18,7 @@ public class Waypoint
 
     public Waypoint(double[] jointRot, bool gripperClosed = true)
     {
-        name = $"Waypoint + {++maxId}";
+        name = $"Waypoint {++maxId}";
         guid = Guid.NewGuid().ToString();
 
         this.jointRot = jointRot.ToList();

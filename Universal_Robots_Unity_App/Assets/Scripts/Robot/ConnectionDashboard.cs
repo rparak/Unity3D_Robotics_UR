@@ -9,14 +9,12 @@ namespace Robot
     /// <summary>
     /// Here are the docs to this one https://s3-eu-west-1.amazonaws.com/ur-support-site/42728/DashboardServer_e-Series.pdf
     /// </summary>
-    public static class ConnectionDashboard
+    internal static class ConnectionDashboard
     {
-        public static TcpClient tcpClient = new TcpClient();
+        public static TcpClient tcpClient;
 
         private static UTF8Encoding utf8 = new UTF8Encoding();
         private static string returnMessage;
-
-        private const int Port = 29999;
 
         public async static Task<string> Send(string command)
         {
@@ -42,7 +40,6 @@ namespace Robot
             var bytesAvailable = ns.EndRead(result);
 
             returnMessage = Encoding.ASCII.GetString(buffer, 0, bytesAvailable);
-            //Debug.Log($"Read: { returnMessage }");
             BeginRead();
         }
         public static void BeginSend(string cmd)
@@ -62,13 +59,18 @@ namespace Robot
 
         /// Inits
 
-        public static async Task Start()
+        public static async Task Start(string host, int port)
         {
-            await tcpClient.ConnectAsync(Connection.Host, Port);
+            tcpClient = new TcpClient();
+            await tcpClient.ConnectAsync(host, port);
             BeginRead();
         }
 
-        public static void Stop() => tcpClient.Close();
+        public static void Stop()
+        {
+            tcpClient.Close();
+            tcpClient.Dispose();
+        }
     }
 }
 

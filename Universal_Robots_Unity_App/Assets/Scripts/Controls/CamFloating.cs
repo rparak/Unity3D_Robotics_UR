@@ -25,9 +25,16 @@ public class CamFloating : MonoBehaviour
 
     private void Rotate()
     {
-        if (mouseActivator.action.ReadValue<float>() < .3f) return;
+        if(InputTerminal.playerInput.currentControlScheme == "Controller")
+        {
+            rotation += sensetivity * Time.deltaTime * mouseAction.action.ReadValue<Vector2>() * -2;
+        }
+        else if (mouseActivator.action.ReadValue<float>() < .3f) return;
+        else
+        {
+            rotation += sensetivity * Time.deltaTime * mouseAction.action.ReadValue<Vector2>();
+        }
 
-        rotation += sensetivity * Time.deltaTime * mouseAction.action.ReadValue<Vector2>();
         rotation.y = Mathf.Clamp(rotation.y, clamp.x, clamp.y);
 
         transform.localRotation = Quaternion.AngleAxis(rotation.x, Vector3.up);
@@ -46,5 +53,7 @@ public class CamFloating : MonoBehaviour
     {
         child = transform.GetChild(0);
         scroll = child.localPosition.z;
+        rotation.x = transform.rotation.eulerAngles.y;
+        rotation.y = transform.rotation.eulerAngles.x;
     }
 }

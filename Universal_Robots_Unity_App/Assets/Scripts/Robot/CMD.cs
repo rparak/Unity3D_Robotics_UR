@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using GripperData = Robot.Gripper;
 
 namespace Robot
 {
@@ -13,6 +15,7 @@ namespace Robot
     public static class CMD
     {
         private static UTF8Encoding utf8 = new UTF8Encoding();
+        public static event Action<string> OnSend;
 
 
         public static void Stop() => ConnectionSend.Send("stopl(20)\n");
@@ -41,7 +44,7 @@ namespace Robot
         /// <summary>
         /// Moves to a Specific Point. Uses inverse Kinematic
         /// </summary>
-        public static void MoveJ(Pose pos, float acceleration = 1.4f, float speed = 1.05f, float time = 0, float radius = 0)
+        public static void MoveJ(Pose pos, float acceleration = 1f, float speed = .2f, float time = 0, float radius = 0)
         {
             ConnectionSend.Send($"movej({pos.poseString}, a={acceleration},v={speed},t={time},r={radius})\n");
         }
@@ -104,6 +107,7 @@ namespace Robot
             public async static void ClosePopup()
             {
                 string info = await ConnectionDashboard.Send("close popup\n");
+                OnSend?.Invoke(info);
                 Debug.Log(info);
             }
 
@@ -123,19 +127,59 @@ namespace Robot
             public async static void PowerOn()
             {
                 string info = await ConnectionDashboard.Send("power on\n");
+                OnSend?.Invoke(info);
                 Debug.Log(info);
             }
 
             public async static void PowerOff()
             {
                 string info = await ConnectionDashboard.Send("power off\n");
+                OnSend?.Invoke(info);
                 Debug.Log(info);
             }
 
             public async static void ReleaseBrake()
             {
                 string info = await ConnectionDashboard.Send("brake release\n");
+                OnSend?.Invoke(info);
                 Debug.Log(info);
+            }
+        }
+
+        public static class Gripper
+        {
+            public async static void Activate()
+            {
+                string state = await ConnectionGripper.Send("GET STA\n");
+                if (state == "STA 3") return;
+                _ = ConnectionGripper.Send("SET ACT 1\n");
+            }
+            
+            public static void Open(int speed = 100, int force = 100)
+            {
+                if (GripperData.isRunning)
+                {
+                    _ = ConnectionGripper.Send(
+                    $"SET SPE {speed}\n" +
+                    $"SET FOR {force}\n" +
+                    $"SET POS 0" +
+                    $"SET GTO 1\n"
+                    );
+                }
+                else GripperData.Position = 0;
+            }
+            public static void Close(int speed = 100, int force = 100)
+            {
+                if (GripperData.isRunning)
+                {
+                    _ = ConnectionGripper.Send(
+                    $"SET SPE {speed}\n" +
+                    $"SET FOR {force}\n" +
+                    $"SET POS 255" +
+                    $"SET GTO 1\n"
+                    );
+                }
+                else GripperData.Position = 255;
             }
         }
 

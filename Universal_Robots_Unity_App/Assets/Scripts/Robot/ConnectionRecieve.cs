@@ -13,10 +13,8 @@ namespace Robot
     /// </summary>
     internal static class ConnectionRecieve
     {
-        public static TcpClient tcpRead = new TcpClient();
+        public static TcpClient tcpRead;
         private static Thread thread;
-
-        internal static int Port = 30013;
 
         private static readonly byte[] packet = new byte[1116];//1116
         private static readonly byte firstPacketSize = 4;
@@ -25,10 +23,10 @@ namespace Robot
         private static readonly int timeStep = 2;   //  Communication speed: CB-Series 125 Hz (8 ms), E-Series 500 Hz (2 ms)
 
 
-        public static async Task Start()
+        public static async Task Start(string host, int port)
         {
-            Debug.Log($"Connecting to {Connection.Host}:{Port}");
-            await tcpRead.ConnectAsync(Connection.Host, Port);
+            tcpRead = new TcpClient();
+            await tcpRead.ConnectAsync(host, port);
 
             thread = new Thread(new ThreadStart(FetchValues));
             thread.Start();  
@@ -36,7 +34,11 @@ namespace Robot
 
         public static void Stop()
         {
+            Robot.mode = Robot.RoboModes.noController;
+            Robot.safety = Robot.RoboSafety.noRobotDetected;
+
             tcpRead.Close();
+            tcpRead.Dispose();
         }
 
         private static void FetchValues()
@@ -44,16 +46,12 @@ namespace Robot
             NetworkStream stream = tcpRead.GetStream();
             var t = new Stopwatch();
 
-            Debug.Log("Start");
             try
             {
                 while (Connection.unityState != Connection.UnityState.offline)
                 {
-                    Debug.Log("Reading");
-
                     if (stream.Read(packet, 0, packet.Length) != 0)
                     {
-                        Debug.Log(BitConverter.ToUInt32(packet, firstPacketSize - 4));
                         if (BitConverter.ToUInt32(packet, firstPacketSize - 4) == totalMsgLenght ||
                            BitConverter.ToUInt32(packet, firstPacketSize - 4) == 1543766016)
                         {
@@ -76,8 +74,6 @@ namespace Robot
                 Connection.Disconnect();
                 Debug.Log("Socket Exception:" + e);
             }
-
-            Debug.Log("End");
         }
 
         private static void ReadRobotInfo()
@@ -88,7 +84,7 @@ namespace Robot
 
 
             //Joint Velocity 8 - 13
-            Connection.SetMoving(CheckIfMoving());
+            Robot.isMoving = CheckIfMoving();
 
 
             //Actual joint posistions 32 - 37
@@ -120,13 +116,13 @@ namespace Robot
             //96 - 101 => Joint Mode
 
             //Modes mode 95
-            Connection.roboModes = (Connection.RoboModes)BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (95 * offset));
+            Robot.mode = (Robot.RoboModes)BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (95 * offset));
 
             //Saftey mode 102
-            Connection.roboSafety = (Connection.RoboSafety)BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (102 * offset));
+            Robot.safety = (Robot.RoboSafety)BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (102 * offset));
 
-            //Digital Outputs 121
-            Connection.digitalOutput = BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (131 * offset));
+            //Digital Outputs 121 Not used on our Robot
+            //Connection.digitalOutput = BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (131 * offset));
 
 
 
@@ -142,6 +138,54 @@ namespace Robot
                 }
                 return false;
             }
+        }  
+    }
+
+    public static class Robot
+    {
+        public static RoboModes mode;
+        public static RoboSafety safety;
+
+
+        public static bool isMoving;
+        internal static Vector3 position;
+
+        //Data can actually take care of these things even better
+        //public static double[] jointRot = new double[6];
+        //public static Vector3 position, rotation;
+
+
+
+        public enum RoboSafety
+        {
+            noRobotDetected = 0,
+            normal = 1,
+            reduced = 2,
+            protectiveStop = 3,
+            recovery = 4,
+            safeGuardStop = 5,
+            emergencyStopEuromap67 = 6,
+            emergencyStopScreen = 7,
+            violation = 8,
+            fault = 9,
+            validateJointId = 10,
+            undefinedSafetyMode = 11,
+            safeguardStop = 12,
+            positionEnablingStop = 13
+        }
+
+        public enum RoboModes
+        {
+            noController = -1,
+            disconnected = 0,
+            confirmSafety = 1,
+            booting = 2,
+            powerOff = 3,
+            powerOn = 4,
+            idle = 5,
+            backdrive = 6,
+            running = 7,
+            updatingFirmware = 8
         }
     }
 }

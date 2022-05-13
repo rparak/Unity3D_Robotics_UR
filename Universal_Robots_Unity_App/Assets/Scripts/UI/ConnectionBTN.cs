@@ -1,13 +1,18 @@
 using Treeka;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ConnectionBTN : MonoBehaviour
 {
-
+    public bool memberOnlyUse;
+    [Space]
     public Image buttonImage;
     public PopupItem connectionPanel;
     public TMPro.TMP_InputField input;
+    [Space]
+    public InputActionReference localOverrideKey;
+    public InputActionReference grandOverrideKey;
 
 
     [Space]
@@ -15,27 +20,49 @@ public class ConnectionBTN : MonoBehaviour
     public Color disconnectedColor;
 
 
-    public void StartButton()
+    public async void StartButton()
     {
         if (Robot.Connection.unityState != Robot.Connection.UnityState.offline)
         {
             Robot.Connection.Disconnect();
             SetActiveConnectionPanel(false);
+            Chat.SendLocalResponse("Connection", "Disconnecting");
+            return;
         }
-        else connectionPanel.Toggle();
+        else
+        {
+            if(grandOverrideKey.action.ReadValue<float>() > .3f || memberOnlyUse)
+            {
+                Robot.Connection.host = "192.168.0.102";
+
+                if (await Robot.Connection.Connect()) Chat.SendLocalResponse("Connection", "Connected to Grand Garage Robot");
+                else Chat.SendLocalResponse("Connection", "Failed to connect to Grand Garage Robot");
+                return;
+            }
+            if(localOverrideKey.action.ReadValue<float>() > .3f)
+            {
+                Robot.Connection.host = "127.0.0.1";
+
+                if (await Robot.Connection.Connect()) Chat.SendLocalResponse("Connection", "Connected to Local Robot");
+                else Chat.SendLocalResponse("Connection", "Failed to connect to Local Robot");
+                return;
+            }
+        }
+
+        connectionPanel.Toggle();
     }
 
-    public void ConnectButton()
+    public async void ConnectButton()
     {
         SetActiveConnectionPanel(false);
-        if (string.IsNullOrWhiteSpace(input.text)) _ = Robot.Connection.Connect("127.0.0.1", false);
-        else _ = Robot.Connection.Connect(input.text, true);
-    }
 
-    public void ConnectGG()
-    {
-        SetActiveConnectionPanel(false);
-        _ = Robot.Connection.Connect("192.168.0.102", true);
+        //Set Host
+        if (string.IsNullOrWhiteSpace(input.text)) Robot.Connection.host = "127.0.0.1";
+        else Robot.Connection.host = input.text;
+
+        //Connect
+        if (await Robot.Connection.Connect()) Chat.SendLocalResponse("Connection", $"Connected to {Robot.Connection.host}.");
+        else Chat.SendLocalResponse("Connection", $"Failed to connect to {Robot.Connection.host}.");
     }
 
     private void SetActiveConnectionPanel(bool state)

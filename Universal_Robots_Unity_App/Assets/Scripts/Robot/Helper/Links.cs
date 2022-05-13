@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
 
-public class Links : MonoBehaviour, ICamRaycastHit
+internal class Links : MonoBehaviour, ICamRaycastHit
 {
     public static Links selected;
 

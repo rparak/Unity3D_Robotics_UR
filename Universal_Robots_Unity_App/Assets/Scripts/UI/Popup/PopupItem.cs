@@ -1,8 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Treeka
-{
+
     [RequireComponent(typeof(CanvasGroup))]
     public class PopupItem : MonoBehaviour
     {
@@ -65,6 +64,3 @@ namespace Treeka
             cg.blocksRaycasts = false;
         }
     }
-}
-
-

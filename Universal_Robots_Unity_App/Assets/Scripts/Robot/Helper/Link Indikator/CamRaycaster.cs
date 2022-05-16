@@ -8,7 +8,7 @@ public class CamRaycaster : MonoBehaviour
 {
 
     public InputActionReference shootAction;
-
+    private const int robotLayer = 1 << 7;
 
     private void OnEnable() => shootAction.action.performed += Shoot;
     private void OnDisable() => shootAction.action.performed -= Shoot;
@@ -17,7 +17,7 @@ public class CamRaycaster : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
 
-        if(Physics.Raycast(ray, out RaycastHit hit))
+        if(Physics.Raycast(ray, out RaycastHit hit, 20f, robotLayer))
         {
             
 

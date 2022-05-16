@@ -48,6 +48,8 @@ public class Waypoint
     public async Task<bool> GotoAsync()
     {
         Pose pose = new Pose(jointRot);
+        if (gripperOpen) Robot.CMD.Gripper.Open();
+        else Robot.CMD.Gripper.Close();
         return await Robot.CMD.MoveJAsync(pose);
     }
 

@@ -19,7 +19,6 @@ public class Feed : MonoBehaviour
 
     private void OnConnectionDashboard(string feed)
     {
-        Debug.Log("Recieved Feed");
         Chat.SendLocalResponse("UR Dashboard", feed);
     }
 }

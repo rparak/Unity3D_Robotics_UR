@@ -120,7 +120,6 @@ namespace Robot
             public async static Task<bool> IsInRemoteControl()
             {
                 string info = await ConnectionDashboard.Send("is in remote control\n");
-                Debug.Log(info);
                 return bool.Parse(info);
             }
 
@@ -128,21 +127,18 @@ namespace Robot
             {
                 string info = await ConnectionDashboard.Send("power on\n");
                 OnSend?.Invoke(info);
-                Debug.Log(info);
             }
 
             public async static void PowerOff()
             {
                 string info = await ConnectionDashboard.Send("power off\n");
                 OnSend?.Invoke(info);
-                Debug.Log(info);
             }
 
             public async static void ReleaseBrake()
             {
                 string info = await ConnectionDashboard.Send("brake release\n");
                 OnSend?.Invoke(info);
-                Debug.Log(info);
             }
         }
 

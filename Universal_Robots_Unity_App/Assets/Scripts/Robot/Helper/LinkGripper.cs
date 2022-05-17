@@ -1,8 +1,15 @@
 using UnityEngine;
 
-internal class LinkGripper : MonoBehaviour
+internal class LinkGripper : MonoBehaviour, ICamRaycastHit
 {
     public Transform leftGripper, rightGripper;
+    
+
+    public void Hit()
+    {
+        if (Robot.Gripper.Position < 10) Robot.CMD.Gripper.Close();
+        else Robot.CMD.Gripper.Open();
+    }
 
     private void Update()
     {

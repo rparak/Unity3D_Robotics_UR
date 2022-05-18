@@ -29,7 +29,7 @@ namespace Robot
             ConnectionSend.Send($"speedl(" +
                 $"[{dir.x.ToString("0.00").Replace(",", ".")},{dir.y.ToString("0.00").Replace(",", ".")},{dir.z.ToString("0.00").Replace(",", ".")}" +
                 $",{rotDir.x.ToString("0.00").Replace(",", ".")},{rotDir.y.ToString("0.00").Replace(",", ".")},{rotDir.z.ToString("0.00").Replace(",", ".")}]" +
-                $", a ={acceleration}, t ={time})\n");
+                $", a ={acceleration.ToString("0.00").Replace(",", ".")}, t ={time.ToString("0.00").Replace(",", ".")})\n");
         }
 
 
@@ -38,7 +38,7 @@ namespace Robot
         /// </summary>
         public static void MoveJ(Vector3 pos, Vector3 rot, float acceleration = 1.4f, float speed = 1.05f, float time = 0, float radius = 0)
         {
-            ConnectionSend.Send($"movej([{pos.x},{pos.y},{pos.z},{rot.x},{rot.y},{rot.z}], a={acceleration},v={speed},t={time},r={radius})\n");
+            ConnectionSend.Send($"movej([{pos.x},{pos.y},{pos.z},{rot.x},{rot.y},{rot.z}], a={acceleration.ToString().Replace(",", ".")},v={speed.ToString().Replace(",", ".")},t={time.ToString().Replace(",", ".")},r={radius.ToString().Replace(",", ".")})\n");
         }
 
         /// <summary>
@@ -46,12 +46,12 @@ namespace Robot
         /// </summary>
         public static void MoveJ(Pose pos, float acceleration = 1f, float speed = .2f, float time = 0, float radius = 0)
         {
-            ConnectionSend.Send($"movej({pos.poseString}, a={acceleration},v={speed},t={time},r={radius})\n");
+            ConnectionSend.Send($"movej({pos.poseString}, a={acceleration.ToString().Replace(",", ".")},v={speed.ToString().Replace(",", ".")},t={time.ToString().Replace(",", ".")},r={radius.ToString().Replace(",", ".")})\n");
         }
 
         public static async Task<bool> MoveJAsync(Pose pos, float acceleration = 1.4f, float speed = 1.05f, float time = 0, float radius = 0)
         {
-           return await ConnectionSend.SendAsync($"movej({pos.poseString}, a={acceleration},v={speed},t={time},r={radius})\n");
+           return await ConnectionSend.SendAsync($"movej({pos.poseString}, a={acceleration.ToString().Replace(",", ".")},v={speed.ToString().Replace(",", ".")},t={time.ToString().Replace(",", ".")},r={radius.ToString().Replace(",", ".")})\n");
         }
 
         /// <summary>
@@ -64,30 +64,30 @@ namespace Robot
         /// <param name="mode">Unconstrained mode: Interpolate orientation from current pose to target pose(pose_to) Fixed (Contraint) mode: Keep orientation constant relative to the tangent of the circular arc (starting from current pose)</param>
         public static void MoveC(Pose poseVia, Pose poseTo, float a = 1.2f, float v = 0.25f, ContraintMode mode = ContraintMode.contraint)
         {
-            ConnectionSend.Send($"movec({poseVia.poseString},{poseTo.poseString}, a={a}, v={v}, mode={(int)mode})\n");
+            ConnectionSend.Send($"movec({poseVia.poseString},{poseTo.poseString}, a={a.ToString().Replace(",", ".")}, v={v.ToString().Replace(",", ".")}, mode={(int)mode})\n");
         }
 
 
         public static void MoveP(Pose pos, float acceleration = 1.2f, float speed = 0.25f, float radius = 0)
         {
-            ConnectionSend.Send($"movep({pos.poseString}, a={acceleration}, v={speed}, r={radius})\n");
+            ConnectionSend.Send($"movep({pos.poseString}, a={acceleration.ToString().Replace(",", ".")}, v={speed.ToString().Replace(",", ".")}, r={radius.ToString().Replace(",", ".")})\n");
         }
 
         public static void MoveL(Pose pos, float acceleration = 1.2f, float speed = 0.25f, float time = 1, float radius = 0)
         {
-            ConnectionSend.Send($"movel({pos.poseString}, a={acceleration}, v={speed}, t={time}, r={radius})\n");
+            ConnectionSend.Send($"movel({pos.poseString}, a={acceleration.ToString().Replace(",", ".")}, v={speed.ToString().Replace(",", ".")}, t={time.ToString().Replace(",", ".")}, r={radius.ToString().Replace(",", ".")})\n");
         }
 
         public static void ServoC(Pose pos, float acceleration = 1.2f, float speed = 0.25f, float radius = 0)
         {
-            ConnectionSend.Send($"servoc({pos.poseString}, a={acceleration}, v={speed}, r={radius})\n");
+            ConnectionSend.Send($"servoc({pos.poseString}, a={acceleration.ToString().Replace(",", ".")}, v={speed.ToString().Replace(",", ".")}, r={radius.ToString().Replace(",", ".")})\n");
         }
 
         /// /////////////////////////////////Other Functions
 
         public static void SetAnalogOutput(int output, float strenght)
         {
-            ConnectionSend.Send($"set_standard_analog_out({output},{strenght})\n");
+            ConnectionSend.Send($"set_standard_analog_out({output},{strenght.ToString().Replace(",", ".")})\n");
         }
 
         public static void Popup(string text, string title)

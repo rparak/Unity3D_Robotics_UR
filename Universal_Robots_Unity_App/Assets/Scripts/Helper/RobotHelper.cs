@@ -18,8 +18,8 @@ public class RobotHelper : ScriptableObject
 
     public void Test()
     {
-        Pose pose = new Pose(0.5f, 0.1f, 0.0f, 2.221f, 2.221f, 0);
-        Robot.CMD.MoveJ(pose);
+        //Pose pose = new Pose(0.5f, 0.1f, 0.0f, 2.221f, 2.221f, 0);
+        Robot.CMD.SpeedL(Vector3.right, Vector3.zero);
         Chat.SendLocalResponse("Test", "MoveJ has been send");
     }
 

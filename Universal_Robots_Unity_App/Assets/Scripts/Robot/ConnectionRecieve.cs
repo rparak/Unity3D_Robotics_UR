@@ -64,6 +64,7 @@ namespace Robot
                             {
                                 Thread.Sleep(timeStep - (int)t.ElapsedMilliseconds);
                             }
+                            t.Restart(); //UM
                         }
                     }
                 }

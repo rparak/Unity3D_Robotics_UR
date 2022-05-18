@@ -1,6 +1,9 @@
 using System;
+using System.Collections;
+using System.Diagnostics;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -13,9 +16,10 @@ namespace Robot
     internal static class ConnectionSend
     {
         public static TcpClient tcpClient;
-        private static UTF8Encoding utf8 = new UTF8Encoding();
+        public static UTF8Encoding utf8 = new UTF8Encoding();
 
         private static int task;
+
 
 
         public static void Send(string command)
@@ -43,7 +47,7 @@ namespace Robot
             byte[] data = utf8.GetBytes(command);
             stream.Write(data, 0, data.Length);
 
-            while(task == taskId)
+            while (task == taskId)
             {
                 await Task.Delay(50);
                 if (Robot.isMoving == false) return true;
@@ -59,6 +63,9 @@ namespace Robot
         {
             tcpClient = new TcpClient();
             await tcpClient.ConnectAsync(host, port);
+
+            //thread = new Thread(new ThreadStart(SendThread));
+            //thread.Start();
         }
 
         public static void Stop()
@@ -66,6 +73,9 @@ namespace Robot
             tcpClient.Close();
             tcpClient.Dispose();
         }
+
+
+
     }
 }
 

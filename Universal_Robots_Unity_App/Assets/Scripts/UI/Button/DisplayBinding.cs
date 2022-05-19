@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -5,21 +7,21 @@ using UnityEngine.UI;
 
 public class DisplayBinding : MonoBehaviour
 {
-
     public InputActionReference actionRef;
+
     //public InputControlPath.HumanReadableStringOptions options;
     public TMP_Text keybindingText;
     public int compositePart = 0;
 
-    [Space]
-    [SerializeField] private Image image;
+    [Space] [SerializeField] private Image image;
     [SerializeField] private TMP_Text text;
-    public string appendingText;
-
+    public string content;
+    public string preTag;
+    public string postTag;
 
     public void UpdateBinding()
     {
-        if(actionRef.action.controls.Count == 0)
+        if (actionRef.action.controls.Count == 0)
         {
             keybindingText.alpha = 0;
             return;
@@ -34,7 +36,7 @@ public class DisplayBinding : MonoBehaviour
             actionRef.action.bindings[bindingIndex].effectivePath,
             stringType);
 
-        keybindingText.text = TranslateSprites(keyBind) + " " + appendingText;
+        keybindingText.text = TranslateSprites(keyBind);
     }
 
     private void UpdateBindingOnControlsChange(PlayerInput player) => UpdateBinding();
@@ -51,32 +53,37 @@ public class DisplayBinding : MonoBehaviour
         {
             //image.LeanAlphaColor(0, 0.2f);
             //if(text == null) text.LeanAlphaText(0, 0.1f);
-        } 
+        }
     }
 
     private void OnEnable() => UpdateBinding();
 
     private void Start() => InputTerminal.playerInput.onControlsChanged += UpdateBindingOnControlsChange;
+
     private void OnDestroy()
     {
         InputTerminal.playerInput.onControlsChanged -= UpdateBindingOnControlsChange;
     }
 
 
-    public string TranslateSprites(string key)
+    private string TranslateSprites(string input)
     {
+        Debug.Log("input: " + ToCamelCase(input));
 
-        switch (key)
+        if (Enum.TryParse(ToCamelCase(input), true, out Sprites sprite))
         {
-
-            case "Circle": key = "<sprite=12>"; break;
+            return "<sprite=" + (int)sprite + ">";
         }
 
-
-        return key;
+        return RichTextElement(input);
     }
 
-    public enum Sprites
+    private string RichTextElement(string customText = "")
+    {
+        return preTag + " " + customText + " " + postTag + " " + content;
+    }
+
+    private enum Sprites
     {
         dpad = 0,
         dpadDown = 1,
@@ -88,7 +95,7 @@ public class DisplayBinding : MonoBehaviour
 
         leftTrigger = 8,
         leftBumper = 9,
-        leftStick = 10,
+        leftStickPress = 10,
 
         rightTrigger = 21,
         rightBumper = 22,
@@ -117,5 +124,14 @@ public class DisplayBinding : MonoBehaviour
         cross = 15,
         circle = 13,
     }
+    
+    private static string ToCamelCase(string str)
+    {
+        var words = str.Split(new[] { "_", " " }, StringSplitOptions.RemoveEmptyEntries);
+        var leadWord = words[0].ToLower();
+        var tailWords = words.Skip(1)
+            .Select(word => char.ToUpper(word[0]) + word.Substring(1))
+            .ToArray();
+        return $"{leadWord}{string.Join(string.Empty, tailWords)}";
+    }
 }
-

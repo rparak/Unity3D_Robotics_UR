@@ -94,6 +94,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "CMD",
+                    "type": "Button",
+                    "id": "0dc41724-95fd-4d08-a686-c109650852a1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -242,23 +251,23 @@
                 },
                 {
                     "name": "",
-                    "id": "7534129a-8790-48b5-9649-152cd3f837ac",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Controller",
-                    "action": "ToggleDiagnostic",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "dbc450b6-8302-45d5-93b3-6111bc3dd0fc",
                     "path": "<Keyboard>/i",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "ToggleDiagnostic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "40280462-3f52-48d2-8d8c-038fef2e4193",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "CMD",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -290,15 +299,6 @@
                     "name": "Tab",
                     "type": "Button",
                     "id": "d6dbfdd5-b404-46ef-8165-425338159db0",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "CMD",
-                    "type": "Button",
-                    "id": "2e284e4d-60fa-4383-b01c-fa888fdb7789",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -387,17 +387,6 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Tab",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2092dab2-3530-4dbd-a720-32dda6935360",
-                    "path": "<Keyboard>/t",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "CMD",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

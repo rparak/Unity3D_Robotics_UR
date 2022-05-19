@@ -12,8 +12,7 @@ public class DisplayBinding : MonoBehaviour
     public int compositePart = 0;
 
     [Space]
-    [SerializeField] private Image image;
-    [SerializeField] private TMP_Text text;
+    [SerializeField] private Button button;
     public string appendingText;
 
 
@@ -44,13 +43,11 @@ public class DisplayBinding : MonoBehaviour
         if (state)
         {
             UpdateBinding();
-            //image.LeanAlphaColor(1, 0.2f);
-            //if(text == null) text.LeanAlphaText(1, 0.1f);
+            button.interactable = true;
         }
         else
         {
-            //image.LeanAlphaColor(0, 0.2f);
-            //if(text == null) text.LeanAlphaText(0, 0.1f);
+            button.interactable = false;
         } 
     }
 

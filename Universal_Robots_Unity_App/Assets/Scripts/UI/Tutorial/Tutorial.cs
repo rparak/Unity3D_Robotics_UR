@@ -6,17 +6,15 @@ using UnityEngine;
 public class Tutorial : PopupItem
 {
     public static Tutorial Instance;
-    public static int tutId;
+    public static int tutId = -1;
     public static event Action OnClick;
 
     public TMPro.TMP_Text text;
     public float speed = .1f;
-    [Space]
-    public GameObject tutorialShowcase;
 
     public static void Show(string text) => Instance.Display(text);
-
     public static void Close() => Instance.Disable();
+
 
     public void Click()
     {
@@ -24,19 +22,22 @@ public class Tutorial : PopupItem
         OnClick?.Invoke();
     }
 
-    public void StartTutorial()
+    public override void Enable()
     {
-        tutId++;
-        TutorialLogic.Start(tutId);
-        tutorialShowcase.SetActive(true);
+        if(tutId == -1) TutorialLogic.Show(++tutId);
+        else base.Enable();
     }
 
-    public void StopTutorial()
+    public void Next()
     {
-        tutId++;
-        Disable();
-        ReadWrite.Write("", Application.persistentDataPath + "/robot.config");
-        tutorialShowcase.SetActive(false);
+        if (++tutId >= 8) tutId = 0;
+        TutorialLogic.Show(tutId);
+    }
+
+    public void Back()
+    {
+        if (--tutId <= -1) tutId = 7;
+        TutorialLogic.Show(tutId);
     }
 
     public void Display(string text)
@@ -62,10 +63,9 @@ public class Tutorial : PopupItem
     private void Start()
     {
         Instance = this;
-        tutorialShowcase.SetActive(false);
 
-        if (ReadWrite.Exists(Application.persistentDataPath + "/robot.config")) return;
-        else StartTutorial();
+        //if (ReadWrite.Exists(Application.persistentDataPath + "/robot.config")) return;
+        //else StartTutorial();
     }
 
     protected override void AnimationIN()

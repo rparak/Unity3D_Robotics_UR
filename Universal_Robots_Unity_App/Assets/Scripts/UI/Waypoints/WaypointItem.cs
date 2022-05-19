@@ -7,7 +7,7 @@ using UnityEngine;
 public class WaypointItem : MonoBehaviour
 {
     
-    public TMPro.TMP_Text nameText;
+    public TMPro.TMP_InputField nameText;
 
 
     public Waypoint waypoint;
@@ -22,6 +22,13 @@ public class WaypointItem : MonoBehaviour
     }
 
     public void MoveToWaypoint() => waypoint.Goto();
+
+    public void EditName(string newName)
+    {
+        waypoint.name = newName;
+        //int index = WaypointMenu.GetWaypointIndex(waypoint);
+        //WaypointMenu.Instance.waypoints[index].name = newName;
+    }
 
 
     public void Delete()

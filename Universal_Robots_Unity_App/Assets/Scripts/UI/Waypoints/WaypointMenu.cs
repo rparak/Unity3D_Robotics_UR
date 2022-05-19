@@ -35,6 +35,8 @@ public class WaypointMenu : MonoBehaviour
         }
     }
 
+    public static int GetWaypointIndex(Waypoint waypoint) => Instance.waypoints.FindIndex(a => a == waypoint);
+
 
     public async void PlayAllWaypoints()
     {

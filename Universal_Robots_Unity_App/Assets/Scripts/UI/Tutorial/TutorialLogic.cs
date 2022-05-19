@@ -4,13 +4,13 @@ using UnityEngine;
 
 public static class TutorialLogic
 {
-    public static bool autoContinue;
+    public static bool autoContinue; //Not even used lmao
 
     public static void Show(int id)
     {
         switch (id)
         {
-            //case -1: Request last case
+            case -1: Tutorial.tutId = 7; Finish(); break;
             case 0: Start(); break;
             case 1: ConnectToRobot(); break;
             case 2: SetRobotToExternalControl(); break;
@@ -19,8 +19,8 @@ public static class TutorialLogic
             case 5: WASDBewegung(); break;
             case 6: MouseControls(); break;
             case 7: Finish(); break;
-            
-           //Default: Request first case 
+
+            default: Tutorial.tutId = 0; Start(); break;
         }
     }
 
@@ -122,10 +122,10 @@ public static class TutorialLogic
 
         Tutorial.Show(
             "<size=50>Großartig!</size>\n\n" +
-            "<color=#44AACC>Unten Rechts</color> findest du den Informations Bildschirim.\n" +
-            "Dort kannst siehst du alles was zurzeit passiert.\n\n" +
-            "Du bist bereit denn Cobot einzuschalten.\n" +
-            "Diese einstellung findest du in dem Informations Bildshirm."
+            "<color=#44AACC>Unten rechts</color> findest du den Informations Button.\n" +
+            "Dort kannst du alles was zurzeit passiert.\n\n" +
+            "Du bist bereit den Cobot einzuschalten.\n" +
+            "Diese Einstellung findest du in dem Informations Bereich."
             );
 
         /*await System.Threading.Tasks.Task.Delay(1000);
@@ -142,8 +142,8 @@ public static class TutorialLogic
         //if (id != Tutorial.tutId) return;
         Tutorial.Show(
             "<size=50>Release Brakes</size>\n\n" +
-            "<color=#44AACC>Der gleiche Knopf</color> hat sich jetzt auf Release Brakes geändert.\n" +
-            "Schaue auf dein Umfeld und betätige diese Taste nur wenn du und keine anderen Objecte weg vom Cobot sich befinden."
+            "<color=#44AACC>Der gleiche Button</color> hat sich jetzt auf <mark>\"Release Brakes\"</mark> geändert.\n" +
+            "Schaue auf dein Umfeld und betätige diese Taste nur, wenn sich keine Personen bzw. Objekte im Arbeitsbereich des Roboters befinden."
             );
 
         /*await System.Threading.Tasks.Task.Delay(1000);
@@ -161,8 +161,8 @@ public static class TutorialLogic
         //if (id != Tutorial.tutId) return;
         Tutorial.Show(
             "<size=50>Wie ein Spiel</size>\n\n" +
-            "Wie normale spiele ist es möglich denn Cobot mit <mark>\"WASD\"</mark> stererung zu benutzen.\n" +
-            "Falls du ein Controller hast, kannst du diesen auch verwenden.\n" +
+            "Wie normale Spiele ist es möglich den CoBot mit eine <mark>\"WASD\"</mark> Steurerung zu benutzen.\n" +
+            "Falls du ein Game Controller besitzt, kannst du diesen auch verwenden.\n" +
             "Worauf wartest du. Probiere das gleich aus!\n"
             );
 
@@ -174,11 +174,11 @@ public static class TutorialLogic
     {
         //if (id != Tutorial.tutId) return;
         Tutorial.Show(
-            "<size=50>Maus steuerung</size>\n\n" +
-            "Du kannst Coby auch über die Maus Bewegen. Klicke auf den Robot um ein Axis auszuwählen.\n\n" +
+            "<size=50>Maus Steuerung</size>\n\n" +
+            "Du kannst Coby auch über die Maus bewegen. Klicke auf den Robot um eine Achse auszuwählen.\n\n" +
             "Halte danach <mark>R</mark> für <mark>Rotate</mark> und bewege deine Maus horizontal.\n" +
-            "Sobald du R gedrückt haltest siehst du ein <color=yellow>Gelbes Rad</color>.\n" +
-            "Der Cobot bewegt sich dort hin sobald du die <mark>R</mark> taste auslässt.\n"
+            "Sobald du R gedrückt haltest siehst du ein <color=yellow>Gelbes Scheibe</color>.\n" +
+            "Der Cobot bewegt sich dort hin, sobald du die <mark>R</mark> Taste loslässt.\n"
             );
 
         /*await System.Threading.Tasks.Task.Delay(30000);
@@ -190,9 +190,7 @@ public static class TutorialLogic
         //if (id != Tutorial.tutId) return;
         Tutorial.Show(
             "<size=50>Very Nice</size>\n\n" +
-            "Du beherscht Coby schon ganz gut.\n" +
-            "Wie mit der Maus steuerung kannst du den Gripper auch leicht bedienen.\n" +
-            "Fallst du noch nicht mit die Controls klar kommst kannst du Jederzeit im <color=#44AACC>Oben Info Bildschirm</color> nachschauen.\n\n" +
+            "Du beherrscht Coby schon ganz gut.\n" +
             "Das Tutorial endet hier. Wir wünschen dir Viel Spass!\n"
             );
 

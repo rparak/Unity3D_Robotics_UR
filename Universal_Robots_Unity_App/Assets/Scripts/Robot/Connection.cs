@@ -18,6 +18,7 @@ namespace Robot
 
         public static UnityState unityState { get; internal set; }
 
+        
 
 
         /// <summary>Starts all the other Connections</summary>
@@ -64,6 +65,7 @@ namespace Robot
 
             OnDisconnected?.Invoke();
         }
+
 
         private void OnEnable() => Data.Current = ScriptableObject.CreateInstance<Data>();
 

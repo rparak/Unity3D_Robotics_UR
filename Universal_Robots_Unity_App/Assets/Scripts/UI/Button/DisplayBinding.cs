@@ -23,10 +23,9 @@ public class DisplayBinding : MonoBehaviour
     {
         if (actionRef.action.controls.Count == 0)
         {
-            keybindingText.alpha = 0;
+            keybindingText.text = content;
             return;
         }
-        else keybindingText.alpha = 1;
 
         int bindingIndex = actionRef.action.GetBindingIndexForControl(actionRef.action.controls[compositePart]);
         InputControlPath.HumanReadableStringOptions stringType = InputControlPath.HumanReadableStringOptions.OmitDevice;

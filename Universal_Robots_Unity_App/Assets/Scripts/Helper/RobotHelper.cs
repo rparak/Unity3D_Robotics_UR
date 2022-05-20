@@ -18,8 +18,9 @@ public class RobotHelper : ScriptableObject
 
     public void Test()
     {
-        //Pose pose = new Pose(0.5f, 0.1f, 0.0f, 2.221f, 2.221f, 0);
-        Robot.CMD.SpeedL(Vector3.right, Vector3.zero);
+        Pose pose = new Pose(0.4f, 0.13f, 0.5f, 2.221f, 2.221f, 0);
+
+        Robot.CMD.MoveJ(pose);
         Chat.SendLocalResponse("Test", "MoveJ has been send");
     }
 
@@ -34,6 +35,21 @@ public class RobotHelper : ScriptableObject
     public void Test3()
     {
         Pose pose = new Pose(-0.7f, 0.1f, 0.5f, 2.221f, 2.221f, 0);
+        Robot.CMD.MoveJ(pose);
+    }
+
+
+    [CMD("Move")] //Feel free to delete
+    public static void Move(string[] param)
+    {
+        if(param[0] == "get")
+        {
+            Chat.SendLocalResponse("To lazy to look in diag panel", Data.Current.position.ToString());
+            return;
+        }
+
+        Pose pose = new Pose(float.Parse(param[0]), float.Parse(param[1]), float.Parse(param[2]), 2.221f, 2.221f, 0);
+
         Robot.CMD.MoveJ(pose);
     }
 }

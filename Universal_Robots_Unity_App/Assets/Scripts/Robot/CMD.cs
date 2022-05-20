@@ -24,7 +24,7 @@ namespace Robot
         /// <summary>
         /// Moves in a specific direction.
         /// </summary>
-        public static void SpeedL(Vector3 dir, Vector3 rotDir, float acceleration = 1.4f, float time = .05f)
+        public static void SpeedL(Vector3 dir, Vector3 rotDir, float acceleration = .4f, float time = .05f)
         {
             ConnectionSend.Send($"speedl(" +
                 $"[{dir.x.ToString("0.00").Replace(",", ".")},{dir.y.ToString("0.00").Replace(",", ".")},{dir.z.ToString("0.00").Replace(",", ".")}" +

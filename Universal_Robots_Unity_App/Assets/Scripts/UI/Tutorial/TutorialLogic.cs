@@ -30,10 +30,10 @@ public static class TutorialLogic
         //await System.Threading.Tasks.Task.Delay(100);
 
         Tutorial.Show(
-            "<size=50> Unser CoBot Coby sagt hallo!</size>\n\n" +
-            "Willkommen zu dem Tutorial für <smallcaps><color=#44AACC>CoBot</color></smallcaps>, ein kollaborativer Roboter.\n\n" +
-            "Du kannst jederzeit das Tutorial für mit dem Button <color=#44AACC>oben links</color> einblenden.\n" +
-            "Klicke auf das Popup um fortzufahren."
+            "<size=50>Coby sagt hallo!</size>\n\n" +
+            "Willkommen zum Tutorial unseres <smallcaps><color=#44AACC>Cobots</color></smallcaps> \n bzw. kollaborativen Roboters.\n\n" +
+            "Du kannst das Tutorial jederzeit mit dem <color=#44AACC>Button oben links</color> \n ein- und ausblenden \n\n" +
+            "Klicke nun weiter."
             );
 
         /*
@@ -53,15 +53,14 @@ public static class TutorialLogic
         if (Robot.Connection.unityState != Robot.Connection.UnityState.offline) Robot.Connection.Disconnect();
 
         Tutorial.Show(
-            "<size=50> Connection </size>\n\n" +
-            "<color=#44AACC>Unten links</color> findest du den Connection Knopf.\n" +
-            "Dieser ist entweder <color=red>Rot</color> (nicht verbunden) oder <color=green>Grün</color> (verbunden).\n\n" +
-            "Wir müssen uns mit dem Roboter verbinden um ihn zu steuern.\n" +
+            "<size=50>Verbindung</size>\n\n" +
+            "<color=#44AACC>Unten links</color> wird die Verbindung zu Coby angezeigt.\n" +
+            "Der Button ist entweder <color=red>Rot</color> (=nicht verbunden) oder <color=green>GrÃ¼n</color> (=verbunden).\n\n" +
+            "Wir mÃ¼ssen uns mit dem Roboter verbinden um ihn zu steuern.\n" +
             "In der Simulation verbinden wir uns mit dem Docker Container <mark> \"127.0.0.1\"</mark>.\n" +
             "In der Grand Garage hat der Roboter die IP <mark> \"192.168.0.102\"</mark>.\n\n" +
-            "Benutze den roten Button unten um dich zu verbinden.\n" +
-            "Der Grand Garage PC verbindet sich automatisch.\n" +
-            "Somit musst du keine IP Adresse eingeben."
+            "Verbinde dich jetzt Ã¼ber den roten Button unten links.\n\n" +
+            "<size=25>(i) In der Grand Garage ist keine IP Eingabe notwendig. Du kannst dich also direkt verbinden.</size>"
             );
 
         /*
@@ -82,11 +81,10 @@ public static class TutorialLogic
         //if (await Robot.CMD.Control.IsInRemoteControl())
         {
             Tutorial.Show(
-            "<size=50> External Control </size>\n\n" +
-            "Um denn Roboter steruern zu können, müssen wir sicher gehen das er sich im <color=#44AACC>Remote Control Modus</color>sich befindet.\n" +
-            "Dieser Schritt ist nur beim Echten Cobot wichtig.\n\n" +
-            "Remote Control geht leider nur am <color=#44AACC>tablet</color>. Oben rechts steht <mark>\"local\"</mark>.\n" +
-            "Der Roboter befindet sich schon im Remote Control Modus."
+            "<size=50> Fernsteuerung </size>\n\n" +
+            "Zur Fernsteuerung des echten Roboters mÃ¼ssen wir sicherstellen, \n dass er sich im <color=#44AACC>Remote-Control Modus</color> befindet.\n\n" +
+            "Dazu mÃ¼ssen wir zum <color=#44AACC>Cobot-Tablet</color> wechseln. \n Oben rechts erkennst du <mark>\"local\"</mark>.\n" +
+            "Hier muss auf Remote-Control umgestellt werden."
             );
             //Tutorial.OnClick += Skip;
         }
@@ -94,10 +92,10 @@ public static class TutorialLogic
         {
             Tutorial.Show(
             "<size=50> External Control </size>\n\n" +
-            "Um denn Roboter steruern zu können, müssen wir sicher gehen das er sich im <color=#44AACC>Remote Control Modus</color> sich befindet.\n" +
+            "Um denn Roboter steruern zu kï¿½nnen, mï¿½ssen wir sicher gehen das er sich im <color=#44AACC>Remote Control Modus</color> sich befindet.\n" +
             "Dieser Schritt ist nur beim Echten Cobot wichtig.\n\n" +
             "Remote Control geht leider nur am <color=#44AACC>tablet</color>. Oben rechts steht <mark>\"local\"</mark>.\n" +
-            "Bitte auf Remote Control ändern."
+            "Bitte auf Remote Control ï¿½ndern."
             );*/
 
             /*while (!await Robot.CMD.Control.IsInRemoteControl())
@@ -121,11 +119,11 @@ public static class TutorialLogic
         //if (Robot.Robot.mode != Robot.Robot.RoboModes.powerOff) Robot.CMD.Control.PowerOff();
 
         Tutorial.Show(
-            "<size=50>Großartig!</size>\n\n" +
-            "<color=#44AACC>Unten rechts</color> findest du den Informations Button.\n" +
-            "Dort kannst du alles was zurzeit passiert.\n\n" +
-            "Du bist bereit den Cobot einzuschalten.\n" +
-            "Diese Einstellung findest du in dem Informations Bereich."
+            "<size=50>GroÃŸartig!</size>\n\n" +
+            "<color=#44AACC>Unten rechts</color> findest du den Info-Button.\n" +
+            "Dort kannst du aktuelle Statusmeldungen des Cobots sehen.\n\n" +
+            "Du bist nun bereit Coby zu aktivieren.\n" +
+            "Diese Einstellung findest du im erwÃ¤hnten Info-Bereich."
             );
 
         /*await System.Threading.Tasks.Task.Delay(1000);
@@ -141,9 +139,9 @@ public static class TutorialLogic
     {
         //if (id != Tutorial.tutId) return;
         Tutorial.Show(
-            "<size=50>Release Brakes</size>\n\n" +
-            "<color=#44AACC>Der gleiche Button</color> hat sich jetzt auf <mark>\"Release Brakes\"</mark> geändert.\n" +
-            "Schaue auf dein Umfeld und betätige diese Taste nur, wenn sich keine Personen bzw. Objekte im Arbeitsbereich des Roboters befinden."
+            "<size=50>Bremsen lÃ¶sen</size>\n\n" +
+            "<color=#44AACC>Der Button</color> hat sich jetzt auf <mark>\"Release Brakes\"</mark> geÃ¤ndert.\n\n" +
+            "Pass auf deine Umgebung auf und betÃ¤tige die Taste nur, \n wenn sich keine Personen und Objekte \n im Arbeitsbereich des Roboters befinden!"
             );
 
         /*await System.Threading.Tasks.Task.Delay(1000);
@@ -160,10 +158,10 @@ public static class TutorialLogic
     {
         //if (id != Tutorial.tutId) return;
         Tutorial.Show(
-            "<size=50>Wie ein Spiel</size>\n\n" +
-            "Wie normale Spiele ist es möglich den CoBot mit eine <mark>\"WASD\"</mark> Steurerung zu benutzen.\n" +
-            "Falls du ein Game Controller besitzt, kannst du diesen auch verwenden.\n" +
-            "Worauf wartest du. Probiere das gleich aus!\n"
+            "<size=50>Spiel mit Coby!</size>\n\n" +
+            "Wie bei vielen anderen Games, \n kannst du den CoBot mit <mark>\"WASD\"</mark> am Keyboard steuern.\n\n" +
+            "Falls du einen Game Controller besitzt, \n kannst du auch diesen verwenden.\n\n" +
+            "Worauf wartest du? Probiere es gleich aus!\n"
             );
 
         /*await System.Threading.Tasks.Task.Delay(30000);
@@ -175,10 +173,10 @@ public static class TutorialLogic
         //if (id != Tutorial.tutId) return;
         Tutorial.Show(
             "<size=50>Maus Steuerung</size>\n\n" +
-            "Du kannst Coby auch über die Maus bewegen. Klicke auf den Robot um eine Achse auszuwählen.\n\n" +
-            "Halte danach <mark>R</mark> für <mark>Rotate</mark> und bewege deine Maus horizontal.\n" +
-            "Sobald du R gedrückt haltest siehst du ein <color=yellow>Gelbes Scheibe</color>.\n" +
-            "Der Cobot bewegt sich dort hin, sobald du die <mark>R</mark> Taste loslässt.\n"
+            "Du kannst Coby auch Ã¼ber die Maus bewegen. \n Klicke hierzu auf ein Roboter-Gelenk um eine Achse auszuwÃ¤hlen.\n\n" +
+            "Halte danach <mark>R</mark> fÃ¼r <mark>Rotation</mark> gedrÃ¼ckt und bewege deine Maus horizontal.\n" +
+            "Nun kannst du einen <color=yellow>Winkel</color> angeben.\n\n" +
+            "Sobald du <mark>R</mark> loslÃ¤sst, bewegt sich der Roboter um die gewÃ¤hlte Achse.\n"
             );
 
         /*await System.Threading.Tasks.Task.Delay(30000);
@@ -189,9 +187,9 @@ public static class TutorialLogic
     {
         //if (id != Tutorial.tutId) return;
         Tutorial.Show(
-            "<size=50>Very Nice</size>\n\n" +
-            "Du beherrscht Coby schon ganz gut.\n" +
-            "Das Tutorial endet hier. Wir wünschen dir Viel Spass!\n"
+            "<size=50>Super!</size>\n\n" +
+            "Sieht so aus, als ob du die Steuerung nun beherrscht.\n" +
+            "Das Tutorial endet hier.\n\n Wir wÃ¼nschen dir viel SpaÃŸ mit Coby!"
             );
 
         /*Tutorial.OnClick += Next;

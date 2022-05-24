@@ -14,7 +14,6 @@ You can find a documentation of more commands URScript commands in the official 
 | OS                         | *Linux* or *Windows*
 | Blender 2.9.xx             | https://www.blender.org/download/                                                     |
 | Unity3D 2020.3.xx          | https://unity3d.com/get-unity/download/archive                                        |
-| Unity HDRI Pack            | https://assetstore.unity.com/packages/2d/textures-materials/sky/unity-hdri-pack-72511 |
 | Docker                     | https://docs.docker.com/get-docker/
 | UR Simulator               | https://github.com/vushu/DockURSim                                            |
 
@@ -90,6 +89,8 @@ Create a simple movement set in an intuitive virtual environment without needing
 * [Realtime Interface documentation (deprecated)](https://s3-eu-west-1.amazonaws.com/ur-support-site/16496/ClientInterfaces_Realtime.pdf)
 * [RTDE documentation](https://s3-eu-west-1.amazonaws.com/ur-support-site/22229/Real_Time_Data_Exchange_(RTDE)_Guide.pdf)
 * [UR Script documentation](https://s3-eu-west-1.amazonaws.com/ur-support-site/115824/scriptManual_SW5.11.pdf)
+* [Gripper Hand-E documentation](https://gitlab.grandgarage.eu/mykyta.ielanskyi/ur5_robot_servo/-/blob/master/moveit2_dualshock_controller/ur_robotiq_gripper/gripper.py)
+
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

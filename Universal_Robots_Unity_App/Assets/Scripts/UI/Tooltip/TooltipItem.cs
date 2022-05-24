@@ -19,7 +19,7 @@ public class TooltipItem : MonoBehaviour
     public static void Show(string name, Vector3 position)
     {
         Instance.text.text = name;
-        Instance.cg.LeanAlpha(1, 1f);
+        Instance.cg.LeanAlpha(1, .1f);
 
 
         //If Tooltip is in lower screen move up else down by 5%.
@@ -37,7 +37,7 @@ public class TooltipItem : MonoBehaviour
 
     public static void Hide()
     {
-        Instance.cg.LeanAlpha(0, 1f);
+        Instance.cg.LeanAlpha(0, .1f);
     }
 
 

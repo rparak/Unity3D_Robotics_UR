@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.24617283, g: 0.35977504, b: 0.44265288, a: 1}
+  m_IndirectSpecularColor: {r: 0.43658432, g: 0.55423665, b: 0.54339516, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -710,7 +710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a854501a33a95b0468e5e7a0ff09e3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tip: Spielt alle waypoints in reihenfolge ab
+  tip: Alle Wegpunkte der Reihe nach abfahren
 --- !u!1 &86530009
 GameObject:
   m_ObjectHideFlags: 0
@@ -1910,7 +1910,7 @@ Light:
   m_BounceIntensity: 0.7
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 3e-45, z: 9.48e-42, w: 6e-44}
+  m_BoundingSphereOverride: {x: 0, y: 8.4165e-41, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -2137,7 +2137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a854501a33a95b0468e5e7a0ff09e3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tip: Probleme werden in VNC oder beim Cobot Tablet beschrieben
+  tip: Probleme sind im VNC Viewer oder beim Cobot Tablet ersichtlich
 --- !u!1 &201069471
 GameObject:
   m_ObjectHideFlags: 0
@@ -2744,7 +2744,7 @@ Transform:
   - {fileID: 2078613495}
   m_Father: {fileID: 832391521}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 10, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 26.699, y: -103.3, z: 0}
 --- !u!114 &282840815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3134,7 +3134,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -1500, y: -1029.65}
+  m_SizeDelta: {x: -1500, y: -1030.9604}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &322600826
 MonoBehaviour:
@@ -3175,7 +3175,7 @@ MonoBehaviour:
   MaxSize: {x: 400, y: Infinity}
   MinSize: {x: 0, y: 0}
   ControlAxes: 3
-  _forceRefresh: 1
+  _forceRefresh: 0
 --- !u!114 &322600828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8246,7 +8246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a854501a33a95b0468e5e7a0ff09e3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tip: Der status vom CoBot
+  tip: Der Status des cobots
 --- !u!1 &545745627
 GameObject:
   m_ObjectHideFlags: 0
@@ -9461,7 +9461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a854501a33a95b0468e5e7a0ff09e3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tip: Springt in der Simulation aber nicht beim echten
+  tip: Nur im Simulator relevat
 --- !u!1 &678442099
 GameObject:
   m_ObjectHideFlags: 0
@@ -9736,8 +9736,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 232.42029, y: 0}
+  m_SizeDelta: {x: 464.84058, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &707089405
 MonoBehaviour:
@@ -11332,7 +11332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a854501a33a95b0468e5e7a0ff09e3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tip: Verbindet zu Coby oder eine Simulation. Kann auch die verbindung trennen
+  tip: Verbindung zum realen Roboter oder zum Simulator herstellen
 --- !u!1 &822323932
 GameObject:
   m_ObjectHideFlags: 0
@@ -13131,7 +13131,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 39.4
+  m_fontSize: 39.45
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -13637,7 +13637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a854501a33a95b0468e5e7a0ff09e3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tip: Zeigt viele Informationen an. Zusatzlich kann man ein paar einstellungen vornehmen
+  tip: "\xD6ffnet das Status Panel"
 --- !u!1 &970718099
 GameObject:
   m_ObjectHideFlags: 0
@@ -14976,7 +14976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a854501a33a95b0468e5e7a0ff09e3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tip: Ladet Waypoints von einem Document
+  tip: "Programm mit Wegpunkten \xF6ffnen (.wp)"
 --- !u!1 &1037092618
 GameObject:
   m_ObjectHideFlags: 0
@@ -15595,7 +15595,7 @@ PrefabInstance:
     - target: {fileID: 4373048193643737941, guid: bf0a225a9ff184f2789f3036faaa9150,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 8.4165e-41
       objectReference: {fileID: 0}
     - target: {fileID: 4373048193643737941, guid: bf0a225a9ff184f2789f3036faaa9150,
         type: 3}
@@ -16075,7 +16075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a854501a33a95b0468e5e7a0ff09e3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tip: Speichert alle Waypoints in einem Document ab
+  tip: Programm mit Wegpunkten speichern
 --- !u!1 &1111315277
 GameObject:
   m_ObjectHideFlags: 0
@@ -18094,12 +18094,12 @@ PrefabInstance:
     - target: {fileID: 4373048193643737941, guid: bf0a225a9ff184f2789f3036faaa9150,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 8.4165e-41
       objectReference: {fileID: 0}
     - target: {fileID: 4373048193643737941, guid: bf0a225a9ff184f2789f3036faaa9150,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: NaN
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4404760024282988913, guid: bf0a225a9ff184f2789f3036faaa9150,
         type: 3}
@@ -19251,7 +19251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a854501a33a95b0468e5e7a0ff09e3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tip: Speichert die Position von Coby
+  tip: Speichert die aktuelle Position
 --- !u!114 &1284619769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20838,7 +20838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a854501a33a95b0468e5e7a0ff09e3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tip: Bewegt Coby zu sein standart Ort
+  tip: Bewegung zur Ausgangsposition
 --- !u!1 &1533885471
 GameObject:
   m_ObjectHideFlags: 0
@@ -21519,7 +21519,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 47.8
+  m_fontSize: 47.85
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -24550,7 +24550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a854501a33a95b0468e5e7a0ff09e3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tip: Coby glaubt er ist ein Turm
+  tip: Bewegung in Turm-Position
 --- !u!1 &1858851751
 GameObject:
   m_ObjectHideFlags: 0

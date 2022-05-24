@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public string tip;
-    public const float waitTimeSec = .5f;
+    public const float waitTimeSec = .1f;
 
     
 

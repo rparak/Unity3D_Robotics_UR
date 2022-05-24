@@ -1,7 +1,7 @@
 # Universal Robots Unity3D App
 Control the [Universal Robots](https://www.universal-robots.com/) with Unity3D by using **URScript** and a **TCP/IP** communication.
 
-[<img src="images/screenshot3.jpg" width="60%">](https://www.youtube.com/watch?v=KktBg-8ngDA&ab_channel=GRANDGARAGE "UR Digital Twin showcase")
+[<img src="images/screenshot3.jpg" width="60%">](https://youtu.be/4BE_jgSYYJU "UR Digital Twin showcase")
 
 You can find a documentation of more commands URScript commands in the official [Manual](https://www.universal-robots.com/download/manuals-e-series/script/script-manual-e-series-sw-511/).
 

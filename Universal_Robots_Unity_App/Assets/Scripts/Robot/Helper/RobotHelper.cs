@@ -16,32 +16,23 @@ public class RobotHelper : ScriptableObject
 
     public void MoveZero() => Robot.CMD.MoveJ(Data.Zero.ToPose());
 
-    public void SetAllAnalogActive()
-    {
-        for (int i = 0; i < 9; i++)
-        {
-            Robot.CMD.SetAnalogOutput(i, 1f);
-        }
-        
-    }
-
     public void Test()
     {
-        //Robot.CMD.Popup("Hi", "This should be closed");
-        Robot.CMD.Control.PowerOn();
-        
+        Pose pose = new Pose(0.5f, 0.1f, 0.0f, 2.221f, 2.221f, 0);
+        Robot.CMD.MoveJ(pose);
     }
 
     public void Test2()
     {
-        //bot.CMD.Control.ClosePopup();
-        Robot.CMD.Control.ReleaseBrake();
+        Pose pose = new Pose(0.7f, 0.1f, .5f, 2.221f, 2.221f, 0);
+        Robot.CMD.MoveJ(pose);
+
     }
 
     public void Test3()
     {
-        //_ = Robot.CMD.Control.IsInRemoteControl();
-        Robot.CMD.Control.PowerOff();
+        Pose pose = new Pose(-0.7f, 0.1f, 0.5f, 2.221f, 2.221f, 0);
+        Robot.CMD.MoveJ(pose);
     }
 
     public void SavePosition()

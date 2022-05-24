@@ -1,3 +1,6 @@
+using SFB;
+using System.Collections.Generic;
+using Treeka;
 using UnityEngine;
 
 public class WaypointMenu : MonoBehaviour
@@ -6,32 +9,82 @@ public class WaypointMenu : MonoBehaviour
 
     public GameObject waypointAsset;
     public Transform content;
-
-
+    [Space]
+    public List<Waypoint> waypoints;
 
 
     public void AddWaypoint()
     {
-        Waypoint wp = Instantiate(waypointAsset, content).GetComponent<Waypoint>();
-        wp.transform.SetAsFirstSibling();
-        
-        wp.Setup(Instantiate(Data.Current));
+        bool gripperState = Robot.Gripper.Position < 10;
+        AddWaypoint(new Waypoint(Data.Current.jointRot, gripperState));
     }
 
-
-    public async void MoveToAll()
+    public void AddWaypoint(Waypoint waypoint)
     {
+        WaypointItem wp = Instantiate(waypointAsset, content).GetComponent<WaypointItem>();
+        wp.Setup(waypoint);
+        waypoints.Add(waypoint);
+    }
+
+    public void ClearAllWaypoints()
+    {
+        waypoints.Clear();
         foreach(Transform child in content)
         {
-            //Incase there is an error we will won't move to the next one
-            if(child.TryGetComponent(out Waypoint waypoint))
-            {
-                Debug.Log("Executing " + waypoint.name);
-                if (await child.GetComponent<Waypoint>().GotoAsync() == false) return;
-            }
+            Destroy(child.gameObject);
         }
-
     }
 
-    private void OnEnable() => Instance = this;
+    public static int GetWaypointIndex(Waypoint waypoint) => Instance.waypoints.FindIndex(a => a == waypoint);
+
+
+    public async void PlayAllWaypoints()
+    {
+        //Debug.Log("Checking all Waypoints");
+        foreach(Waypoint wp in waypoints)
+        {
+            //Debug.Log($"Going {wp.name} as {wp.guid}");
+            if (await wp.GotoAsync() == false) return;
+        }
+        //Debug.Log("Done");
+    }
+
+    // /////////////////////////////////// Mananananage stuff
+
+    public void Save()
+    {
+        var extensionList = new[] {
+            new ExtensionFilter("Waypoint Map", "wp"),
+            new ExtensionFilter("Shitty Files", "shit")
+        };
+
+        StandaloneFileBrowser.SaveFilePanelAsync("Save File", "", "", extensionList, (string path) => 
+        {
+            ReadWrite.Write(waypoints, path);
+        });
+    }
+
+    public void Load()
+    {
+        var extensionList = new[] {
+            new ExtensionFilter("Waypoint Map", "wp")
+        };
+
+        StandaloneFileBrowser.OpenFilePanelAsync("Open File", "", extensionList, false, (string[] paths) => 
+        {
+            List<Waypoint> waypoints = ReadWrite.Read<List<Waypoint>>(paths[0]);
+
+            ClearAllWaypoints();
+
+            foreach(Waypoint waypoint in waypoints)
+            {
+                AddWaypoint(waypoint);
+            }
+        });
+    }
+
+    private void OnEnable()
+    {
+        Instance = this;
+    }
 }

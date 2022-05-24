@@ -11,7 +11,7 @@ public class Data : ScriptableObject
     public double[] jointRot = new double[6];
 
 
-    public Pose ToPose() => new Pose(this, true);
+    public Pose ToPose(bool useJointData = true) => new Pose(this, useJointData);
 
 
     public float[] EulerJointAngles { get
@@ -38,12 +38,12 @@ public class Data : ScriptableObject
         get
         {
             Data data = ScriptableObject.CreateInstance<Data>();
-            data.jointRot[0] = -1.5707963267949;
+            data.jointRot[0] = 3.14159250259399;
             data.jointRot[1] = -1.5707963267949;
-            data.jointRot[2] = -1.5707963267949;
+            data.jointRot[2] = 1.57079632679489;
             data.jointRot[3] = -1.57079632679489;
-            data.jointRot[4] = 1.5707963267949;
-            data.jointRot[5] = 7.93159587000045e-26;
+            data.jointRot[4] = -1.5707963267949;
+            data.jointRot[5] = -3.14158422151674;
             return data;
         }
     }

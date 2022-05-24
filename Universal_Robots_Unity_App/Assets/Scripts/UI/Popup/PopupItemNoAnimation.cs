@@ -1,7 +1,6 @@
 using UnityEngine;
 
-namespace Treeka
-{
+
     public class PopupItemNoAnimation : PopupItem
     {
 
@@ -26,5 +25,5 @@ namespace Treeka
             cg.blocksRaycasts = false;
         }
     }
-}
+
 

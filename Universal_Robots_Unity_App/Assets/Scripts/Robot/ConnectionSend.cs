@@ -1,7 +1,11 @@
 using System;
+using System.Collections;
+using System.Diagnostics;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Robot
 {
@@ -11,12 +15,11 @@ namespace Robot
     /// </summary>
     internal static class ConnectionSend
     {
-        public static TcpClient tcpWrite = new TcpClient();
-        private static UTF8Encoding utf8 = new UTF8Encoding();
-
-        private const int Port = 30003;
+        public static TcpClient tcpClient;
+        public static UTF8Encoding utf8 = new UTF8Encoding();
 
         private static int task;
+
 
 
         public static void Send(string command)
@@ -24,7 +27,7 @@ namespace Robot
             if (Connection.unityState != Connection.UnityState.online) return;
             NewTask();
 
-            NetworkStream stream = tcpWrite.GetStream();
+            NetworkStream stream = tcpClient.GetStream();
             byte[] data = utf8.GetBytes(command);
             stream.Write(data, 0, data.Length);
         }
@@ -39,14 +42,14 @@ namespace Robot
             if (Connection.unityState == Connection.UnityState.emergencyStop) return false;
             int taskId = NewTask();
 
-            NetworkStream stream = tcpWrite.GetStream();
+            NetworkStream stream = tcpClient.GetStream();
             byte[] data = utf8.GetBytes(command);
             stream.Write(data, 0, data.Length);
 
-            while(task == taskId)
+            while (task == taskId)
             {
                 await Task.Delay(50);
-                if (Connection.isMoving == false) return true;
+                if (Robot.isMoving == false) return true;
             }
             return false;
         }
@@ -54,9 +57,20 @@ namespace Robot
         private static int NewTask() => ++task;
 
 
-        public static async Task Start() => await tcpWrite.ConnectAsync(Connection.Host, Port);
 
-        public static void Stop() => tcpWrite.Close();
+        public static async Task Start(string host, int port)
+        {
+            tcpClient = new TcpClient();
+            await tcpClient.ConnectAsync(host, port);
+        }
+
+        public static void Stop()
+        {
+            tcpClient.Close();
+            tcpClient.Dispose();
+        }
+
+
 
     }
 }

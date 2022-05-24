@@ -1,8 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Treeka
-{
+
     [RequireComponent(typeof(CanvasGroup))]
     public class PopupItem : MonoBehaviour
     {
@@ -11,6 +10,7 @@ namespace Treeka
         public bool escapable;
 
         protected Transform oldParent;
+        public InputReg activeInputs = new InputReg();
 
 
         public virtual void Enable()
@@ -18,6 +18,9 @@ namespace Treeka
             if (oldParent == Popup.popupParent) return;
             oldParent = transform.parent;
             transform.SetParent(Popup.popupParent);
+
+            Cursor.lockState = activeInputs.curserMode;
+            InputTerminal.DisableInput(activeInputs);
 
             OnPopupChange?.Invoke();
             AnimationIN();
@@ -33,6 +36,8 @@ namespace Treeka
             if (oldParent == null) return;
             transform.SetParent(oldParent);
             oldParent = null;
+
+            InputTerminal.ReleaseInput(activeInputs);
 
             OnPopupChange?.Invoke();
             AnimationOUT();
@@ -65,6 +70,3 @@ namespace Treeka
             cg.blocksRaycasts = false;
         }
     }
-}
-
-

@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using GripperData = Robot.Gripper;
 
 namespace Robot
 {
@@ -13,6 +15,10 @@ namespace Robot
     public static class CMD
     {
         private static UTF8Encoding utf8 = new UTF8Encoding();
+        public static event Action<string> OnSend;
+
+        public const float defaultAcceleration = 0.4f;
+        public const float defaultSpeed = 0.4f;
 
 
         public static void Stop() => ConnectionSend.Send("stopl(20)\n");
@@ -21,34 +27,34 @@ namespace Robot
         /// <summary>
         /// Moves in a specific direction.
         /// </summary>
-        public static void SpeedL(Vector3 dir, Vector3 rotDir, float acceleration = 1.4f, float time = .05f)
+        public static void SpeedL(Vector3 dir, Vector3 rotDir, float acceleration = defaultAcceleration, float time = .05f)
         {
             ConnectionSend.Send($"speedl(" +
                 $"[{dir.x.ToString("0.00").Replace(",", ".")},{dir.y.ToString("0.00").Replace(",", ".")},{dir.z.ToString("0.00").Replace(",", ".")}" +
                 $",{rotDir.x.ToString("0.00").Replace(",", ".")},{rotDir.y.ToString("0.00").Replace(",", ".")},{rotDir.z.ToString("0.00").Replace(",", ".")}]" +
-                $", a ={acceleration}, t ={time})\n");
+                $", a ={acceleration.ToString("0.00").Replace(",", ".")}, t ={time.ToString("0.00").Replace(",", ".")})\n");
         }
 
 
         /// <summary>
         /// Moves to a Specific Point. Does not use inverse Kinematic
         /// </summary>
-        public static void MoveJ(Vector3 pos, Vector3 rot, float acceleration = 1.4f, float speed = 1.05f, float time = 0, float radius = 0)
+        public static void MoveJ(Vector3 pos, Vector3 rot, float acceleration = defaultAcceleration, float speed = defaultSpeed, float time = 0, float radius = 0)
         {
-            ConnectionSend.Send($"movej([{pos.x},{pos.y},{pos.z},{rot.x},{rot.y},{rot.z}], a={acceleration},v={speed},t={time},r={radius})\n");
+            ConnectionSend.Send($"movej([{pos.x},{pos.y},{pos.z},{rot.x},{rot.y},{rot.z}], a={acceleration.ToString().Replace(",", ".")},v={speed.ToString().Replace(",", ".")},t={time.ToString().Replace(",", ".")},r={radius.ToString().Replace(",", ".")})\n");
         }
 
         /// <summary>
         /// Moves to a Specific Point. Uses inverse Kinematic
         /// </summary>
-        public static void MoveJ(Pose pos, float acceleration = 1.4f, float speed = 1.05f, float time = 0, float radius = 0)
+        public static void MoveJ(Pose pos, float acceleration = defaultAcceleration, float speed = defaultSpeed, float time = 0, float radius = 0)
         {
-            ConnectionSend.Send($"movej({pos.poseString}, a={acceleration},v={speed},t={time},r={radius})\n");
+            ConnectionSend.Send($"movej({pos.poseString}, a={acceleration.ToString().Replace(",", ".")},v={speed.ToString().Replace(",", ".")},t={time.ToString().Replace(",", ".")},r={radius.ToString().Replace(",", ".")})\n");
         }
 
-        public static async Task<bool> MoveJAsync(Pose pos, float acceleration = 1.4f, float speed = 1.05f, float time = 0, float radius = 0)
+        public static async Task<bool> MoveJAsync(Pose pos, float acceleration = defaultAcceleration, float speed = defaultSpeed, float time = 0, float radius = 0)
         {
-           return await ConnectionSend.SendAsync($"movej({pos.poseString}, a={acceleration},v={speed},t={time},r={radius})\n");
+           return await ConnectionSend.SendAsync($"movej({pos.poseString}, a={acceleration.ToString().Replace(",", ".")},v={speed.ToString().Replace(",", ".")},t={time.ToString().Replace(",", ".")},r={radius.ToString().Replace(",", ".")})\n");
         }
 
         /// <summary>
@@ -59,32 +65,32 @@ namespace Robot
         /// <param name="a">tool acceleration [m/s^2]</param>
         /// <param name="v">tool speed [m/s]</param>
         /// <param name="mode">Unconstrained mode: Interpolate orientation from current pose to target pose(pose_to) Fixed (Contraint) mode: Keep orientation constant relative to the tangent of the circular arc (starting from current pose)</param>
-        public static void MoveC(Pose poseVia, Pose poseTo, float a = 1.2f, float v = 0.25f, ContraintMode mode = ContraintMode.contraint)
+        public static void MoveC(Pose poseVia, Pose poseTo, float a = defaultAcceleration, float v = defaultSpeed, ContraintMode mode = ContraintMode.contraint)
         {
-            ConnectionSend.Send($"movec({poseVia.poseString},{poseTo.poseString}, a={a}, v={v}, mode={(int)mode})\n");
+            ConnectionSend.Send($"movec({poseVia.poseString},{poseTo.poseString}, a={a.ToString().Replace(",", ".")}, v={v.ToString().Replace(",", ".")}, mode={(int)mode})\n");
         }
 
 
-        public static void MoveP(Pose pos, float acceleration = 1.2f, float speed = 0.25f, float radius = 0)
+        public static void MoveP(Pose pos, float acceleration = defaultAcceleration, float speed = defaultSpeed, float radius = 0)
         {
-            ConnectionSend.Send($"movep({pos.poseString}, a={acceleration}, v={speed}, r={radius})\n");
+            ConnectionSend.Send($"movep({pos.poseString}, a={acceleration.ToString().Replace(",", ".")}, v={speed.ToString().Replace(",", ".")}, r={radius.ToString().Replace(",", ".")})\n");
         }
 
-        public static void MoveL(Pose pos, float acceleration = 1.2f, float speed = 0.25f, float time = 1, float radius = 0)
+        public static void MoveL(Pose pos, float acceleration = defaultAcceleration, float speed = defaultSpeed, float time = 1, float radius = 0)
         {
-            ConnectionSend.Send($"movel({pos.poseString}, a={acceleration}, v={speed}, t={time}, r={radius})\n");
+            ConnectionSend.Send($"movel({pos.poseString}, a={acceleration.ToString().Replace(",", ".")}, v={speed.ToString().Replace(",", ".")}, t={time.ToString().Replace(",", ".")}, r={radius.ToString().Replace(",", ".")})\n");
         }
 
-        public static void ServoC(Pose pos, float acceleration = 1.2f, float speed = 0.25f, float radius = 0)
+        public static void ServoC(Pose pos, float acceleration = defaultAcceleration, float speed = defaultSpeed, float radius = 0)
         {
-            ConnectionSend.Send($"servoc({pos.poseString}, a={acceleration}, v={speed}, r={radius})\n");
+            ConnectionSend.Send($"servoc({pos.poseString}, a={acceleration.ToString().Replace(",", ".")}, v={speed.ToString().Replace(",", ".")}, r={radius.ToString().Replace(",", ".")})\n");
         }
 
         /// /////////////////////////////////Other Functions
 
         public static void SetAnalogOutput(int output, float strenght)
         {
-            ConnectionSend.Send($"set_standard_analog_out({output},{strenght})\n");
+            ConnectionSend.Send($"set_standard_analog_out({output},{strenght.ToString().Replace(",", ".")})\n");
         }
 
         public static void Popup(string text, string title)
@@ -104,6 +110,7 @@ namespace Robot
             public async static void ClosePopup()
             {
                 string info = await ConnectionDashboard.Send("close popup\n");
+                OnSend?.Invoke(info);
                 Debug.Log(info);
             }
 
@@ -116,26 +123,62 @@ namespace Robot
             public async static Task<bool> IsInRemoteControl()
             {
                 string info = await ConnectionDashboard.Send("is in remote control\n");
-                Debug.Log(info);
                 return bool.Parse(info);
             }
 
             public async static void PowerOn()
             {
                 string info = await ConnectionDashboard.Send("power on\n");
-                Debug.Log(info);
+                OnSend?.Invoke(info);
             }
 
             public async static void PowerOff()
             {
                 string info = await ConnectionDashboard.Send("power off\n");
-                Debug.Log(info);
+                OnSend?.Invoke(info);
             }
 
             public async static void ReleaseBrake()
             {
                 string info = await ConnectionDashboard.Send("brake release\n");
-                Debug.Log(info);
+                OnSend?.Invoke(info);
+            }
+        }
+
+        public static class Gripper
+        {
+            public async static void Activate()
+            {
+                string state = await ConnectionGripper.Send("GET STA\n");
+                if (state == "STA 3") return;
+                _ = ConnectionGripper.Send("SET ACT 1\n");
+            }
+            
+            public static void Open(int speed = 100, int force = 100)
+            {
+                if (GripperData.isRunning)
+                {
+                    _ = ConnectionGripper.Send(
+                    $"SET SPE {speed}\n" +
+                    $"SET FOR {force}\n" +
+                    $"SET POS 0" +
+                    $"SET GTO 1\n"
+                    );
+                }
+                else GripperData.Position = 0;
+            }
+            public static void Close(int speed = 100, int force = 100)
+            {
+                if (GripperData.isRunning)
+                {
+                    _ = ConnectionGripper.Send(
+                    $"SET SPE {speed}\n" +
+                    $"SET FOR {force}\n" +
+                    $"SET POS 255" +
+                    $"SET GTO 1\n"
+                    );
+                }
+                else GripperData.Position = 255;
             }
         }
 

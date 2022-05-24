@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Robot
 {
-    public class Link2 : Links
+    internal class Link2 : Links
     {
         private void FixedUpdate()
         {

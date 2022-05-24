@@ -30,7 +30,6 @@ namespace Robot
             NetworkStream stream = tcpClient.GetStream();
             byte[] data = utf8.GetBytes(command);
             stream.Write(data, 0, data.Length);
-            //Debug.Log(command);
         }
 
         /// <summary>
@@ -63,9 +62,6 @@ namespace Robot
         {
             tcpClient = new TcpClient();
             await tcpClient.ConnectAsync(host, port);
-
-            //thread = new Thread(new ThreadStart(SendThread));
-            //thread.Start();
         }
 
         public static void Stop()

@@ -44,7 +44,6 @@ namespace Robot
         private static void FetchValues()
         {
             NetworkStream stream = tcpRead.GetStream();
-            var t = new Stopwatch();
 
             try
             {
@@ -55,16 +54,7 @@ namespace Robot
                         if (BitConverter.ToUInt32(packet, firstPacketSize - 4) == totalMsgLenght ||
                            BitConverter.ToUInt32(packet, firstPacketSize - 4) == 1543766016)
                         {
-                            t.Start();
-
                             ReadRobotInfo();
-
-                            t.Stop();
-                            if (t.ElapsedMilliseconds < timeStep)
-                            {
-                                Thread.Sleep(timeStep - (int)t.ElapsedMilliseconds);
-                            }
-                            t.Restart(); //UM
                         }
                     }
                 }

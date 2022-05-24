@@ -17,6 +17,9 @@ namespace Robot
         private static UTF8Encoding utf8 = new UTF8Encoding();
         public static event Action<string> OnSend;
 
+        public const float defaultAcceleration = 0.4f;
+        public const float defaultSpeed = 0.4f;
+
 
         public static void Stop() => ConnectionSend.Send("stopl(20)\n");
 
@@ -24,7 +27,7 @@ namespace Robot
         /// <summary>
         /// Moves in a specific direction.
         /// </summary>
-        public static void SpeedL(Vector3 dir, Vector3 rotDir, float acceleration = .4f, float time = .05f)
+        public static void SpeedL(Vector3 dir, Vector3 rotDir, float acceleration = defaultAcceleration, float time = .05f)
         {
             ConnectionSend.Send($"speedl(" +
                 $"[{dir.x.ToString("0.00").Replace(",", ".")},{dir.y.ToString("0.00").Replace(",", ".")},{dir.z.ToString("0.00").Replace(",", ".")}" +
@@ -36,7 +39,7 @@ namespace Robot
         /// <summary>
         /// Moves to a Specific Point. Does not use inverse Kinematic
         /// </summary>
-        public static void MoveJ(Vector3 pos, Vector3 rot, float acceleration = 1.4f, float speed = 1.05f, float time = 0, float radius = 0)
+        public static void MoveJ(Vector3 pos, Vector3 rot, float acceleration = defaultAcceleration, float speed = defaultSpeed, float time = 0, float radius = 0)
         {
             ConnectionSend.Send($"movej([{pos.x},{pos.y},{pos.z},{rot.x},{rot.y},{rot.z}], a={acceleration.ToString().Replace(",", ".")},v={speed.ToString().Replace(",", ".")},t={time.ToString().Replace(",", ".")},r={radius.ToString().Replace(",", ".")})\n");
         }
@@ -44,12 +47,12 @@ namespace Robot
         /// <summary>
         /// Moves to a Specific Point. Uses inverse Kinematic
         /// </summary>
-        public static void MoveJ(Pose pos, float acceleration = 1f, float speed = .2f, float time = 0, float radius = 0)
+        public static void MoveJ(Pose pos, float acceleration = defaultAcceleration, float speed = defaultSpeed, float time = 0, float radius = 0)
         {
             ConnectionSend.Send($"movej({pos.poseString}, a={acceleration.ToString().Replace(",", ".")},v={speed.ToString().Replace(",", ".")},t={time.ToString().Replace(",", ".")},r={radius.ToString().Replace(",", ".")})\n");
         }
 
-        public static async Task<bool> MoveJAsync(Pose pos, float acceleration = 1.4f, float speed = 1.05f, float time = 0, float radius = 0)
+        public static async Task<bool> MoveJAsync(Pose pos, float acceleration = defaultAcceleration, float speed = defaultSpeed, float time = 0, float radius = 0)
         {
            return await ConnectionSend.SendAsync($"movej({pos.poseString}, a={acceleration.ToString().Replace(",", ".")},v={speed.ToString().Replace(",", ".")},t={time.ToString().Replace(",", ".")},r={radius.ToString().Replace(",", ".")})\n");
         }
@@ -62,23 +65,23 @@ namespace Robot
         /// <param name="a">tool acceleration [m/s^2]</param>
         /// <param name="v">tool speed [m/s]</param>
         /// <param name="mode">Unconstrained mode: Interpolate orientation from current pose to target pose(pose_to) Fixed (Contraint) mode: Keep orientation constant relative to the tangent of the circular arc (starting from current pose)</param>
-        public static void MoveC(Pose poseVia, Pose poseTo, float a = 1.2f, float v = 0.25f, ContraintMode mode = ContraintMode.contraint)
+        public static void MoveC(Pose poseVia, Pose poseTo, float a = defaultAcceleration, float v = defaultSpeed, ContraintMode mode = ContraintMode.contraint)
         {
             ConnectionSend.Send($"movec({poseVia.poseString},{poseTo.poseString}, a={a.ToString().Replace(",", ".")}, v={v.ToString().Replace(",", ".")}, mode={(int)mode})\n");
         }
 
 
-        public static void MoveP(Pose pos, float acceleration = 1.2f, float speed = 0.25f, float radius = 0)
+        public static void MoveP(Pose pos, float acceleration = defaultAcceleration, float speed = defaultSpeed, float radius = 0)
         {
             ConnectionSend.Send($"movep({pos.poseString}, a={acceleration.ToString().Replace(",", ".")}, v={speed.ToString().Replace(",", ".")}, r={radius.ToString().Replace(",", ".")})\n");
         }
 
-        public static void MoveL(Pose pos, float acceleration = 1.2f, float speed = 0.25f, float time = 1, float radius = 0)
+        public static void MoveL(Pose pos, float acceleration = defaultAcceleration, float speed = defaultSpeed, float time = 1, float radius = 0)
         {
             ConnectionSend.Send($"movel({pos.poseString}, a={acceleration.ToString().Replace(",", ".")}, v={speed.ToString().Replace(",", ".")}, t={time.ToString().Replace(",", ".")}, r={radius.ToString().Replace(",", ".")})\n");
         }
 
-        public static void ServoC(Pose pos, float acceleration = 1.2f, float speed = 0.25f, float radius = 0)
+        public static void ServoC(Pose pos, float acceleration = defaultAcceleration, float speed = defaultSpeed, float radius = 0)
         {
             ConnectionSend.Send($"servoc({pos.poseString}, a={acceleration.ToString().Replace(",", ".")}, v={speed.ToString().Replace(",", ".")}, r={radius.ToString().Replace(",", ".")})\n");
         }

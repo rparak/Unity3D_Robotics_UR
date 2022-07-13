@@ -86,6 +86,14 @@ namespace Robot
             ConnectionSend.Send($"servoc({pos.poseString}, a={acceleration.ToString().Replace(",", ".")}, v={speed.ToString().Replace(",", ".")}, r={radius.ToString().Replace(",", ".")})\n");
         }
 
+        public static void FreeDrive()
+        {
+            //Freedrive is not working. Keeps exiting once entered. Probably not allowed as external control.
+            //await Task.Delay(2000);
+            ConnectionSend.Send("freedrive_mode (freeAxes=[1, 1, 1, 1, 1, 1], feature=p[0, 0,0, 0, 0, 0])");
+            ConnectionSend.Send("sleep(20000000.0)\n");
+        }
+
         /// /////////////////////////////////Other Functions
 
         public static void SetAnalogOutput(int output, float strenght)
@@ -154,7 +162,7 @@ namespace Robot
                 _ = ConnectionGripper.Send("SET ACT 1\n");
             }
             
-            public static void Open(int speed = 100, int force = 100)
+            public static async Task Open(int speed = 20, int force = 20)
             {
                 if (GripperData.isRunning)
                 {
@@ -164,10 +172,24 @@ namespace Robot
                     $"SET POS 0" +
                     $"SET GTO 1\n"
                     );
+
+                    //We can wait until values aren't changing anymore
+                    int lastValue;
+                    while (true)
+                    {
+                        lastValue = GripperData.Position;
+                        await Task.Delay(500);
+                        //Debug.Log($"Current {GripperData.Position} Last {lastValue}");
+                        if (lastValue == GripperData.Position) return;
+                    }
                 }
-                else GripperData.Position = 0;
+                else
+                {
+                    GripperData.Position = 0;
+                    await Task.Delay(500); //Act like we are waiting half a sec for this lol
+                }
             }
-            public static void Close(int speed = 100, int force = 100)
+            public static async Task Close(int speed = 20, int force = 20)
             {
                 if (GripperData.isRunning)
                 {
@@ -177,8 +199,22 @@ namespace Robot
                     $"SET POS 255" +
                     $"SET GTO 1\n"
                     );
+
+                    //We can wait until values aren't changing anymore
+                    int lastValue;
+                    while (true)
+                    {
+                        lastValue = GripperData.Position;
+                        await Task.Delay(500);
+                        //Debug.Log($"Current {GripperData.Position} Last {lastValue}");
+                        if (lastValue == GripperData.Position) return;
+                    }
                 }
-                else GripperData.Position = 255;
+                else
+                {
+                    GripperData.Position = 255;
+                    await Task.Delay(500); //Act like we are waiting half a sec for this lol
+                }
             }
         }
 

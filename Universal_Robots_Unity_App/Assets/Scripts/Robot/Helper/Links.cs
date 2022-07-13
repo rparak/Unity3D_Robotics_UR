@@ -1,91 +1,95 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
 
-internal class Links : MonoBehaviour, ICamRaycastHit
+namespace Robot
 {
-    public static Links selected;
 
-    public LinkIndikator visualIndikator;
-    public MonoBehaviour outline;
-
-
-    /// //////////////////////////////////// Selection Stuff
-
-
-    public void Hit() => Select();
-
-    private void Select()
+    internal class Links : MonoBehaviour, ICamRaycastHit
     {
-        if(selected == this)
+        public static Links selected;
+        public const double oneDegree = 0.0174532925199f;
+
+        public LinkIndikator visualIndikator;
+        public MonoBehaviour outline;
+
+
+        /// //////////////////////////////////// Selection Stuff
+
+
+        public void Hit() => Select();
+
+        private void Select()
         {
-            DeSelect();
-            selected = null;
-            return;
+            if (selected == this)
+            {
+                DeSelect();
+                selected = null;
+                return;
+            }
+
+            if (selected != null) selected.DeSelect();
+
+            selected = this;
+            listenForModifiers = outline.enabled = true;
+            visualIndikator.gameObject.SetActive(true);
+
+            rotateAction.action.performed += KeyIsPressed;
+            rotateAction.action.canceled += KeyIsPressed;
         }
 
-        if(selected != null) selected.DeSelect();
-
-        selected = this;
-        listenForModifiers = outline.enabled = true;
-        visualIndikator.gameObject.SetActive(true);
-
-        rotateAction.action.performed += KeyIsPressed;
-        rotateAction.action.canceled += KeyIsPressed;
-    }
-
-    public void DeSelect()
-    {
-        listenForModifiers = outline.enabled = false;
-        visualIndikator.gameObject.SetActive(false);
-
-        rotateAction.action.performed -= KeyIsPressed;
-        rotateAction.action.canceled -= KeyIsPressed;
-    }
-
-
-    /// ///////////////////////////////////// Modifiers
-
-    [Space]
-    public InputActionReference rotateAction;
-    public float sensitivity = .1f;
-
-    private bool listenForModifiers;
-    private float startValue;
-    private float newMouseOffset;
-
-
-    private void KeyIsPressed(CallbackContext ctx)
-    {
-        if (ctx.canceled)
+        public void DeSelect()
         {
-            visualIndikator.HideRequestedDegree();
-            Rotate(Step.ClosestStep(-newMouseOffset, 5));
+            listenForModifiers = outline.enabled = false;
+            visualIndikator.gameObject.SetActive(false);
+
+            rotateAction.action.performed -= KeyIsPressed;
+            rotateAction.action.canceled -= KeyIsPressed;
         }
-        else
+
+
+        /// ///////////////////////////////////// Modifiers
+
+        [Space]
+        public InputActionReference rotateAction;
+        public float sensitivity = .1f;
+
+        private bool listenForModifiers;
+        private float startValue;
+        private float newMouseOffset;
+
+
+        private void KeyIsPressed(CallbackContext ctx)
         {
-            startValue = Mouse.current.position.ReadValue().x;
-            visualIndikator.ShowRequestedDegree();
+            if (ctx.canceled)
+            {
+                visualIndikator.HideRequestedDegree();
+                Rotate(Step.ClosestStep(-newMouseOffset, 5));
+            }
+            else
+            {
+                startValue = Mouse.current.position.ReadValue().x;
+                visualIndikator.ShowRequestedDegree();
+            }
+
         }
-        
+
+        private void Update()
+        {
+            if (!listenForModifiers) return;
+
+            if (rotateAction.action.ReadValue<float>() < .3f) return;
+
+            newMouseOffset = (startValue - Mouse.current.position.ReadValue().x) * sensitivity;
+            visualIndikator.wantedDegrees = Step.ClosestStep(-newMouseOffset, 5);
+        }
+
+
+
+        protected virtual void Rotate(float ammount)
+        {
+            Debug.Log($"Request to turn by {ammount}");
+        }
     }
 
-    private void Update()
-    {
-        if (!listenForModifiers) return;
-        
-        if (rotateAction.action.ReadValue<float>() < .3f) return;
-
-        newMouseOffset = (startValue - Mouse.current.position.ReadValue().x) * sensitivity;
-        visualIndikator.wantedDegrees = Step.ClosestStep(-newMouseOffset, 5);
-    }
-
-   
-
-    protected virtual void Rotate(float ammount)
-    {
-        Debug.Log($"Request to turn by {ammount}");
-    }
 }

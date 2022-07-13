@@ -79,19 +79,19 @@ namespace Robot
 
 
             //Actual joint posistions 32 - 37
-            Data.Current.jointRot[0] = BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (32 * offset));
-            Data.Current.jointRot[1] = BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (33 * offset));
-            Data.Current.jointRot[2] = BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (34 * offset));
-            Data.Current.jointRot[3] = BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (35 * offset));
-            Data.Current.jointRot[4] = BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (36 * offset));
-            Data.Current.jointRot[5] = BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (37 * offset));
+            RobotPos.Current.jointRot[0] = BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (32 * offset));
+            RobotPos.Current.jointRot[1] = BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (33 * offset));
+            RobotPos.Current.jointRot[2] = BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (34 * offset));
+            RobotPos.Current.jointRot[3] = BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (35 * offset));
+            RobotPos.Current.jointRot[4] = BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (36 * offset));
+            RobotPos.Current.jointRot[5] = BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (37 * offset));
 
             //Actual Cartesian Coord of tool 56 - 61
-            Data.Current.position = new Vector3((float)BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (56 * offset)),
+            RobotPos.Current.position = new Vector3((float)BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (56 * offset)),
                                         (float)BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (57 * offset)),
                                         (float)BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (58 * offset)));
 
-            Data.Current.rotation = new Vector3((float)BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (59 * offset)),
+            RobotPos.Current.rotation = new Vector3((float)BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (59 * offset)),
                                         (float)BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (60 * offset)),
                                         (float)BitConverter.ToDouble(packet, packet.Length - firstPacketSize - (61 * offset)));
 
@@ -139,13 +139,12 @@ namespace Robot
 
 
         public static bool isMoving;
-        internal static Vector3 position;
 
-        //Data can actually take care of these things even better
-        //public static double[] jointRot = new double[6];
-        //public static Vector3 position, rotation;
+        //We gave it to Robot Position because it can be more than just current
+        /*public static double[] jointRot = new double[6];
+        public static Vector3 position, rotation;
 
-
+        public static Pose ToPose() => new Pose(jointRot);*/
 
         public enum RoboSafety
         {

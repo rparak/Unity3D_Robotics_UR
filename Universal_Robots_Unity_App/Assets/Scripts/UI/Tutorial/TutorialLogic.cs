@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public static class TutorialLogic
 {
@@ -10,7 +7,8 @@ public static class TutorialLogic
     {
         switch (id)
         {
-            case -1: Tutorial.tutId = 7; Finish(); break;
+            case -2: Tutorial.tutId = 7; Finish(); break;
+            case -1: ShowLayout(); break;
             case 0: Start(); break;
             case 1: ConnectToRobot(); break;
             case 2: SetRobotToExternalControl(); break;
@@ -20,10 +18,14 @@ public static class TutorialLogic
             case 6: MouseControls(); break;
             case 7: Finish(); break;
 
-            default: Tutorial.tutId = 0; Start(); break;
+            default: Tutorial.tutId = -1; ShowLayout(); break;
         }
     }
 
+    public static void ShowLayout()
+    {
+        Tutorial.Show(string.Empty);
+    }
 
     public static void Start()
     {
@@ -50,7 +52,7 @@ public static class TutorialLogic
     {
         //await System.Threading.Tasks.Task.Delay(100);
 
-        if (Robot.Connection.unityState != Robot.Connection.UnityState.offline) Robot.Connection.Disconnect();
+        //if (Robot.Connection.unityState != Robot.Connection.UnityState.offline) Robot.Connection.Disconnect();
 
         Tutorial.Show(
             "<size=50>Verbindung</size>\n\n" +

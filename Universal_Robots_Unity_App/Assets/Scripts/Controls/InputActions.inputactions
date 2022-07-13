@@ -186,7 +186,7 @@
                 {
                     "name": "",
                     "id": "72a9a4cf-aa97-44eb-9011-7091bc9490bd",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
@@ -197,7 +197,7 @@
                 {
                     "name": "",
                     "id": "cc1c6a09-9926-4cd7-b7f6-1eb8260be2b3",
-                    "path": "<Keyboard>/leftBracket",
+                    "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -218,19 +218,8 @@
                 },
                 {
                     "name": "",
-                    "id": "4115cf93-ed83-4f91-8b82-2d6f2bf7e32a",
-                    "path": "<DualShockGamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Controller",
-                    "action": "PlayWaypoints",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "0d4a6f9a-f0e3-4a1b-a48e-4cdc005526db",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/rightStickPress",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
@@ -256,6 +245,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
+                    "action": "ToggleDiagnostic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "523f1d56-ecda-40d1-a7be-3dba32c9ab0c",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
                     "action": "ToggleDiagnostic",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -453,6 +453,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Other Rotation",
+                    "type": "Value",
+                    "id": "b2cbdbd0-dabd-4b71-9922-18ebf9be11da",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -536,7 +545,7 @@
                 {
                     "name": "",
                     "id": "04306539-8351-4146-8c31-96467c7fbc6e",
-                    "path": "<Keyboard>/c",
+                    "path": "<Keyboard>/g",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -717,6 +726,72 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Contoller",
+                    "id": "0fccce33-ab80-4477-b47c-fe4aa15e86b9",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Other Rotation",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "866494b8-6040-42de-aa63-2eb881293dd7",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Other Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "6a9dd586-589f-4c22-92cc-0acabec7c713",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Other Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Keyboard",
+                    "id": "63b12fe0-900d-4fb1-b4c0-4b4c1ce20124",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Other Rotation",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "bef01053-3451-4f4b-bf20-39afea45011c",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Other Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "7c376bc0-bce0-4edb-a5a8-0aa36b00b1dd",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Other Rotation",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }

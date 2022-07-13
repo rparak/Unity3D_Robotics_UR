@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -10,11 +8,18 @@ public class Feed : MonoBehaviour
     private void OnEnable()
     {
         Robot.CMD.OnSend += OnConnectionDashboard;
+        Robot.Connection.OnFeedback += OnConnectionFeedback;
     }
 
     private void OnDisable()
     {
         Robot.CMD.OnSend -= OnConnectionDashboard;
+        Robot.Connection.OnFeedback -= OnConnectionFeedback;
+    }
+
+    private void OnConnectionFeedback(string feed)
+    {
+        Chat.SendLocalResponse("Cobot", feed);
     }
 
     private void OnConnectionDashboard(string feed)

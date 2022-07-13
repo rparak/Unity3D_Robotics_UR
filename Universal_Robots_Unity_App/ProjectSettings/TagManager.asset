@@ -4,6 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - HelpObject
   - MainLight
   - InputController
   - Robot
@@ -12,6 +13,8 @@ TagManager:
   - RightGripper
   - waypoints
   - FirstPersonCamera
+  - FxTemporaire
+  - zomBunny
   layers:
   - Default
   - TransparentFX
@@ -29,6 +32,7 @@ TagManager:
   - 
   - 
   - 
+  - tagInvisibleToZED
   - 
   - 
   - 
@@ -42,8 +46,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - arlayer
   - 
   m_SortingLayers:
   - name: Default

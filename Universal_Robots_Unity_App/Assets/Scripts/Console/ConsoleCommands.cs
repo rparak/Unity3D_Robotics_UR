@@ -95,4 +95,10 @@ public static class ConsoleCommands
 
 		Chat.SendLocalResponse("Console", helpText);
 	}
+
+	[CMD("Freedrive", "Is a test cmd for freedrive")]
+	public static void SetFreedrive(string[] Params)
+    {
+		Robot.CMD.FreeDrive();
+    }
 }

@@ -1,14 +1,15 @@
 using System;
 using System.Collections;
-using Treeka;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Tutorial : PopupItem
 {
     public static Tutorial Instance;
-    public static int tutId = -1;
+    public static int tutId = -2;
     public static event Action OnClick;
 
+    public Image controlLayout;
     public TMPro.TMP_Text text;
     public float speed = .1f;
 
@@ -24,24 +25,26 @@ public class Tutorial : PopupItem
 
     public override void Enable()
     {
-        if(tutId == -1) TutorialLogic.Show(++tutId);
+        if(tutId == -2) TutorialLogic.Show(++tutId);
         else base.Enable();
     }
 
     public void Next()
     {
-        if (++tutId >= 8) tutId = 0;
+        if (++tutId >= 8) tutId = -1;
         TutorialLogic.Show(tutId);
     }
 
     public void Back()
     {
-        if (--tutId <= -1) tutId = 7;
+        if (--tutId <= -2) tutId = 7;
         TutorialLogic.Show(tutId);
     }
 
     public void Display(string text)
     {
+        controlLayout.enabled = string.IsNullOrEmpty(text);
+
         if (oldParent != null) Disable();
         this.text.text = text;
         StopAllCoroutines();

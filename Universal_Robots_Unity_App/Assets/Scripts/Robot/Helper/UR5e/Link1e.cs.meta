@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 15c089202f3d36e4c9eee4a7d8907343
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - visualIndikator: {instanceID: 0}
+  - outline: {instanceID: 0}
+  - rotateAction: {fileID: -4097905965552917757, guid: 25b14d8357c30bd49829302e965be895,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

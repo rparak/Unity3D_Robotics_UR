@@ -1,20 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using CobyPos = Robot.RobotPos;
 
 
 
 [CreateAssetMenu(menuName = "Robot/ButtonScripts")]
 public class RobotHelper : ScriptableObject
 {
-    public Data savedPos;
+    public Robot.RobotPos savedPos;
 
     public void MoveHome()
     {
-        Robot.CMD.MoveJ(Data.Home.ToPose());
+        Robot.CMD.MoveJ(CobyPos.Home.ToPose());
     }
 
-    public void MoveZero() => Robot.CMD.MoveJ(Data.Zero.ToPose());
+    public void MoveZero() => Robot.CMD.MoveJ(CobyPos.Zero.ToPose());
 
     public void Test()
     {
@@ -37,9 +36,9 @@ public class RobotHelper : ScriptableObject
 
     public void SavePosition()
     {
-        savedPos.position = Data.Current.position;
-        savedPos.rotation = Data.Current.rotation;
-        savedPos.jointRot = Data.Current.jointRot;
+        savedPos.position = CobyPos.Current.position;
+        savedPos.rotation = CobyPos.Current.rotation;
+        savedPos.jointRot = CobyPos.Current.jointRot;
     }
 
     public void MoveSavedPosition()

@@ -13,8 +13,7 @@ public class DisplayBinding : MonoBehaviour
     public TMP_Text keybindingText;
     public int compositePart = 0;
 
-    [Space] [SerializeField] private Image image;
-    [SerializeField] private TMP_Text text;
+    [Space]
     public string content;
     public string preTag;
     public string postTag;
@@ -67,11 +66,9 @@ public class DisplayBinding : MonoBehaviour
 
     private string TranslateSprites(string input)
     {
-        Debug.Log("input: " + ToCamelCase(input));
-
         if (Enum.TryParse(ToCamelCase(input), true, out Sprites sprite))
         {
-            return "<sprite=" + (int)sprite + ">";
+            return "<sprite=" + (int)sprite + "> " + content;
         }
 
         return RichTextElement(input);

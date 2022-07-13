@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using Treeka;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -5,8 +6,6 @@ using UnityEngine.UI;
 
 public class ConnectionBTN : MonoBehaviour
 {
-    public bool memberOnlyUse;
-    [Space]
     public Image buttonImage;
     public PopupItem connectionPanel;
     public TMPro.TMP_InputField input;
@@ -31,7 +30,8 @@ public class ConnectionBTN : MonoBehaviour
         }
         else
         {
-            if(grandOverrideKey.action.ReadValue<float>() > .3f || memberOnlyUse)
+            // Debug Helpers --------------------------------------------------
+            if (grandOverrideKey.action.ReadValue<float>() > .3f)
             {
                 Robot.Connection.host = "192.168.0.102";
 
@@ -39,7 +39,7 @@ public class ConnectionBTN : MonoBehaviour
                 else Chat.SendLocalResponse("Connection", "Failed to connect to Grand Garage Robot");
                 return;
             }
-            if(localOverrideKey.action.ReadValue<float>() > .3f)
+            if (localOverrideKey.action.ReadValue<float>() > .3f)
             {
                 Robot.Connection.host = "127.0.0.1";
 
@@ -47,13 +47,36 @@ public class ConnectionBTN : MonoBehaviour
                 else Chat.SendLocalResponse("Connection", "Failed to connect to Local Robot");
                 return;
             }
+
+            // Natural Connection ---------------------------------------------
+            ConnectionData data = new ConnectionData();
+            if (ReadWrite.Exists("Connection.gg")) data = ReadWrite.Read<ConnectionData>("Connection.gg");
+            else ReadWrite.Write(data.ToJson(), "Connection.gg");
+
+            if (data.isLocked)
+            {
+                Robot.Connection.host = data.hostname;
+                if (await Robot.Connection.Connect()) Chat.SendLocalResponse("Connection", "Verbindung wurde mit dem Cobot hergestellt.");
+                else Chat.SendLocalResponse("Connection", "Keine Verbindung konnte mit dem Cobot hergestellt werden.");
+                return;
+            }
+
+            input.text = data.hostname;
         }
 
         connectionPanel.Toggle();
     }
 
+    public void SetNewHostname()
+    {
+        ConnectionData data = ReadWrite.Read<ConnectionData>("Connection.gg");
+        data.hostname = input.text;
+        ReadWrite.Write(data.ToJson(), "Connection.gg");
+    }
+
     public async void ConnectButton()
     {
+        SetNewHostname();
         SetActiveConnectionPanel(false);
 
         //Set Host
@@ -79,7 +102,18 @@ public class ConnectionBTN : MonoBehaviour
 
         Robot.Connection.OnDisconnected += () =>
         {
+            if (buttonImage == null) return;
             buttonImage.color = disconnectedColor;
         };
+    }
+
+    public class ConnectionData
+    {
+        public string hostname = "127.0.0.1";
+        public bool isLocked;
+
+        public static ConnectionData FromJson(string json) => JsonConvert.DeserializeObject<ConnectionData>(json);
+
+        public string ToJson() => JsonConvert.SerializeObject(this);
     }
 }

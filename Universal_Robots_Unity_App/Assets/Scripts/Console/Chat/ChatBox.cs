@@ -89,7 +89,7 @@ public class ChatBox : PopupItem
 
     public override void Disable()
     {
-        base.Disable();
         Chat.Hide();
+        base.Disable();
     }
 }

@@ -16,6 +16,7 @@ public class Controller : MonoBehaviour
     public InputActionReference movementAction;
     public InputActionReference altiduteAction;
     public InputActionReference rotationAction;
+    public InputActionReference gripperRotationAction;
     [Space]
     public InputActionReference gripperAction;
     public InputActionReference waypointAction;
@@ -29,12 +30,17 @@ public class Controller : MonoBehaviour
         Movement();
         Altidute();
         Rotation();
+        GripperRotation();
 
         if (movement == Vector3.zero && rotation == Vector3.zero) return;
 
-        movement =  Camera.main.transform.forward * movement.y + //Forward
+        /*movement =  Camera.main.transform.forward * movement.y + //Forward
                     Camera.main.transform.up * movement.x + //Right
-                    Vector3.forward * movement.z;   //UP
+                    Vector3.forward * movement.z;   //UP*/
+
+        movement = Vector3.left * movement.y +
+            Vector3.up * movement.x +
+            Vector3.forward * movement.z;
 
         Robot.CMD.SpeedL(movement, rotation, acceleration, time);
         movement = rotation = Vector3.zero;
@@ -51,11 +57,7 @@ public class Controller : MonoBehaviour
 
     private void Altidute()
     {
-        //Vector2 inputV = altiduteAction.action.ReadValue<Vector2>();
         float input = altiduteAction.action.ReadValue<float>();
-
-        //movement.y += inputV.x * speed;
-        //rotation.z += inputV.y * speed;
         movement.z += input * speed;
     }
 
@@ -67,14 +69,22 @@ public class Controller : MonoBehaviour
         rotation.y += inputV.y * speed;
     }
 
+    private void GripperRotation()
+    {
+        float inputV = gripperRotationAction.action.ReadValue<float>();
+        rotation.z += inputV;
+    }
+
     private void AddWaypoint(CallbackContext ctx)
     {
-        WaypointMenu.Instance.AddWaypoint();
+        //WaypointMenu.Instance.AddWaypoint(WaypointMenu.Instance.GetWaypointAtCurrentPosition());
+        //We Can't just add waypoint anymore
     }
 
     private void PlayAllWaypoints(CallbackContext ctx)
     {
-        WaypointMenu.Instance.PlayAllWaypoints();
+        //WaypointMenu.Instance.PlayAllWaypoints();
+        NewWaypointMenu.Instance.MoveToAllWaypoints();
     }
 
     private void Gripper(CallbackContext ctx)

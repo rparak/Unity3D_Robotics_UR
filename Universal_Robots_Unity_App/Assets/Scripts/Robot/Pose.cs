@@ -16,7 +16,7 @@ public class Pose
         poseString = $"p[{x.ToString().Replace(",", ".")},{y.ToString().Replace(",", ".")},{z.ToString().Replace(",", ".")},{rx.ToString().Replace(",", ".")},{ry.ToString().Replace(",", ".")},{rz.ToString().Replace(",", ".")}]";
     }
 
-    public Pose(Data d, bool useJointData = true)
+    public Pose(Robot.RobotPos d, bool useJointData = true)
     {
         if(useJointData) poseString = $"[{d.jointRot[0].ToString().Replace(",", ".")},{d.jointRot[1].ToString().Replace(",", ".")},{d.jointRot[2].ToString().Replace(",", ".")},{d.jointRot[3].ToString().Replace(",", ".")},{d.jointRot[4].ToString().Replace(",", ".")},{d.jointRot[5].ToString().Replace(",", ".")}]";
         else poseString = $"p[{d.position.x.ToString().Replace(",", ".")},{d.position.y.ToString().Replace(",", ".")},{d.position.z.ToString().Replace(",", ".")},{d.rotation.x.ToString().Replace(",", ".")},{d.rotation.y.ToString().Replace(",", ".")},{d.rotation.z.ToString().Replace(",", ".")}]";

@@ -8,6 +8,18 @@ namespace Robot
     {
         public static event Action OnConnected;
         public static event Action OnDisconnected;
+        public static event Action<string> OnFeedback;
+
+        public static ushort TaskID { get; private set; }
+
+        /// <summary>
+        /// Treat TaskID as a lock control. We can check if there a different Task has interupted the current one.
+        /// </summary>
+        public static ushort NewTask()
+        {
+            if (TaskID == ushort.MaxValue) TaskID = ushort.MinValue;
+            return ++TaskID;
+        }
 
         public static string host = "127.0.0.1";
         public static int sendPort = 30003;
@@ -66,8 +78,10 @@ namespace Robot
             OnDisconnected?.Invoke();
         }
 
+        internal static void Feedback(string feed) => OnFeedback?.Invoke(feed);
 
-        private void OnEnable() => Data.Current = ScriptableObject.CreateInstance<Data>();
+
+        private void OnEnable() => RobotPos.Current = ScriptableObject.CreateInstance<RobotPos>();
 
         private void OnDestroy()
         {
@@ -80,6 +94,8 @@ namespace Robot
 
         public static void SendCommand(string cmd) => ConnectionSend.Send(cmd);
         public static async Task<bool> SendCommandAsync(string cmd) => await ConnectionSend.SendAsync(cmd);
+
+        public static async Task<bool> WaitAsync(int milliseconds) => await ConnectionSend.WaitAsync(milliseconds);
 
         public static async Task<string> SendDashboardAsync(string cmd) => await ConnectionDashboard.Send(cmd);
 

@@ -33,7 +33,11 @@ RenderSettings:
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
+<<<<<<< Updated upstream
   m_DefaultReflectionResolution: 512
+=======
+  m_DefaultReflectionResolution: 16
+>>>>>>> Stashed changes
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
@@ -1890,7 +1894,11 @@ Light:
   m_BounceIntensity: 0.7
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
+<<<<<<< Updated upstream
   m_BoundingSphereOverride: {x: 0, y: 0, z: 1.83672e-40, w: -3.11e-43}
+=======
+  m_BoundingSphereOverride: {x: 0, y: 2.038748e-38, z: 2.066299e-39, w: 3.67342e-40}
+>>>>>>> Stashed changes
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -13441,7 +13449,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &939144741
 Transform:
   m_ObjectHideFlags: 0
@@ -16275,7 +16283,7 @@ PrefabInstance:
     - target: {fileID: 4373048193643737941, guid: bf0a225a9ff184f2789f3036faaa9150,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: NaN
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4373048193643737941, guid: bf0a225a9ff184f2789f3036faaa9150,
         type: 3}
@@ -19149,22 +19157,38 @@ PrefabInstance:
     - target: {fileID: 4373048193643737941, guid: bf0a225a9ff184f2789f3036faaa9150,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
+<<<<<<< Updated upstream
       value: 4.591775e-39
+=======
+      value: -7.61e-43
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 4373048193643737941, guid: bf0a225a9ff184f2789f3036faaa9150,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
+<<<<<<< Updated upstream
       value: 2.2e-44
+=======
+      value: 0
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 4373048193643737941, guid: bf0a225a9ff184f2789f3036faaa9150,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
+<<<<<<< Updated upstream
       value: 2.4405384e-30
+=======
+      value: 0
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 4373048193643737941, guid: bf0a225a9ff184f2789f3036faaa9150,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
+<<<<<<< Updated upstream
       value: 9.1858e-41
+=======
+      value: 2.75508e-40
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 4404760024282988913, guid: bf0a225a9ff184f2789f3036faaa9150,
         type: 3}
@@ -24883,6 +24907,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1628087902}
     m_Modifications:
     - target: {fileID: 1083473697046016, guid: 85dfab9623c67784fa7894de63cd1604, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1083473697046016, guid: 85dfab9623c67784fa7894de63cd1604, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -27388,6 +27416,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Range
       value: 7.8926687
+      objectReference: {fileID: 0}
+    - target: {fileID: 108453799659117390, guid: 85dfab9623c67784fa7894de63cd1604,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 108453799659117390, guid: 85dfab9623c67784fa7894de63cd1604,
         type: 3}
@@ -30417,11 +30450,14 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 114166383893342869, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
+=======
+>>>>>>> Stashed changes
     - target: {fileID: 148818059001899851, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_RootOrder
@@ -30497,6 +30533,7 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 638108097489436362, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_CastShadows
@@ -30505,6 +30542,21 @@ PrefabInstance:
     - target: {fileID: 638108097489436362, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_DynamicOccludee
+=======
+    - target: {fileID: 234948363912692370, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 234948363912692370, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 638108097489436362, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_CastShadows
+>>>>>>> Stashed changes
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 674244242335920625, guid: 9e819b288056dae49898f011ed6918ac,
@@ -30522,33 +30574,46 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 699453321393462968, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
+=======
+>>>>>>> Stashed changes
     - target: {fileID: 797864853607361450, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 797864853607361450, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
+=======
+>>>>>>> Stashed changes
     - target: {fileID: 929999717860975232, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 929999717860975232, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_DynamicOccludee
+=======
+    - target: {fileID: 970335020086249323, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_CastShadows
+>>>>>>> Stashed changes
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 970335020086249323, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
@@ -30560,6 +30625,19 @@ PrefabInstance:
     - target: {fileID: 1078032179359905784, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_DynamicOccludee
+=======
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 970335020086249323, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1078032179359905784, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_CastShadows
+>>>>>>> Stashed changes
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1090507064515628922, guid: 9e819b288056dae49898f011ed6918ac,
@@ -30567,6 +30645,7 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 1229449966349305922, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_CastShadows
@@ -30578,43 +30657,69 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1260015050335772707, guid: 9e819b288056dae49898f011ed6918ac,
+=======
+    - target: {fileID: 1090507064515628922, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090507064515628922, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229449966349305922, guid: 9e819b288056dae49898f011ed6918ac,
+>>>>>>> Stashed changes
         type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1260015050335772707, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1363275045120473044, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+=======
+>>>>>>> Stashed changes
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1363275045120473044, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1427919273127404723, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+=======
+>>>>>>> Stashed changes
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1427919273127404723, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1666205311164517174, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+=======
+>>>>>>> Stashed changes
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1666205311164517174, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_DynamicOccludee
+=======
+      propertyPath: m_CastShadows
+>>>>>>> Stashed changes
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1687823571043747789, guid: 9e819b288056dae49898f011ed6918ac,
@@ -30627,6 +30732,7 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 1850742030181207313, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_CastShadows
@@ -30638,23 +30744,43 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1867648237860015615, guid: 9e819b288056dae49898f011ed6918ac,
+=======
+    - target: {fileID: 1832071900701347183, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1832071900701347183, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1850742030181207313, guid: 9e819b288056dae49898f011ed6918ac,
+>>>>>>> Stashed changes
         type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1867648237860015615, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1909944121263756886, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+=======
+>>>>>>> Stashed changes
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1909944121263756886, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_DynamicOccludee
+=======
+      propertyPath: m_CastShadows
+>>>>>>> Stashed changes
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1964467584497489479, guid: 9e819b288056dae49898f011ed6918ac,
@@ -30672,6 +30798,7 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 2134275912047933191, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_CastShadows
@@ -30683,13 +30810,30 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2375369073133351984, guid: 9e819b288056dae49898f011ed6918ac,
+=======
+    - target: {fileID: 2104952387196319709, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104952387196319709, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134275912047933191, guid: 9e819b288056dae49898f011ed6918ac,
+>>>>>>> Stashed changes
         type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2375369073133351984, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_DynamicOccludee
+=======
+      propertyPath: m_CastShadows
+>>>>>>> Stashed changes
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2409347188499282023, guid: 9e819b288056dae49898f011ed6918ac,
@@ -30697,16 +30841,55 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+    - target: {fileID: 2409347188499282023, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2409347188499282023, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+>>>>>>> Stashed changes
     - target: {fileID: 2427844901074400028, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+    - target: {fileID: 2427844901074400028, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427844901074400028, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+>>>>>>> Stashed changes
     - target: {fileID: 2664467559944905037, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+    - target: {fileID: 2664467559944905037, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2664467559944905037, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+>>>>>>> Stashed changes
     - target: {fileID: 2666836293348268275, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_IsActive
@@ -30717,6 +30900,7 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 2701262379790806360, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_CastShadows
@@ -30725,6 +30909,21 @@ PrefabInstance:
     - target: {fileID: 2701262379790806360, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_DynamicOccludee
+=======
+    - target: {fileID: 2675734360338133822, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675734360338133822, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2701262379790806360, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_CastShadows
+>>>>>>> Stashed changes
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2718077805422449126, guid: 9e819b288056dae49898f011ed6918ac,
@@ -30737,13 +30936,20 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 2837949843622175287, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_DynamicOccludee
+=======
+    - target: {fileID: 3089173438125905931, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_CastShadows
+>>>>>>> Stashed changes
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3089173438125905931, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
@@ -30755,6 +30961,19 @@ PrefabInstance:
     - target: {fileID: 3227398018406558070, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_DynamicOccludee
+=======
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089173438125905931, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227398018406558070, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_CastShadows
+>>>>>>> Stashed changes
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3361035309762320929, guid: 9e819b288056dae49898f011ed6918ac,
@@ -30767,6 +30986,7 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 3605164936167834477, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_CastShadows
@@ -30775,6 +30995,21 @@ PrefabInstance:
     - target: {fileID: 3605164936167834477, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_DynamicOccludee
+=======
+    - target: {fileID: 3571471817449750274, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3571471817449750274, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605164936167834477, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_CastShadows
+>>>>>>> Stashed changes
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3636693779939679629, guid: 9e819b288056dae49898f011ed6918ac,
@@ -30782,6 +31017,7 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 3659682498810822037, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_CastShadows
@@ -30793,13 +31029,30 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3690142041657624149, guid: 9e819b288056dae49898f011ed6918ac,
+=======
+    - target: {fileID: 3636693779939679629, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3636693779939679629, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3659682498810822037, guid: 9e819b288056dae49898f011ed6918ac,
+>>>>>>> Stashed changes
         type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3690142041657624149, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_DynamicOccludee
+=======
+      propertyPath: m_CastShadows
+>>>>>>> Stashed changes
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4201537263734896012, guid: 9e819b288056dae49898f011ed6918ac,
@@ -30812,11 +31065,14 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 4223762849265283134, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
+=======
+>>>>>>> Stashed changes
     - target: {fileID: 4401681645364482485, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -30852,16 +31108,20 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 4555023339479949793, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
+=======
+>>>>>>> Stashed changes
     - target: {fileID: 4723254890257022240, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 4833431410369074457, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_CastShadows
@@ -30873,63 +31133,95 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4977298816621853199, guid: 9e819b288056dae49898f011ed6918ac,
+=======
+    - target: {fileID: 4723254890257022240, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4723254890257022240, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833431410369074457, guid: 9e819b288056dae49898f011ed6918ac,
+>>>>>>> Stashed changes
         type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4977298816621853199, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5183661113090372105, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+=======
+>>>>>>> Stashed changes
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5183661113090372105, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5274706269458887210, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+=======
+>>>>>>> Stashed changes
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5274706269458887210, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5459349834233911281, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+=======
+>>>>>>> Stashed changes
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5459349834233911281, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5540116108701515963, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+=======
+>>>>>>> Stashed changes
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5540116108701515963, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5541107005936765800, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+=======
+>>>>>>> Stashed changes
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5541107005936765800, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_DynamicOccludee
+=======
+      propertyPath: m_CastShadows
+>>>>>>> Stashed changes
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5614230401192969306, guid: 9e819b288056dae49898f011ed6918ac,
@@ -30937,6 +31229,7 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 5635380794311385162, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_CastShadows
@@ -30948,13 +31241,30 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5675829040896920973, guid: 9e819b288056dae49898f011ed6918ac,
+=======
+    - target: {fileID: 5614230401192969306, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5614230401192969306, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635380794311385162, guid: 9e819b288056dae49898f011ed6918ac,
+>>>>>>> Stashed changes
         type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5675829040896920973, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_DynamicOccludee
+=======
+      propertyPath: m_CastShadows
+>>>>>>> Stashed changes
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5722722389777061661, guid: 9e819b288056dae49898f011ed6918ac,
@@ -30967,11 +31277,14 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 5739858296274246553, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
+=======
+>>>>>>> Stashed changes
     - target: {fileID: 5790323442595389306, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_IsActive
@@ -30982,21 +31295,50 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 5797596358655660139, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_DynamicOccludee
+=======
+    - target: {fileID: 5827371824732641769, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_CastShadows
+>>>>>>> Stashed changes
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5827371824732641769, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_CastShadows
       value: 0
+=======
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827371824732641769, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 5940662239388033857, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+    - target: {fileID: 5940662239388033857, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940662239388033857, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+>>>>>>> Stashed changes
     - target: {fileID: 6037633480240143298, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_IsActive
@@ -31007,11 +31349,37 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+    - target: {fileID: 6120249902270955402, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120249902270955402, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+>>>>>>> Stashed changes
     - target: {fileID: 6262312410516734578, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+    - target: {fileID: 6262312410516734578, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6262312410516734578, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+>>>>>>> Stashed changes
     - target: {fileID: 6365384962701275835, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_IsActive
@@ -31022,11 +31390,14 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 6381247395850433109, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
+=======
+>>>>>>> Stashed changes
     - target: {fileID: 6397951738543174382, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_IsActive
@@ -31037,6 +31408,7 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 6696640021838013955, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_CastShadows
@@ -31045,6 +31417,21 @@ PrefabInstance:
     - target: {fileID: 6696640021838013955, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_DynamicOccludee
+=======
+    - target: {fileID: 6610225775462881972, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6610225775462881972, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6696640021838013955, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_CastShadows
+>>>>>>> Stashed changes
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6748271690909685986, guid: 9e819b288056dae49898f011ed6918ac,
@@ -31052,11 +31439,25 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+    - target: {fileID: 6748271690909685986, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748271690909685986, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+>>>>>>> Stashed changes
     - target: {fileID: 6774999687406627407, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 6775350669962460790, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_CastShadows
@@ -31068,53 +31469,82 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6975459014717362272, guid: 9e819b288056dae49898f011ed6918ac,
+=======
+    - target: {fileID: 6774999687406627407, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6774999687406627407, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775350669962460790, guid: 9e819b288056dae49898f011ed6918ac,
+>>>>>>> Stashed changes
         type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6975459014717362272, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6988170382784089372, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+=======
+>>>>>>> Stashed changes
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6988170382784089372, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7019026708966572030, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+=======
+>>>>>>> Stashed changes
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7019026708966572030, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7047085580048062346, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+=======
+>>>>>>> Stashed changes
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7047085580048062346, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7530498330353193082, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+=======
+>>>>>>> Stashed changes
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7530498330353193082, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_DynamicOccludee
+=======
+      propertyPath: m_CastShadows
+>>>>>>> Stashed changes
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7596252620690247624, guid: 9e819b288056dae49898f011ed6918ac,
@@ -31122,16 +31552,26 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 7596252620690247624, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7597297806285246836, guid: 9e819b288056dae49898f011ed6918ac,
+=======
+    - target: {fileID: 7597297806285246836, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7613077823715876754, guid: 9e819b288056dae49898f011ed6918ac,
+>>>>>>> Stashed changes
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 7597297806285246836, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_DynamicOccludee
@@ -31141,32 +31581,73 @@ PrefabInstance:
         type: 3}
       propertyPath: m_CastShadows
       value: 0
+=======
+    - target: {fileID: 7613077823715876754, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7613077823715876754, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 7634495855617638514, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 7634495855617638514, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_DynamicOccludee
+=======
+    - target: {fileID: 7968251470429869680, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_CastShadows
+>>>>>>> Stashed changes
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7968251470429869680, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_CastShadows
       value: 0
+=======
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7968251470429869680, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 8019542206259451492, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+    - target: {fileID: 8019542206259451492, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8019542206259451492, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+>>>>>>> Stashed changes
     - target: {fileID: 8221934140409374452, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 8333245667354933729, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_CastShadows
@@ -31175,6 +31656,21 @@ PrefabInstance:
     - target: {fileID: 8333245667354933729, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_DynamicOccludee
+=======
+    - target: {fileID: 8221934140409374452, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8221934140409374452, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8333245667354933729, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_CastShadows
+>>>>>>> Stashed changes
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8354352891280132942, guid: 9e819b288056dae49898f011ed6918ac,
@@ -31182,6 +31678,7 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 8377669007179787966, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_CastShadows
@@ -31193,13 +31690,30 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8459088460804751797, guid: 9e819b288056dae49898f011ed6918ac,
+=======
+    - target: {fileID: 8354352891280132942, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354352891280132942, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8377669007179787966, guid: 9e819b288056dae49898f011ed6918ac,
+>>>>>>> Stashed changes
         type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8459088460804751797, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_DynamicOccludee
+=======
+      propertyPath: m_CastShadows
+>>>>>>> Stashed changes
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8932670909884577124, guid: 9e819b288056dae49898f011ed6918ac,
@@ -31207,6 +31721,7 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 8967323957715933132, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_CastShadows
@@ -31215,6 +31730,21 @@ PrefabInstance:
     - target: {fileID: 8967323957715933132, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_DynamicOccludee
+=======
+    - target: {fileID: 8932670909884577124, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932670909884577124, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8967323957715933132, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_CastShadows
+>>>>>>> Stashed changes
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9092964039242680226, guid: 9e819b288056dae49898f011ed6918ac,
@@ -31222,6 +31752,7 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 9210469761024481270, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_CastShadows
@@ -31230,6 +31761,21 @@ PrefabInstance:
     - target: {fileID: 9210469761024481270, guid: 9e819b288056dae49898f011ed6918ac,
         type: 3}
       propertyPath: m_DynamicOccludee
+=======
+    - target: {fileID: 9092964039242680226, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9092964039242680226, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9210469761024481270, guid: 9e819b288056dae49898f011ed6918ac,
+        type: 3}
+      propertyPath: m_CastShadows
+>>>>>>> Stashed changes
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:

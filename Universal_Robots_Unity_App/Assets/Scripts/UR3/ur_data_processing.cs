@@ -276,7 +276,7 @@ public class ur_data_processing : MonoBehaviour
             }
             catch (SocketException e)
             {
-                Console.WriteLine("SocketException: {0}", e);
+                Debug.Log("SocketException: {0}", e);
             }
         }
 

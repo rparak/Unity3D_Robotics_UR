@@ -293,13 +293,11 @@ public class ur_data_processing : MonoBehaviour
         }
         public void Stop()
         {
-            // Stop and exit thread
             exit_thread = true;
-            if (robot_thread.IsAlive == true)
-            {
-                Thread.Sleep(100);
-                UR_Stream_Data.is_alive = false;
-            }
+            // Stop a thread
+            Thread.Sleep(100);
+            UR_Stream_Data.is_alive = robot_thread.IsAlive;
+            robot_thread.Abort();
         }
         public void Destroy()
         {
@@ -386,14 +384,11 @@ public class ur_data_processing : MonoBehaviour
         }
         public void Stop()
         {
-            // Stop and exit thread
             exit_thread = true;
-            if (robot_thread.IsAlive == true)
-            {
-                // Disconnect communication
-                Thread.Sleep(100);
-                UR_Control_Data.is_alive = false;
-            }
+            // Stop a thread
+            Thread.Sleep(100);
+            UR_Control_Data.is_alive = robot_thread.IsAlive;
+            robot_thread.Abort();
         }
         public void Destroy()
         {

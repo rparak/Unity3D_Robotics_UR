@@ -1,5 +1,9 @@
 # Unity3D Industrial Robotics: Universal Robots UR3
 
+<p align="center">
+<img src="https://github.com/rparak/Unity3D_Robotics_UR/blob/main/images/ur_background.PNG" width="800" height="500">
+</p>
+
 ## Requirements:
 
 **Software:**

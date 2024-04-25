@@ -202,6 +202,8 @@ public class ur_data_processing : MonoBehaviour
         private NetworkStream network_stream = null;
         //  Packet Buffer (Read)
         private byte[] packet = new byte[1116];
+        //  Main state machine
+        private int state_id = 0;
 
         // Offset:
         //  Size of first packet in bytes (Integer)
@@ -210,8 +212,8 @@ public class ur_data_processing : MonoBehaviour
         private const byte offset = 8;
 
         // Total message length in bytes
-        // Note: total_msg_length = 1409548288
-        private const UInt32 total_msg_length = 3288596480;
+        private static List<UInt32> msg_length_list = new List<UInt32>();
+        private static UInt32 total_msg_length = 0;
 
         public void UR_Stream_Thread()
         {
@@ -231,47 +233,74 @@ public class ur_data_processing : MonoBehaviour
 
                 while (exit_thread == false)
                 {
-                    // Get the data from the robot
-                    if (network_stream.Read(packet, 0, packet.Length) != 0)
+                    switch (state_id)
                     {
-                        if (BitConverter.ToUInt32(packet, first_packet_size - 4) == total_msg_length)
-                        {
-                            // t_{0}: Timer start.
-                            t.Start();
-
-                            // Reverses the order of elements in a one-dimensional array or part of an array.
-                            Array.Reverse(packet);
-
-                            // Note:
-                            //  For more information on values 32... 37, etc., see the UR Client Interface document.
-                            // Read Joint Values in radians
-                            UR_Stream_Data.J_Orientation[0] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (32 * offset));
-                            UR_Stream_Data.J_Orientation[1] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (33 * offset));
-                            UR_Stream_Data.J_Orientation[2] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (34 * offset));
-                            UR_Stream_Data.J_Orientation[3] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (35 * offset));
-                            UR_Stream_Data.J_Orientation[4] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (36 * offset));
-                            UR_Stream_Data.J_Orientation[5] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (37 * offset));
-                            // Read Cartesian (Positon) Values in metres
-                            UR_Stream_Data.C_Position[0] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (56 * offset));
-                            UR_Stream_Data.C_Position[1] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (57 * offset));
-                            UR_Stream_Data.C_Position[2] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (58 * offset));
-                            // Read Cartesian (Orientation) Values in metres 
-                            UR_Stream_Data.C_Orientation[0] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (59 * offset));
-                            UR_Stream_Data.C_Orientation[1] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (60 * offset));
-                            UR_Stream_Data.C_Orientation[2] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (61 * offset));
-
-                            // t_{1}: Timer stop.
-                            t.Stop();
-
-                            // Recalculate the time: t = t_{1} - t_{0} -> Elapsed Time in milliseconds
-                            if (t.ElapsedMilliseconds < UR_Stream_Data.time_step)
+                        case 0:
                             {
-                                Thread.Sleep(UR_Stream_Data.time_step - (int)t.ElapsedMilliseconds);
-                            }
+                                // Getting the total message length from several runs of reading data
+                                if (network_stream.Read(packet, 0, packet.Length) != 0)
+                                {
+                                    if (msg_length_list.Count == 10)
+                                    {
+                                        msg_length_list.Sort();
+                                        total_msg_length = msg_length_list[msg_length_list.Count - 1];
+                                        state_id = 1;
+                                    }
+                                    else
+                                    {
+                                        msg_length_list.Add(BitConverter.ToUInt32(packet, first_packet_size - 4));
+                                    }
+                                }
 
-                            // Reset (Restart) timer.
-                            t.Restart();
+                            }
+                            break;
+
+                        case 1:
+                        {
+                            // Get the data from the robot
+                            if (network_stream.Read(packet, 0, packet.Length) != 0)
+                            {
+                                if (BitConverter.ToUInt32(packet, first_packet_size - 4) == total_msg_length)
+                                {
+                                    // t_{0}: Timer start.
+                                    t.Start();
+        
+                                    // Reverses the order of elements in a one-dimensional array or part of an array.
+                                    Array.Reverse(packet);
+        
+                                    // Note:
+                                    //  For more information on values 32... 37, etc., see the UR Client Interface document.
+                                    // Read Joint Values in radians
+                                    UR_Stream_Data.J_Orientation[0] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (32 * offset));
+                                    UR_Stream_Data.J_Orientation[1] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (33 * offset));
+                                    UR_Stream_Data.J_Orientation[2] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (34 * offset));
+                                    UR_Stream_Data.J_Orientation[3] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (35 * offset));
+                                    UR_Stream_Data.J_Orientation[4] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (36 * offset));
+                                    UR_Stream_Data.J_Orientation[5] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (37 * offset));
+                                    // Read Cartesian (Positon) Values in metres
+                                    UR_Stream_Data.C_Position[0] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (56 * offset));
+                                    UR_Stream_Data.C_Position[1] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (57 * offset));
+                                    UR_Stream_Data.C_Position[2] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (58 * offset));
+                                    // Read Cartesian (Orientation) Values in metres 
+                                    UR_Stream_Data.C_Orientation[0] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (59 * offset));
+                                    UR_Stream_Data.C_Orientation[1] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (60 * offset));
+                                    UR_Stream_Data.C_Orientation[2] = BitConverter.ToDouble(packet, packet.Length - first_packet_size - (61 * offset));
+        
+                                    // t_{1}: Timer stop.
+                                    t.Stop();
+        
+                                    // Recalculate the time: t = t_{1} - t_{0} -> Elapsed Time in milliseconds
+                                    if (t.ElapsedMilliseconds < UR_Stream_Data.time_step)
+                                    {
+                                        Thread.Sleep(UR_Stream_Data.time_step - (int)t.ElapsedMilliseconds);
+                                    }
+        
+                                    // Reset (Restart) timer.
+                                    t.Restart();
+                                }
+                            }
                         }
+                        break;
                     }
                 }
             }
